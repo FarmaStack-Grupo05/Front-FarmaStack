@@ -10,7 +10,6 @@ function App() {
 		<>
 			<NavBar />
 			<Cards />
-			<h1>Estoy en App.js</h1>
 			<Footer />
 		</>
 	);
