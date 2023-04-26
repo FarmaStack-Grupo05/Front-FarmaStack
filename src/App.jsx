@@ -6,14 +6,13 @@ import NavBar from "./Components/NavBar/NavBar";
 import Cards from "./Components/Cards/Cards";
 
 function App() {
-  return (
-    <>
-      <NavBar />
-	  <Cards/>
-      <h1>Estoy en App.js</h1>
-      <Footer />
-    </>
-  );
+	return (
+		<>
+			<NavBar />
+			<Cards />
+			<Footer />
+		</>
+	);
 }
 
 export default App;
