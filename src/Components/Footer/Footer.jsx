@@ -1,15 +1,7 @@
-import React from "react";
-
 
 const Footer= () => {
     return (
         <div>
-{/*
-  Heads up! 👋
-
-  This component comes with some `rtl` classes. Please remove them they are not needed in your project.
-*/}
-
 <footer aria-label="Site Footer" className="bg-white">
   <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24">
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
@@ -191,7 +183,7 @@ const Footer= () => {
         className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2"
       >
         <div className="text-center sm:text-left">
-          <p className="text-lg font-medium text-gray-900">About Us</p>
+          <p className="text-lg font-medium text-gray-900">Nosotros</p>
 
           <nav aria-label="Footer About Nav" className="mt-8">
             <ul className="space-y-4 text-sm">
@@ -200,7 +192,7 @@ const Footer= () => {
                   className="text-gray-700 transition hover:text-gray-700/75"
                   href="/"
                 >
-                  Company History
+                  Quienes somos
                 </a>
               </li>
 
@@ -307,8 +299,7 @@ const Footer= () => {
                   href="/"
                 >
                   <span
-                    className="text-gray-700 transition group-hover:text-gray-700/75"
-                  >
+                    className="text-gray-700 transition hover:text-gray-700/75">
                     Live Chat
                   </span>
 
