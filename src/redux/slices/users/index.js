@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const courseSlice = createSlice({
+export const userSlice = createSlice({
 	name: "users",
 	initialState: {
 		list: [],
@@ -12,6 +12,6 @@ export const courseSlice = createSlice({
 	},
 });
 
-export const { setUserList } = courseSlice.actions;
+export const { setUserList } = userSlice.actions;
 
-export default courseSlice.reducer;
+export default userSlice.reducer;
