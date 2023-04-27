@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
+import { useDispatch, useSelector } from "react-redux";
 
 const Slide =() => {
+
+  const dispatch = useDispatch();
+  const {results} = useSelector((state) => state.productsState.list);
 const slides = [
   {
     url: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
@@ -55,7 +59,7 @@ return (
       <BsChevronCompactRight onClick={nextSlide} size={30} />
     </div>
     <div className='flex top-4 justify-center py-2'>
-      {slides.map((slide, slideIndex) => (
+      {results?.map((slide, slideIndex) => (
         <div
           key={slideIndex}
           onClick={() => goToSlide(slideIndex)}
