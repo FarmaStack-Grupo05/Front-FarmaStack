@@ -15,3 +15,15 @@ export const getProducts = (value, text) => {
 		}
 	};
 };
+//Pagination
+export const changePageProduct = (page) => {
+	return async (dispatch) => {
+		try {
+			let res = await axios.get(`${URL}/products?page=${page}`);
+			console.log(res.data);
+			dispatch(setProductsList(res.data));
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
