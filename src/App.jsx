@@ -6,6 +6,7 @@ import {
 	Home,
 	Payment,
 	Profile,
+	Products,
 } from "./views/index";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
 				<Route path="/farmastack/profile" element={<Profile />}>
 					<Route path="informacion-personal" element={<Profile />} />
 				</Route>
+				<Route exact path="/farmastack/products" element={<Products />} />
 			</Routes>
 		</>
 	);
