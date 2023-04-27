@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes,} from "react-router-dom";
 import {
 	AboutUs,
 	Details,
@@ -8,6 +8,7 @@ import {
 	Profile,
 	Products,
 } from "./views/index";
+
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 					<Route path="informacion-personal" element={<Profile />} />
 				</Route>
 				<Route exact path="/farmastack/products" element={<Products />} />
+				
 			</Routes>
 		</>
 	);

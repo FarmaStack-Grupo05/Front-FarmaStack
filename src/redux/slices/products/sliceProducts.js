@@ -6,12 +6,24 @@ const URL = "http://localhost:3001";
 //Get All Courses import.meta.env.VITE_BACK_URL ||
 
 export const getProducts = () => {
-	return async (dispatch) => {
-		try {
-			let res = await axios.get(`${URL}/products`);
-			dispatch(setProductsList(res.data));
-		} catch (err) {
-			console.log("error", err.message);
-		}
-	};
+  return async (dispatch) => {
+    try {
+      let res = await axios.get(`${URL}/products`);
+      dispatch(setProductsList(res.data));
+    } catch (err) {
+      console.log("error", err.message);
+    }
+  };
+};
+//Pagination 
+
+export const changePageProduct = (page) => {
+  return async (dispatch) => {
+    try {
+      let res = await axios.get(`${URL}/products?page=${page}`);
+      dispatch(setProductsList(res.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
