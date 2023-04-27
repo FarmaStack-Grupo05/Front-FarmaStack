@@ -2,12 +2,18 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/slices/products/sliceProducts";
 
-const CardsContainer = () => {
+const Products = () => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(getProducts());
-	}, []);
-	const { list } = useSelector((state) => state.productsState);
+	}, [dispatch]);
+	const { results } = useSelector((state) => state.productsState.list);
+	console.log(results);
+	const onChange = (event) => {
+		const { name, value } = event.target;
+		console.log(value);
+	};
+
 	return (
 		<div>
 			{/*
@@ -67,6 +73,7 @@ const CardsContainer = () => {
 								<select
 									id="SortBy"
 									className="mt-1 rounded border-gray-300 text-sm"
+									onChange={onChange}
 								>
 									<option>Sort By</option>
 									<option value="Name, DESC">Name, DESC</option>
@@ -395,7 +402,7 @@ const CardsContainer = () => {
 
 						<div className="lg:col-span-3">
 							<ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-								{list.map((product) => {
+								{results?.map((product) => {
 									return (
 										<li>
 											<a href="#" className="group block overflow-hidden">
@@ -431,4 +438,4 @@ const CardsContainer = () => {
 	);
 };
 
-export default CardsContainer;
+export default Products;
