@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/slices/products/sliceProducts";
+import Pagination from "../../Components/Pagination/Pagination";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ const Products = () => {
   const { results } = useSelector((state) => state.productsState.list);
   console.log(results);
   const onChange = (event) => {
-    const { name, value } = event.target;
+    const { value } = event.target;
     console.log(value);
   };
 
@@ -28,6 +29,9 @@ const Products = () => {
       <section>
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
           <header>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Pagination />
+            </div>
             <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
               Product Collection
             </h2>
