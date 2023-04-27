@@ -8,10 +8,11 @@ const Products = () => {
 		dispatch(getProducts());
 	}, [dispatch]);
 	const { results } = useSelector((state) => state.productsState.list);
-	console.log(results);
 	const onChange = (event) => {
-		const { name, value } = event.target;
-		console.log(value);
+		const { value } = event.target;
+		const text = event.target.selectedOptions[0].label;
+		dispatch(getProducts(value, text));
+		console.log(results);
 	};
 
 	return (
@@ -29,7 +30,7 @@ const Products = () => {
 				<div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
 					<header>
 						<h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
-							Product Collection
+							Our products
 						</h2>
 
 						<p className="mt-4 max-w-md text-gray-500">
@@ -67,7 +68,7 @@ const Products = () => {
 									htmlFor="SortBy"
 									className="block text-xs font-medium text-gray-700"
 								>
-									Sort By
+									Sort By Name
 								</label>
 
 								<select
@@ -76,10 +77,26 @@ const Products = () => {
 									onChange={onChange}
 								>
 									<option>Sort By</option>
-									<option value="Name, DESC">Name, DESC</option>
-									<option value="Name, ASC">Name, ASC</option>
-									<option value="Price, DESC">Price, DESC</option>
-									<option value="Price, ASC">Price, ASC</option>
+									<option value="sortName">des</option>
+									<option value="sortName">asc</option>
+								</select>
+							</div>
+							<div>
+								<label
+									htmlFor="SortBy"
+									className="block text-xs font-medium text-gray-700"
+								>
+									Sort By Price
+								</label>
+
+								<select
+									id="SortBy"
+									className="mt-1 rounded border-gray-300 text-sm"
+									onChange={onChange}
+								>
+									<option>Sort By Price</option>
+									<option value="sortPrice">asc</option>
+									<option value="sortPrice">des</option>
 								</select>
 							</div>
 
@@ -414,8 +431,11 @@ const Products = () => {
 
 												<div className="relative bg-white pt-3">
 													<h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-														{product.name}
+														{product.category}
 													</h3>
+													<h1 className="text-xl text-gray-700 group-hover:underline group-hover:underline-offset-4">
+														{product.name}
+													</h1>
 
 													<p className="mt-2">
 														<span className="sr-only"> Regular Price </span>
