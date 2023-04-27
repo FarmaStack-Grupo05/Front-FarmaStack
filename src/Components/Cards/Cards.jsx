@@ -1,104 +1,50 @@
-import React from "react";
-
 const Cards = () => {
-  return (
-    <>
-      <a href="#" className="block rounded-lg p-4 shadow-sm shadow-indigo-100">
-        <img
-          alt="Home"
-          src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-          className="h-56 w-full rounded-md object-cover"
-        />
+	return (
+		<>
+			<a href="#" className="group relative block overflow-hidden">
+				<button className="absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
+					<span className="sr-only">Wishlist</span>
 
-        <div className="mt-2">
-          <dl>
-            <div>
-              <dt className="sr-only">Price</dt>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						strokeWidth="1.5"
+						stroke="currentColor"
+						className="h-4 w-4"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+						/>
+					</svg>
+				</button>
 
-              <dd className="text-sm text-gray-500">$240,000</dd>
-            </div>
+				<img
+					src="https://images.unsplash.com/photo-1599481238640-4c1288750d7a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2664&q=80"
+					alt=""
+					className="h-64 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-72"
+				/>
 
-            <div>
-              <dt className="sr-only">Address</dt>
+				<div className="relative border border-gray-100 bg-white p-6">
+					<span className="whitespace-nowrap bg-yellow-400 px-3 py-1.5 text-xs font-medium">
+						New
+					</span>
 
-              <dd className="font-medium">123 Wallaby Avenue, Park Road</dd>
-            </div>
-          </dl>
+					<h3 className="mt-4 text-lg font-medium text-gray-900">Robot Toy</h3>
 
-          <div className="mt-6 flex items-center gap-8 text-xs">
-            <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
-              <svg
-                className="h-4 w-4 text-indigo-700"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
-                />
-              </svg>
+					<p className="mt-1.5 text-sm text-gray-700">$14.99</p>
 
-              <div className="mt-1.5 sm:mt-0">
-                <p className="text-gray-500">Parking</p>
-
-                <p className="font-medium">2 spaces</p>
-              </div>
-            </div>
-
-            <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
-              <svg
-                className="h-4 w-4 text-indigo-700"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                />
-              </svg>
-
-              <div className="mt-1.5 sm:mt-0">
-                <p className="text-gray-500">Bathroom</p>
-
-                <p className="font-medium">2 rooms</p>
-              </div>
-            </div>
-
-            <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
-              <svg
-                className="h-4 w-4 text-indigo-700"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                />
-              </svg>
-
-              <div className="mt-1.5 sm:mt-0">
-                <p className="text-gray-500">Bedroom</p>
-
-                <p className="font-medium">4 rooms</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
-    </>
-  );
+					<form className="mt-4">
+						<button className="block w-full rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105">
+							Add to Cart
+						</button>
+					</form>
+				</div>
+			</a>
+		</>
+	);
 };
 
 export default Cards;
