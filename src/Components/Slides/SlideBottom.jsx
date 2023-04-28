@@ -4,7 +4,7 @@ import { RxDotFilled } from 'react-icons/rx';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../redux/slices/products/sliceProducts';
 
-const Slide = () => {
+const SlideBottom = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
@@ -111,4 +111,4 @@ const Slide = () => {
 );
 
 }
-export default Slide
+export default SlideBottom;

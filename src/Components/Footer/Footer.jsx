@@ -2,7 +2,7 @@
 const Footer= () => {
     return (
         <div>
-<footer aria-label="Site Footer" className="bg-white">
+<footer aria-label="Site Footer" style={{backgroundColor: 'green'}} className="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24">
   <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24">
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
       <div>
@@ -55,12 +55,12 @@ const Footer= () => {
             />
           </svg>
         </div>
-
         <p
-          className="mt-6 max-w-md text-center leading-relaxed text-gray-500 sm:max-w-xs sm:text-left"
-        >
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt
-          consequuntur amet culpa cum itaque neque.
+          className="mt-6 max-w-md text-center leading-relaxed text-gray-500 sm:max-w-xs sm:text-left" style={{color: "white"}}>
+
+          Domicilios <br />
+          Desde Celular A Nivel Nacional <br />
+          601 458 4595
         </p>
 
         <ul className="mt-8 flex justify-center gap-6 sm:justify-start md:gap-8">
@@ -183,7 +183,9 @@ const Footer= () => {
         className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2"
       >
         <div className="text-center sm:text-left">
-          <p className="text-lg font-medium text-gray-900">Nosotros</p>
+        <p className="text-lg font-medium text-gray-900 white-text">Nosotros</p>
+
+          
 
           <nav aria-label="Footer About Nav" className="mt-8">
             <ul className="space-y-4 text-sm">
@@ -201,7 +203,7 @@ const Footer= () => {
                   className="text-gray-700 transition hover:text-gray-700/75"
                   href="/"
                 >
-                  Meet the Team
+                  Trabaja Con Nosotros
                 </a>
               </li>
 
@@ -227,7 +229,7 @@ const Footer= () => {
         </div>
 
         <div className="text-center sm:text-left">
-          <p className="text-lg font-medium text-gray-900">Our Services</p>
+          <p className="text-lg font-medium text-gray-900">Legales</p>
 
           <nav aria-label="Footer Services Nav" className="mt-8">
             <ul className="space-y-4 text-sm">
@@ -236,7 +238,7 @@ const Footer= () => {
                   className="text-gray-700 transition hover:text-gray-700/75"
                   href="/"
                 >
-                  Web Development
+                  Aviso De Privacidad
                 </a>
               </li>
 
@@ -245,7 +247,7 @@ const Footer= () => {
                   className="text-gray-700 transition hover:text-gray-700/75"
                   href="/"
                 >
-                  Web Design
+                  Politica
                 </a>
               </li>
 
@@ -254,7 +256,7 @@ const Footer= () => {
                   className="text-gray-700 transition hover:text-gray-700/75"
                   href="/"
                 >
-                  Marketing
+                  Terminos Y Condiciones
                 </a>
               </li>
 
@@ -271,7 +273,7 @@ const Footer= () => {
         </div>
 
         <div className="text-center sm:text-left">
-          <p className="text-lg font-medium text-gray-900">Helpful Links</p>
+          <p className="text-lg font-medium text-gray-900">Nuestros Servicios</p>
 
           <nav aria-label="Footer Helpful Nav" className="mt-8">
             <ul className="space-y-4 text-sm">
@@ -280,7 +282,7 @@ const Footer= () => {
                   className="text-gray-700 transition hover:text-gray-700/75"
                   href="/"
                 >
-                  FAQs
+                  Domicilios
                 </a>
               </li>
 
@@ -289,7 +291,7 @@ const Footer= () => {
                   className="text-gray-700 transition hover:text-gray-700/75"
                   href="/"
                 >
-                  Support
+                  Retiros En Tienda
                 </a>
               </li>
 
@@ -300,7 +302,7 @@ const Footer= () => {
                 >
                   <span
                     className="text-gray-700 transition hover:text-gray-700/75">
-                    Live Chat
+                    Catalogos FarmaStack
                   </span>
 
                   <span className="relative flex h-2 w-2">
@@ -318,7 +320,7 @@ const Footer= () => {
         </div>
 
         <div className="text-center sm:text-left">
-          <p className="text-lg font-medium text-gray-900">Contact Us</p>
+          <p className="text-lg font-medium text-gray-900">Club FarmaStack</p>
 
           <ul className="mt-8 space-y-4 text-sm">
             <li>
@@ -341,7 +343,7 @@ const Footer= () => {
                   />
                 </svg>
 
-                <span className="flex-1 text-gray-700">john@doe.com</span>
+                <span className="flex-1 text-gray-700">Registrate</span>
               </a>
             </li>
 
@@ -365,7 +367,7 @@ const Footer= () => {
                   />
                 </svg>
 
-                <span className="flex-1 text-gray-700">0123456789</span>
+                <span className="flex-1 text-gray-700">Beneficios</span>
               </a>
             </li>
 
@@ -393,7 +395,7 @@ const Footer= () => {
               </svg>
 
               <address className="-mt-0.5 flex-1 not-italic text-gray-700">
-                213 Lane, London, United Kingdom
+                Nuestras Sucursales
               </address>
             </li>
           </ul>
