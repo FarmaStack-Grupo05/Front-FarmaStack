@@ -1,10 +1,40 @@
+/* eslint-disable no-unused-vars */
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changePageProduct } from "../../redux/slices/products/sliceProducts";
+
 const Pagination = () => {
+	const dispatch = useDispatch();
+	const [page, setPage] = useState(1);
+
+	useEffect(() => {
+		dispatch(changePageProduct(page));
+	}, [dispatch, page]);
+
+	const { results } = useSelector((state) => state.productsState.list);
+	const { next } = useSelector((state) => state.productsState.list);
+	const { previous } = useSelector((state) => state.productsState.list);
+
+	const handleChangePrev = (e, p) => {
+		if (previous) {
+			setPage(p);
+		}
+	};
+	const handleChangeNext = (e, p) => {
+		if (next) {
+			setPage(p);
+		}
+	};
+
+	console.log(results);
 	return (
 		<div>
 			<div className="inline-flex items-center justify-center gap-3">
 				<a
 					href="#"
 					className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 rtl:rotate-180"
+					onClick={(e) => handleChangePrev(e, page - 1)}
 				>
 					<span className="sr-only">Next Page</span>
 					<svg
@@ -22,13 +52,14 @@ const Pagination = () => {
 				</a>
 
 				<p className="text-xs">
-					3<span className="mx-0.25">/</span>
-					12
+					{page}
+					<span className="mx-0.25">/</span>6
 				</p>
 
 				<a
 					href="#"
 					className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 rtl:rotate-180"
+					onClick={(e) => handleChangeNext(e, page + 1)}
 				>
 					<span className="sr-only">Next Page</span>
 					<svg
