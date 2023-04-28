@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getId } from "../../redux/slices/products/sliceProducts";
 
-const Cards = () => {
+const Details = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -66,4 +66,4 @@ const Cards = () => {
   );
 };
 
-export default Cards;
+export default Details;
