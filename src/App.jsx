@@ -22,7 +22,7 @@ function App() {
 					element={<FormRegister />}
 				/>
 				<Route exact path="/farmastack/aboutus" element={<AboutUs />} />
-				<Route exact path="/farmastack/detalle/:id" element={<Details />} />
+				<Route exact path="/farmastack/details/:id" element={<Details />} />
 				<Route exact path="/farmastack/payment" element={<Payment />} />
 				<Route path="/farmastack/profile" element={<Profile />}>
 					<Route path="informacion-personal" element={<Profile />} />

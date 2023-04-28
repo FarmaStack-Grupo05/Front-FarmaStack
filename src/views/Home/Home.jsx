@@ -6,6 +6,7 @@ import Details from "../Details/Details";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Products from "../Products/Products";
+import CardsHome from "../../Components/CardsHome/CardsHome";
 
 function Home() {
 	const location = useLocation();
@@ -14,6 +15,7 @@ function Home() {
 			<Slides />
 			<Details />
 			<SlideBottom />
+			<CardsHome />
 			<Link to={"/farmastack/products"}>
 				<button>Products</button>
 			</Link>
