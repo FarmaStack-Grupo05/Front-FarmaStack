@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setProductsList } from ".";
+import { setProductsList,getIdProducts  } from ".";
 
 const URL = "http://localhost:3001";
 // "http://localhost:3001";
@@ -15,3 +15,10 @@ export const getProducts = () => {
 		}
 	};
 };
+
+export const getId = (id) => {
+	return async (dispatch) => {
+		let res = await axios.get(`${URL}/products/${id}`)
+		dispatch(getIdProducts (res.data));
+	}
+}
