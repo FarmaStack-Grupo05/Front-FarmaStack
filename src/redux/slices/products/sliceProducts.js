@@ -1,9 +1,7 @@
 import axios from "axios";
-import { setProductsList } from ".";
+import { setProductsList,getIdProducts  } from ".";
 
-const URL = "http://localhost:3001";
-// "http://localhost:3001";
-//Get All Courses import.meta.env.VITE_BACK_URL ||
+const URL = import.meta.env.VITE_BACK_URL || "http://localhost:3001";
 
 export const getProducts = (value, text) => {
 	return async (dispatch) => {
@@ -15,6 +13,13 @@ export const getProducts = (value, text) => {
 		}
 	};
 };
+
+export const getId = (id) => {
+	return async (dispatch) => {
+		let res = await axios.get(`${URL}/products/${id}`)
+		dispatch(getIdProducts (res.data));
+	}
+}
 //Pagination
 export const changePageProduct = (page) => {
 	return async (dispatch) => {

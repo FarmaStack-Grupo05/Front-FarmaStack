@@ -445,9 +445,8 @@ const Products = () => {
 
 														<p className="mt-2">
 															<span className="sr-only"> Regular Price </span>
-
 															<span className="tracking-wider text-gray-900">
-																{product.price}
+																${product.price}
 															</span>
 														</p>
 													</div>
