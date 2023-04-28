@@ -11,8 +11,9 @@ function Home() {
 	const location = useLocation();
 	return (
 		<>
-			<NavBar />
 			<Slides />
+			<Details />
+			<SlideBottom />
 			<Link to={"/farmastack/products"}>
 				<button>Products</button>
 			</Link>
