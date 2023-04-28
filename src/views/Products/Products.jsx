@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/slices/products/sliceProducts";
 import Pagination from "../../Components/Pagination/Pagination";
+import { Link } from "react-router-dom";
 
 const Products = () => {
 	const dispatch = useDispatch();
@@ -426,30 +427,32 @@ const Products = () => {
 								{results?.map((product) => {
 									return (
 										<li>
-											<a href="#" className="group block overflow-hidden">
-												<img
-													src={product.image}
-													alt=""
-													className="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
-												/>
+											<Link to={`/farmastack/details/${product.id}`}>
+												<a href="#" className="group block overflow-hidden">
+													<img
+														src={product.image}
+														alt=""
+														className="h-[150px] w-1/5 object-cover transition duration-500 group-hover:scale-105 sm:h-[150px]"
+													/>
 
-												<div className="relative bg-white pt-3">
-													<h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-														{product.category}
-													</h3>
-													<h1 className="text-xl text-gray-700 group-hover:underline group-hover:underline-offset-4">
-														{product.name}
-													</h1>
+													<div className="relative bg-white pt-3">
+														<h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
+															{product.category}
+														</h3>
+														<h1 className="text-xl text-gray-700 group-hover:underline group-hover:underline-offset-4">
+															{product.name}
+														</h1>
 
-													<p className="mt-2">
-														<span className="sr-only"> Regular Price </span>
+														<p className="mt-2">
+															<span className="sr-only"> Regular Price </span>
 
-														<span className="tracking-wider text-gray-900">
-															{product.price}
-														</span>
-													</p>
-												</div>
-											</a>
+															<span className="tracking-wider text-gray-900">
+																{product.price}
+															</span>
+														</p>
+													</div>
+												</a>
+											</Link>
 										</li>
 									);
 								})}
