@@ -9,7 +9,7 @@ import {
 	Profile,
 	Products,
 } from "./views/index";
-
+// npx tailwindcss -i ./src/style.css -o ./dist/output.css --watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	return (
 		<>

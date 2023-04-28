@@ -17,14 +17,7 @@ function Home() {
 			<Link to={"/farmastack/products"}>
 				<button>Products</button>
 			</Link>
-			{location.pathname === "/farmastack/products" && (
-				<>
-					<SlideBottom />
-					<Products />
-				</>
-			)}
 			<Footer />
-			<NavBar />
 		</>
 	);
 }
