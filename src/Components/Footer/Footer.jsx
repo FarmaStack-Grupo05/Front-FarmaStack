@@ -146,15 +146,15 @@ const Footer= () => {
         className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2"
       >
         <div className="text-center sm:text-left">
-        <p className="text-lg font-medium text-gray-900 white-text">Nosotros</p>
+        <p className=" underline text-lg font-medium text-gray-900 white-text">Nosotros</p>
 
           
 
           <nav aria-label="Footer About Nav" className="mt-8">
-            <ul className="space-y-4 text-sm">
+            <ul className=" space-y-4 text-sm">
               <li>
                 <a
-                  className="text-gray-700 transition hover:text-gray-700/75"
+                  className=" text-gray-700 transition hover:text-gray-700/75"
                   href="/"
                 >
                   Quienes somos
@@ -175,24 +175,17 @@ const Footer= () => {
                   className="text-gray-700 transition hover:text-gray-700/75"
                   href="/"
                 >
-                  Employee Handbook
+                  Embajadores Línea 155
                 </a>
               </li>
 
-              <li>
-                <a
-                  className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
-                >
-                  Careers
-                </a>
-              </li>
+
             </ul>
           </nav>
         </div>
 
         <div className="text-center sm:text-left">
-          <p className="text-lg font-medium text-gray-900">Legales</p>
+          <p className=" underline text-lg font-medium text-gray-900 white-text">Legales</p>
 
           <nav aria-label="Footer Services Nav" className="mt-8">
             <ul className="space-y-4 text-sm">
@@ -236,7 +229,7 @@ const Footer= () => {
         </div>
 
         <div className="text-center sm:text-left">
-          <p className="text-lg font-medium text-gray-900">Nuestros Servicios</p>
+          <p className=" underline text-lg font-medium text-gray-900 white-text">Nuestros Servicios</p>
 
           <nav aria-label="Footer Helpful Nav" className="mt-8">
             <ul className="space-y-4 text-sm">
@@ -265,7 +258,7 @@ const Footer= () => {
                 >
                   <span
                     className="text-gray-700 transition hover:text-gray-700/75">
-                    Catalogos FarmaStack
+                   Catalogo FarmaStack
                   </span>
 
                   <span className="relative flex h-2 w-2">
@@ -283,7 +276,7 @@ const Footer= () => {
         </div>
 
         <div className="text-center sm:text-left">
-          <p className="text-lg font-medium text-gray-900">Club FarmaStack</p>
+          <p className=" underline  font-medium text-gray-900 white-text">Club FarmaStack</p>
 
           <ul className="mt-8 space-y-4 text-sm">
             <li>
