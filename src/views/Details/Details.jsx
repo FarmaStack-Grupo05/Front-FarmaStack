@@ -8,7 +8,7 @@ const Cards = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getId(1));
+    dispatch(getId(6));
   }, [dispatch, id]);
 
   const detail = useSelector((state) => state.productsState.detail);
