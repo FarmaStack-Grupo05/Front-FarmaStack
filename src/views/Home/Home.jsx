@@ -1,6 +1,4 @@
-
 import Footer from "../../Components/Footer/Footer";
-import NavBar from "../../Components/NavBar/NavBar";
 import Slides from '../../Components/Slides/Slide';
 import SlideBottom from "../../Components/Slides/SlideBottom";
 import Details from "../Details/Details";
