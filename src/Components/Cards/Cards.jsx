@@ -10,7 +10,7 @@ const Cards = () => {
 	}, [dispatch]);
 
 	const { list } = useSelector((state) => state.productsState);
-	// console.log("aqui", list);
+	console.log("aqui", list);
 	return (
 		<>
 			<a href="#" className="block rounded-lg p-4 shadow-sm shadow-indigo-100">
