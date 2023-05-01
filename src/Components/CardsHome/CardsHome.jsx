@@ -9,7 +9,6 @@ const CardsHome = () => {
     dispatch(getProducts());
   }, [dispatch]);
   const { results } = useSelector((state) => state.productsState.list);
-
   const limitResults = results?.slice(0, 3);
   return (
     <div>
