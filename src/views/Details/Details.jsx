@@ -3,15 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getId } from "../../redux/slices/products/sliceProducts";
 
-<<<<<<< HEAD
-const Cards = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-=======
 const Details = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
->>>>>>> developer
 
 	useEffect(() => {
 		dispatch(getId(id));
@@ -72,4 +66,4 @@ const Details = () => {
 	);
 };
 
-export default Cards;
+export default Details;
