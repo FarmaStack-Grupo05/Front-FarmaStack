@@ -8,12 +8,12 @@ import {
 	Profile,
 	Products,
 } from "./views/index";
-import NavBar from "./Components/NavBar/NavBar";
-// npx tailwindcss -i ./src/style.css -o ./dist/output.css --watch  ***PARA ACTUALIZAR ESTILOS*********
+
+// npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	return (
 		<>
-			<NavBar />
+		
 			<Routes>
 				<Route exact path="/" element={<Home />} />
 				<Route
