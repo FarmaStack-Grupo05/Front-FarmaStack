@@ -13,8 +13,8 @@ function Home() {
 	return (
 		<>
 			<Slides />
-			<Details />
-			<SlideBottom />
+			{/* <Details /> */}
+			{/* <SlideBottom /> */}
 			<CardsHome />
 			<Link to={"/farmastack/products"}>
 				<button>Products</button>
