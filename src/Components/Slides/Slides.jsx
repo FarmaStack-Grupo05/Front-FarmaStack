@@ -51,7 +51,7 @@ const Slides = () => {
   // };
 
   const redirectToDetail = (id) => {
-    const detailUrl = `/products/${id}`;
+    const detailUrl = `farmastack/details/${id}`;
     navigate(detailUrl);
   };
   
@@ -88,7 +88,7 @@ const Slides = () => {
       {slides.map((slide, slideIndex) => (
         <Link
           key={slideIndex}
-          to={`/products/${slide.id}`} // Agregar la URL del componente Detail correspondiente
+          to={`farmastack/details/${slide.id}`} // Agregar la URL del componente Detail correspondiente
           className="text-2xl cursor-pointer"
           onClick={(e) => {
             e.preventDefault(); // Evitar que se recargue la página
