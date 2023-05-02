@@ -8,10 +8,14 @@ import {
 	Profile,
 	Products,
 } from "./views/index";
+import NavBar from "./Components/NavBar/NavBar";
+import Footer from "./Components/Footer/Footer";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	return (
 		<>
+			<NavBar />
+
 			<Routes>
 				<Route exact path="/" element={<Home />} />
 				<Route
@@ -27,6 +31,7 @@ function App() {
 				</Route>
 				<Route exact path="/farmastack/products" element={<Products />} />
 			</Routes>
+			<Footer />
 		</>
 	);
 }

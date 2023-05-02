@@ -31,3 +31,13 @@ export const changePageProduct = (page) => {
 		}
 	};
 };
+export const searchProducts = (name) => {
+	return async (dispatch) => {
+		try {
+			let res = await axios.get(`${URL}/products?name=${name}`);
+			dispatch(setProductsList(res.data));
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};

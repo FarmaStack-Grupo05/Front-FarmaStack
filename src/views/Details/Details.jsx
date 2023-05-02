@@ -15,7 +15,7 @@ const Details = () => {
 	console.log(detail);
 
 	return (
-		<>
+		<div className="flex justify-center items-center h-screen">
 			{detail && (
 				<a href="#" className="group relative block overflow-hidden">
 					<button className="absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
@@ -37,13 +37,15 @@ const Details = () => {
 						</svg>
 					</button>
 
-					<img
-						src={detail.image}
-						alt=""
-						className="h-64 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-72"
-					/>
+					<div className="flex justify-center">
+						<img
+							src={detail.image}
+							alt=""
+							className="h-48 w-48 object-cover transition duration-500 group-hover:scale-105 sm:h-72"
+						/>
+					</div>
 
-					<div className="relative border border-gray-100 bg-white p-6">
+					<div className="relative border border-gray-100 bg-white p-6 w-64 h-96">
 						<span className="whitespace-nowrap bg-yellow-400 px-3 py-1.5 text-xs font-medium">
 							{detail.description}
 						</span>
@@ -62,7 +64,7 @@ const Details = () => {
 					</div>
 				</a>
 			)}
-		</>
+		</div>
 	);
 };
 

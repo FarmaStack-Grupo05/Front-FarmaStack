@@ -39,9 +39,10 @@ const Products = () => {
 						</h2>
 
 						<p className="mt-4 max-w-md text-gray-500">
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
-							praesentium cumque iure dicta incidunt est ipsam, officia dolor
-							fugit natus?
+							Bienvenido a nuestra página de productos farmacéuticos. Aquí
+							encontrará una amplia variedad de medicamentos y productos de
+							salud de alta calidad y confiabilidad, diseñados para ayudar a
+							mejorar su bienestar y calidad de vida.
 						</p>
 					</header>
 
