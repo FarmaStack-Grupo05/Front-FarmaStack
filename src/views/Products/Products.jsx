@@ -222,7 +222,7 @@ const Products = () => {
 															type="checkbox"
 															id="FilterOutOfStock"
 															className="h-5 w-5 rounded border-gray-300"
-															name="medicines"
+															name="maternity"
 															onChange={filterChange}
 														/>
 

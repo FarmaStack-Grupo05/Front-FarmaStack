@@ -10,8 +10,10 @@ import Andres from "../../assets/andres.jpg";
 function AboutUs() {
 	return (
 		<>
-			<div className="about-us">
-				<h2 className="team-members flex flex-wrap justify-center">Our Team</h2>
+			<div className="about-us botom-20">
+				<h2 className="team-members flex flex-wrap justify-center ">
+					Our Team
+				</h2>
 				<div className="team-members flex flex-wrap justify-center">
 					<div className="team-member rounded-full overflow-hidden w-32 h-32 flex flex-col items-center">
 						<img
