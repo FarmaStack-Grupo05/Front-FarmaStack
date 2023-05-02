@@ -1,24 +1,17 @@
-
 import Footer from "../../Components/Footer/Footer";
 import NavBar from "../../Components/NavBar/NavBar";
-import Slides from '../../Components/Slides/Slide';
-import SlideBottom from "../../Components/Slides/SlideBottom";
-import Cards from "../Details/Details";
-import { Link } from "react-router-dom";
-
+import Slides from "../../Components/Slides/Slides";
+import CardsHome from "../../Components/CardsHome/CardsHome";
 
 function Home() {
 	return (
 		<>
 			<NavBar />
 			<Slides />
-			<Cards />
-			<SlideBottom />
-			<Link to={"/farmastack/products"}>
-				<button>Products</button>
-			</Link>
+			
+			<CardsHome />
+			
 			<Footer />
-		
 		</>
 	);
 }
