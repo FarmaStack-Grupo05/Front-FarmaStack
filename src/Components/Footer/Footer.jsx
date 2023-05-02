@@ -1,15 +1,19 @@
+import Logo from "../../assets/logo1.png";
+
+
+
 const Footer = () => {
 	return (
 		<div>
 			<footer
 				aria-label="Site Footer"
-				className="max-w-full px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24 bg-my-green"
+				className= "bg-green-700 max-w-full px-4 pb-6 pt-8 sm:px-6 lg:px-8  mt-10 text-white "
 			>
-				<div className="max-w-screen-xl mx-auto px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24">
-					<img src="/imagenes/logo.png" alt="Logo" className="w-24 h-24" />
+				<div className="max-w-screen-xl mx-auto px-4 pb-6  sm:px-6 lg:px-8 ">
+					<img  src={Logo}  alt="Logo" className="w-24 h-24" />
 					<div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
 						<div>
-							<div className="flex justify-center text-teal-600 sm:justify-start">
+							<div className="flex justify-center text-white sm:justify-start">
 								<svg
 									className="h-8"
 									viewBox="0 0 118 24"
@@ -17,7 +21,7 @@ const Footer = () => {
 									xmlns=""
 								></svg>
 							</div>
-							<p className="text-slate-400 hover:text-sky-400">
+							<p >
 								Domicilios <br />
 								Desde Celular A Nivel Nacional <br />
 								601 458 4595
@@ -29,7 +33,7 @@ const Footer = () => {
 										href="/"
 										rel="noreferrer"
 										target="_blank"
-										className="text-teal-700 transition hover:text-teal-700/75"
+										className=" text-white"
 									>
 										<span className="sr-only">Facebook</span>
 										<svg
@@ -52,7 +56,7 @@ const Footer = () => {
 										href="/"
 										rel="noreferrer"
 										target="_blank"
-										className="text-teal-700 transition hover:text-teal-700/75"
+									
 									>
 										<span className="sr-only">Instagram</span>
 										<svg
@@ -75,7 +79,7 @@ const Footer = () => {
 										href="/"
 										rel="noreferrer"
 										target="_blank"
-										className="text-teal-700 transition hover:text-teal-700/75"
+										
 									>
 										<span className="sr-only">Twitter</span>
 										<svg
@@ -94,7 +98,7 @@ const Footer = () => {
 										href="/"
 										rel="noreferrer"
 										target="_blank"
-										className="text-teal-700 transition hover:text-teal-700/75"
+									
 									>
 										<span className="sr-only">GitHub</span>
 										<svg
@@ -117,7 +121,7 @@ const Footer = () => {
 										href="/"
 										rel="noreferrer"
 										target="_blank"
-										className="text-teal-700 transition hover:text-teal-700/75"
+										
 									>
 										<span className="sr-only">Dribbble</span>
 										<svg
@@ -137,9 +141,9 @@ const Footer = () => {
 							</ul>
 						</div>
 
-						<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2">
+						<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2 ">
 							<div className="text-center sm:text-left">
-								<p className=" underline text-lg font-medium text-gray-900 white-text">
+								<p className=" underline text-lg font-medium  white-text">
 									Nosotros
 								</p>
 
@@ -147,7 +151,7 @@ const Footer = () => {
 									<ul className=" space-y-4 text-sm">
 										<li>
 											<a
-												className=" text-gray-700 transition hover:text-gray-700/75"
+												
 												href="/"
 											>
 												Quienes somos
@@ -156,7 +160,7 @@ const Footer = () => {
 
 										<li>
 											<a
-												className="text-gray-700 transition hover:text-gray-700/75"
+												className="text-whit"
 												href="/"
 											>
 												Trabaja Con Nosotros
@@ -165,7 +169,7 @@ const Footer = () => {
 
 										<li>
 											<a
-												className="text-gray-700 transition hover:text-gray-700/75"
+												className= "text-white"
 												href="/"
 											>
 												Embajadores Línea 155
@@ -176,7 +180,7 @@ const Footer = () => {
 							</div>
 
 							<div className="text-center sm:text-left">
-								<p className=" underline text-lg font-medium text-gray-900 white-text">
+								<p className=" underline text-lg font-medium">
 									Legales
 								</p>
 
@@ -184,7 +188,7 @@ const Footer = () => {
 									<ul className="space-y-4 text-sm">
 										<li>
 											<a
-												className="text-gray-700 transition hover:text-gray-700/75"
+												className=" text-white"
 												href="/"
 											>
 												Aviso De Privacidad
@@ -193,7 +197,7 @@ const Footer = () => {
 
 										<li>
 											<a
-												className="text-gray-700 transition hover:text-gray-700/75"
+												className=" text-white"
 												href="/"
 											>
 												Politica
@@ -202,7 +206,7 @@ const Footer = () => {
 
 										<li>
 											<a
-												className="text-gray-700 transition hover:text-gray-700/75"
+												className=" text-white"
 												href="/"
 											>
 												Terminos Y Condiciones
@@ -211,7 +215,7 @@ const Footer = () => {
 
 										<li>
 											<a
-												className="text-gray-700 transition hover:text-gray-700/75"
+												className= "text-white"
 												href="/"
 											>
 												Google Ads
@@ -222,7 +226,7 @@ const Footer = () => {
 							</div>
 
 							<div className="text-center sm:text-left">
-								<p className=" underline text-lg font-medium text-gray-900 white-text">
+								<p className=" underline text-lg font-medium">
 									Nuestros Servicios
 								</p>
 
@@ -230,7 +234,7 @@ const Footer = () => {
 									<ul className="space-y-4 text-sm">
 										<li>
 											<a
-												className="text-gray-700 transition hover:text-gray-700/75"
+												className="text-white"
 												href="/"
 											>
 												Domicilios
@@ -239,7 +243,7 @@ const Footer = () => {
 
 										<li>
 											<a
-												className="text-gray-700 transition hover:text-gray-700/75"
+												className="text-white"
 												href="/"
 											>
 												Retiros En Tienda
@@ -251,7 +255,7 @@ const Footer = () => {
 												className="group flex justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
 												href="/"
 											>
-												<span className="text-gray-700 transition hover:text-gray-700/75">
+												<span className="text-white">
 													Catalogo FarmaStack
 												</span>
 
@@ -266,7 +270,7 @@ const Footer = () => {
 							</div>
 
 							<div className="text-center sm:text-left">
-								<p className=" underline  font-medium text-gray-900 white-text">
+								<p className=" underline  font-medium">
 									Club FarmaStack
 								</p>
 
@@ -278,7 +282,7 @@ const Footer = () => {
 										>
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
-												className="h-5 w-5 shrink-0 text-gray-900"
+												className="h-5 w-5 shrink-0 "
 												fill="none"
 												viewBox="0 0 24 24"
 												stroke="currentColor"
@@ -291,7 +295,7 @@ const Footer = () => {
 												/>
 											</svg>
 
-											<span className="flex-1 text-gray-700">Registrate</span>
+											<span className="flex-1">Registrate</span>
 										</a>
 									</li>
 
@@ -302,7 +306,7 @@ const Footer = () => {
 										>
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
-												className="h-5 w-5 shrink-0 text-gray-900"
+												className="h-5 w-5 shrink-0 "
 												fill="none"
 												viewBox="0 0 24 24"
 												stroke="currentColor"
@@ -315,14 +319,14 @@ const Footer = () => {
 												/>
 											</svg>
 
-											<span className="flex-1 text-gray-700">Beneficios</span>
+											<span className="flex-1">Beneficios</span>
 										</a>
 									</li>
 
 									<li className="flex items-start justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
-											className="h-5 w-5 shrink-0 text-gray-900"
+											className="h-5 w-5 shrink-0 "
 											fill="none"
 											viewBox="0 0 24 24"
 											stroke="currentColor"
@@ -340,7 +344,7 @@ const Footer = () => {
 											/>
 										</svg>
 
-										<address className="-mt-0.5 flex-1 not-italic text-gray-700">
+										<address className="-mt-0.5 flex-1 not-italic">
 											Nuestras Sucursales
 										</address>
 									</li>
@@ -351,11 +355,11 @@ const Footer = () => {
 
 					<div className="mt-12 border-t border-gray-100 pt-6">
 						<div className="text-center sm:flex sm:justify-between sm:text-left">
-							<p className="text-sm text-gray-500">
+							<p className="text-sm">
 								<span className="block sm:inline">All rights reserved.</span>
 
 								<a
-									className="inline-block text-teal-600 underline transition hover:text-teal-600/75"
+									className="inline-block text-white"
 									href="/"
 								>
 									Terms & Conditions
@@ -364,14 +368,14 @@ const Footer = () => {
 								<span>&middot;</span>
 
 								<a
-									className="inline-block text-teal-600 underline transition hover:text-teal-600/75"
+									className="inline-block text-white"
 									href="/"
 								>
 									Privacy Policy
 								</a>
 							</p>
 
-							<p className="mt-4 text-sm text-gray-500 sm:order-first sm:mt-0">
+							<p className="mt-4 text-sm">
 								&copy; 2023 Company Farmastack
 							</p>
 						</div>

@@ -71,7 +71,7 @@ const Slides = () => {
           backgroundSize: "contain",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          backgroundColor: "black",
+          backgroundColor: "white",
           padding: "50px",
         }}
         className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
