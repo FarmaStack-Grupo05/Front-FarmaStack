@@ -6,12 +6,9 @@ import CardsHome from "../../Components/CardsHome/CardsHome";
 function Home() {
 	return (
 		<>
-			<NavBar />
 			<Slides />
-			
+
 			<CardsHome />
-			
-			<Footer />
 		</>
 	);
 }
