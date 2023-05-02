@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 import { Link } from "react-router-dom";
-
 
 const Slides = () => {
   const slides = [
@@ -35,6 +35,7 @@ const Slides = () => {
     const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
   };
+  
 
   const nextSlide = () => {
     const isLastSlide = currentIndex === slides.length - 1;
@@ -42,21 +43,28 @@ const Slides = () => {
     setCurrentIndex(newIndex);
   };
 
-  const redirectToDetail = (slideId) => {
-    const detailUrl = `/detail/${slideId}`; // Construir la URL del componente Detail
-    window.location.href = detailUrl; // Redirigir al usuario hacia el componente Detail
+  const navigate = useNavigate();
+
+  // const redirectToDetail = (id) => {
+  //   const detailUrl = `/products/${id}`;
+  //   navigate(detailUrl);
+  // };
+
+  const redirectToDetail = (id) => {
+    const detailUrl = `/products/${id}`;
+    navigate(detailUrl);
   };
   
-
   useEffect(() => {
     const slideInterval = setInterval(() => {
       nextSlide();
-    }, 3000); // Change this number to adjust the slide interval in milliseconds
+    }, 3000);
     return () => clearInterval(slideInterval);
   });
 
   return (
-    <div className="max-w-[1400px] h-[400px] w-full m-auto py-16 px-4 relative group">
+    <div className="max-w-[1400px] h-[400px] w-full m-auto py-16 px-4 relative group
+">
       <div
         style={{
           backgroundImage: `url(${slides[currentIndex].url})`,
@@ -78,21 +86,21 @@ const Slides = () => {
       </div>
       <div className="flex top-4 justify-center py-2">
       {slides.map((slide, slideIndex) => (
-  <Link
-    key={slideIndex}
-    to={`/detail/${slide.id}`} // Agregar la URL del componente Detail correspondiente
-    className="text-2xl cursor-pointer"
-    onClick={(e) => {
-      e.preventDefault(); // Evitar que se recargue la página
-      redirectToDetail(slide.id); // Llamar a la función redirectToDetail con el identificador único de la imagen del carrusel correspondiente
-    }}
-  >
-    <RxDotFilled />
-  </Link>
-))}
+        <Link
+          key={slideIndex}
+          to={`/products/${slide.id}`} // Agregar la URL del componente Detail correspondiente
+          className="text-2xl cursor-pointer"
+          onClick={(e) => {
+            e.preventDefault(); // Evitar que se recargue la página
+            redirectToDetail(slide.id); // Llamar a la función redirectToDetail con el identificador único de la imagen del carrusel correspondiente
+          }}
+        >
+          <RxDotFilled />
+        </Link>
+      ))}
       </div>
     </div>
   );
 };
-
+// let res = await axios.get(`${URL}/products/${id}`);
 export default Slides;

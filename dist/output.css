@@ -844,6 +844,10 @@ select {
   height: 250px;
 }
 
+.h-\[400px\] {
+  height: 400px;
+}
+
 .h-full {
   height: 100%;
 }
