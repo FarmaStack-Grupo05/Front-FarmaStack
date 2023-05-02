@@ -7,7 +7,7 @@ const Footer = () => {
 		<div>
 			<footer
 				aria-label="Site Footer"
-				className= "bg-green-700 max-w-full px-4 pb-6 pt-8 sm:px-6 lg:px-8  mt-10 text-white "
+				className= "bg-green-500 max-w-full px-4 pb-6 pt-8 sm:px-6 lg:px-8  mt-10 text-white "
 			>
 				<div className="max-w-screen-xl mx-auto px-4 pb-6  sm:px-6 lg:px-8 ">
 					<img  src={Logo}  alt="Logo" className="w-24 h-24" />

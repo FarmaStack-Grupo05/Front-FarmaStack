@@ -11,42 +11,42 @@ function AboutUs() {
   const images = [
     {
       name: "Brenda",
-      role: "Developer",
+      role: "Full Stack Developer",
       imageSrc: Brenda,
     },
     {
       name: "Alejo",
-      role: "Designer",
+      role: "Full Stack Developer",
       imageSrc: Alejo,
     },
     {
       name: "David",
-      role: "Project Manager",
+      role: "Full Stack Developer",
       imageSrc: David,
     },
     {
       name: "Emmanuel",
-      role: "Marketing Specialist",
+      role: "Full Stack Developer",
       imageSrc: Emmanuel,
     },
     {
       name: "Andres",
-      role: "Quality Assurance",
+      role: "Full Stack Developer",
       imageSrc: Andres,
     },
     {
       name: "Catalina",
-      role: "Business Analyst",
+      role: "Full Stack Developer",
       imageSrc: Catalina,
     },
     {
       name: "Alejandra",
-      role: "Full-Stack Developer",
+      role: "Full Stack Developer",
       imageSrc: Alejandra,
     },
     {
       name: "Jersson",
-      role: "UX/UI Designer",
+      role: "Full Stack Developer",
       imageSrc: Jersson,
     },
   ];
@@ -74,9 +74,7 @@ function AboutUs() {
               <div className="mt-32 sm:mt-48 lg:mt-64">
                 <div className="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
                   <p className="text-sm text-white">
-                    Somos un grupo de estudiantes de henry que nos encontramos
-                    actualmente realizando una pagina ecommerce sobre la
-                    industria farmaceutica
+                    Somos los desarrolladores de la e-commerce de FarmaStack
                   </p>
                 </div>
               </div>
