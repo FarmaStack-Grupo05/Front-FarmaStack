@@ -54,7 +54,7 @@ const NavBar = () => {
 							className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500 text-white"
 						>
 							<a
-								href="/about"
+								href="/farmastack/aboutus"
 								className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current  text-white"
 							>
 								About
@@ -75,7 +75,7 @@ const NavBar = () => {
 							</Link>
 
 							<a
-								href="/contact"
+								href="/farmastack/registrarse"
 								className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
 							>
 								Contact
