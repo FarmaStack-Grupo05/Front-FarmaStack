@@ -1,19 +1,17 @@
-import Logo from "../../assets/logo1.png"
+import Logo from "../../assets/logo1.png";
+import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <>
       <header aria-label="Site Header" className="border-b border-gray-100">
         <div className="flex items-center justify-between px-4 py-2 bg-green-500">
           <div className="flex items-center gap-4">
-         
-
-           
             <a href="#" className="flex">
-                <img
-                  src={Logo}
-                  alt="Logo"
-                  className="h-16 w-48 object-contain "
-                />
+              <img
+                src={Logo}
+                alt="Logo"
+                className="h-16 w-48 object-contain "
+              />
             </a>
             <button
               type="button"
@@ -34,7 +32,7 @@ const NavBar = () => {
                 />
               </svg>
             </button>
-            <button className="text-white">Menú de Categorías</button>
+            <button className="text-white">Category Menu</button>
           </div>
 
           <div className="flex flex-1 items-center justify-end gap-8">
@@ -56,12 +54,12 @@ const NavBar = () => {
                 News
               </a>
 
-              <a
-                href="/products"
+    
+
+              <Link
                 className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
-              >
-                Products
-              </a>
+                to={"/farmastack/products"}
+              >Products</Link>
 
               <a
                 href="/contact"
@@ -77,7 +75,6 @@ const NavBar = () => {
                   <a
                     href="/cart"
                     className="grid h-16 w-16  place-content-center border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
-                
                   >
                     <svg
                       className="h-4 w-4"
