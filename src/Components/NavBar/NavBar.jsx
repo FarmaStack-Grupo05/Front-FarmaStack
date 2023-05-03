@@ -3,6 +3,7 @@ import Logo from "../../assets/logo1.png";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchProducts } from "../../redux/slices/products/sliceProducts";
+import LoginButton from "./loginButton";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -140,7 +141,7 @@ const NavBar = () => {
 
                 <span className="border-e border-e-gray-100">
                   <a
-                    href="/account"
+                    href="/farmastack/auth"
                     className="grid h-16 w-16  place-content-center border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
                   >
                     <svg

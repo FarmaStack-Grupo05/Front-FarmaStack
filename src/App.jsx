@@ -10,6 +10,7 @@ import {
 } from "./views/index";
 import NavBar from "./Components/NavBar/NavBar";
 import Footer from "./Components/Footer/Footer";
+import LoginButton from "./Components/NavBar/loginButton";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	return (
@@ -30,6 +31,7 @@ function App() {
 					<Route path="informacion-personal" element={<Profile />} />
 				</Route>
 				<Route exact path="/farmastack/products" element={<Products />} />
+				<Route exact path="/farmastack/auth" element={<LoginButton/>}></Route>
 			</Routes>
 			<Footer />
 		</>
