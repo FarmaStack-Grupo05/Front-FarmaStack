@@ -61,7 +61,6 @@ const FormProduct = () => {
 			}
 		}
 	};
-	console.log(inputs)
 	return (
 		<div>
 			{/*
