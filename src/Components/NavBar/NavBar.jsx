@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+
 import Logo from "../../assets/logo1.png";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -78,8 +78,16 @@ const NavBar = () => {
                 href="/farmastack/registrarse"
                 className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
               >
-                Contact
+                Registrarse 
               </a>
+              
+              
+                 <Link
+               className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
+               to={"/farmastack/contact"}
+              >
+                Contact
+                </Link>
 
               <div className="relative">
                 <input

@@ -11,6 +11,7 @@ import {
 } from "./views/index";
 import NavBar from "./Components/NavBar/NavBar";
 import Footer from "./Components/Footer/Footer";
+import ContactMe from "./Components/Contact/ContactMe";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	return (
@@ -32,6 +33,7 @@ function App() {
 				</Route>
 				<Route exact path="/farmastack/products" element={<Products />} />
 				<Route exact path="/farmastack/formProduct" element={<FormProduct />} />
+				<Route exact path="/farmastack/contact" element={< ContactMe/>} />
 			</Routes>
 			<Footer />
 		</>
