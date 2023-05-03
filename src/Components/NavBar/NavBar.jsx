@@ -86,7 +86,7 @@ const NavBar = () => {
                className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
                to={"/farmastack/contact"}
               >
-                Contact
+                contact
                 </Link>
 
               <div className="relative">
@@ -94,7 +94,7 @@ const NavBar = () => {
                   type="search"
                   id="Search"
                   name="search"
-                  className="mt-3 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm border-2 h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none"
+                  className="mt-3  border-gray-200 bg-white  text-gray-700 shadow-sm border-2 h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none"
                   placeholder="Search ..."
                   onChange={handlerChange}
                 />
