@@ -1,8 +1,8 @@
-
 import Logo from "../../assets/logo1.png";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchProducts } from "../../redux/slices/products/sliceProducts";
+import ProfileButton from "./ProfileButton";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -21,12 +21,12 @@ const NavBar = () => {
               <img
                 src={Logo}
                 alt="Logo"
-                className="h-16 w-48 object-contain "
+                className="pl-20 h-16 w-30 object-contain"
               />
             </Link>
             <button
               type="button"
-              className="bg-green-500 text-white py-2 px-4 rounded"
+              className="bg-green-500 text-white py-2 px-0 rounded"
             >
               <svg
                 className="h-6 w-6"
@@ -43,7 +43,6 @@ const NavBar = () => {
                 />
               </svg>
             </button>
-            <button className="text-white">Category Menu</button>
           </div>
 
           <div></div>
@@ -53,6 +52,14 @@ const NavBar = () => {
               aria-label="Site Nav"
               className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500 text-white"
             >
+              {window.location.pathname !== "/" && (
+                <a
+                  href="/"
+                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current  text-white"
+                >
+                  Home
+                </a>
+              )}
               <a
                 href="/farmastack/aboutus"
                 className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current  text-white"
@@ -61,33 +68,18 @@ const NavBar = () => {
               </a>
 
               <a
-                href="/news"
                 className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
-              >
-                News
-              </a>
-
-              <Link
-                className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
-                to={"/farmastack/products"}
+                href={"/farmastack/products"}
               >
                 Products
-              </Link>
+              </a>
 
               <a
-                href="/farmastack/registrarse"
                 className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
-              >
-                Registrarse 
-              </a>
-              
-              
-                 <Link
-               className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
-               to={"/farmastack/contact"}
+                href={"/farmastack/contact"}
               >
                 contact
-                </Link>
+              </a>
 
               <div className="relative">
                 <input
@@ -120,7 +112,11 @@ const NavBar = () => {
               </div>
             </nav>
 
-            <div className="flex items-center">
+            <div className="flex items-center pr-20">
+              <div className="pt-3 pl-2 pr-2 h-16 place-content-center border-x border-gray-100">
+                <ProfileButton />
+              </div>
+
               <div className="flex items-center border-x border-gray-100">
                 <span className="border-e border-e-gray-100">
                   <a
@@ -143,30 +139,6 @@ const NavBar = () => {
                     </svg>
 
                     <span className="sr-only">Cart</span>
-                  </a>
-                </span>
-
-                <span className="border-e border-e-gray-100">
-                  <a
-                    href="/account"
-                    className="grid h-16 w-16  place-content-center border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
-                  >
-                    <svg
-                      className="h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                      />
-                    </svg>
-
-                    <span className="sr-only"> Account </span>
                   </a>
                 </span>
               </div>
