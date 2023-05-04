@@ -63,13 +63,13 @@ const Details = () => {
 
 					<p className="mt-1.5 text-sm text-gray-700">{detail.price}</p>
 
-					<form className="mt-4">
+					<div className="mt-4">
 						<button 
 						onClick={handlerProduct}
 						className="block w-full rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105">
 							Add to Cart
 						</button>
-					</form>
+					</div>
 				</div>
 			</a>
 			<Link

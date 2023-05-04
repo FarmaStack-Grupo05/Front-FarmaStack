@@ -139,7 +139,11 @@ const NavBar = () => {
                     </svg>
 
                     <span className="sr-only">cart</span>
+                    <div className="absolute w-4 h-4 rounded-full z-10 right-[-3px] bottom-[-3px] flex items-center justify-center text-[10px] bg-black text-white">
+            {/* {amount} */}
+          </div>
                   </a>
+
                 </span>
               </div>
             </div>
