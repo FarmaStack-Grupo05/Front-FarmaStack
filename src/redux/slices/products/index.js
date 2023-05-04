@@ -4,12 +4,15 @@ export const productSlice = createSlice({
 	name: "products",
 	initialState: {
 		list: [],
-		detail: {}
-
+		detail: {},
+		cartProduct:[],
 	},
 	reducers: {
 		setProductsList: (state, action) => {
 			state.list = action.payload;
+		},
+		setProductCart: (state, action) => {
+			state.cartProduct = action.payload;
 		},
 		getIdProducts:(state,action) => {
 			state.detail = action.payload
@@ -17,6 +20,6 @@ export const productSlice = createSlice({
 	},
 });
 
-export const { setProductsList, getIdProducts } = productSlice.actions;
+export const { setProductsList, getIdProducts, setProductCart } = productSlice.actions;
 
 export default productSlice.reducer;
