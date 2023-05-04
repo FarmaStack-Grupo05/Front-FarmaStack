@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getId } from "../../redux/slices/products/sliceProducts";
+import {setProduct} from '../../redux/slices/products/sliceProducts';
 
 const Details = () => {
 	const { id } = useParams();
@@ -13,8 +14,12 @@ const Details = () => {
 	}, [dispatch, id]);
 
 	const detail = useSelector((state) => state.productsState.detail);
-	console.log(detail);
-
+	// console.log(detail);
+	const handlerProduct = () => {
+		dispatch(setProduct(detail))
+	}
+	const cart = useSelector((state) => state.productsState.cartProduct);
+	console.log(cart)
 	return (
 		<div className="flex justify-center items-center h-screen flex-col">
 			{" "}
@@ -59,7 +64,9 @@ const Details = () => {
 					<p className="mt-1.5 text-sm text-gray-700">{detail.price}</p>
 
 					<form className="mt-4">
-						<button className="block w-full rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105">
+						<button 
+						onClick={handlerProduct}
+						className="block w-full rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105">
 							Add to Cart
 						</button>
 					</form>
