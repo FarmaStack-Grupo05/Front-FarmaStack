@@ -6,6 +6,7 @@ import Payment from "./Payment/Payment";
 import Profile from "./Profile/Profile";
 import Products from "./Products/Products";
 import FormProduct from "./FormProduct/FormProduct";
+import Cart from "./Carts/Carts";
 
 export {
 	AboutUs,
@@ -16,4 +17,5 @@ export {
 	Profile,
 	Products,
 	FormProduct,
+	Cart,
 };
