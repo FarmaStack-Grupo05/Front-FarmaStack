@@ -64,7 +64,7 @@ const NavBar = () => {
                 href="/farmastack/aboutus"
                 className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current  text-white"
               >
-                About
+                About Us
               </a>
 
               <a

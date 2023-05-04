@@ -39,7 +39,7 @@ const CardsHome = () => {
                   <img
                     src={product.image}
                     alt=""
-                    className="no-underline border-none mx-auto h-[250px] w-[250px] object-cover transition duration-500 group-hover:scale-105 sm:h-[250px] rounded-md"
+                    className="no-underline border-none mx-auto h-auto w-auto object-cover transition duration-500 group-hover:scale-105 sm:h-[250px] rounded-md"
                   />
                 </a>
 
