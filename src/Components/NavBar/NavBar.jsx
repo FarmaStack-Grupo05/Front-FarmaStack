@@ -2,6 +2,8 @@ import Logo from "../../assets/logo1.png";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchProducts } from "../../redux/slices/products/sliceProducts";
+
+import LoginButton from "./loginButton";
 import ProfileButton from "./ProfileButton";
 
 const NavBar = () => {
@@ -64,7 +66,7 @@ const NavBar = () => {
                 href="/farmastack/aboutus"
                 className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current  text-white"
               >
-                About
+                About Us
               </a>
 
               <a
@@ -138,10 +140,41 @@ const NavBar = () => {
                       />
                     </svg>
 
+
+                    <span className="sr-only">Cart</span>
+                  </a>
+                </span>
+
+                <span className="border-e border-e-gray-100">
+                  <a
+                    href="/farmastack/auth"
+                    className="grid h-16 w-16  place-content-center border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
+                  >
+                    <svg
+                      className="h-4 w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
+
+                    <span className="sr-only"> Account </span>
+
                     <span className="sr-only">cart</span>
+<<<<<<< HEAD
                     <div className="absolute w-4 h-4 rounded-full z-10 right-[-3px] bottom-[-3px] flex items-center justify-center text-[10px] bg-black text-white">
             {/* {amount} */}
           </div>
+=======
+
+>>>>>>> developer
                   </a>
 
                 </span>
