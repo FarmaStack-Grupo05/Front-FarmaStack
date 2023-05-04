@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchProducts } from "../../redux/slices/products/sliceProducts";
 
-import LoginButton from "./loginButton";
+
 import ProfileButton from "./ProfileButton";
 
 const NavBar = () => {
