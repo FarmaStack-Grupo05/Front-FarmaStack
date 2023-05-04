@@ -9,6 +9,7 @@ import {
 	Products,
 	FormProduct,
 	Dashboard,
+	Cart,
 } from "./views/index";
 import NavBar from "./Components/NavBar/NavBar";
 import Footer from "./Components/Footer/Footer";
@@ -36,6 +37,8 @@ function App() {
 				<Route exact path="/farmastack/formProduct" element={<FormProduct />} />
 				<Route exact path="/farmastack/contact" element={<ContactMe />} />
 				<Route exact path="/farmastack/dashboard" element={<Dashboard />} />
+				<Route exact path="/farmastack/contact" element={<ContactMe />} />
+				<Route exact path="/farmastack/cart" element={<Cart />} />
 			</Routes>
 			<Footer />
 		</>

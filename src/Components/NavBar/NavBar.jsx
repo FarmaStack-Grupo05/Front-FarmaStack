@@ -64,7 +64,7 @@ const NavBar = () => {
                 href="/farmastack/aboutus"
                 className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current  text-white"
               >
-                About
+                About Us
               </a>
 
               <a
@@ -120,7 +120,7 @@ const NavBar = () => {
               <div className="flex items-center border-x border-gray-100">
                 <span className="border-e border-e-gray-100">
                   <a
-                    href="/cart"
+                    href="/farmastack/cart"
                     className="grid h-16 w-16  place-content-center border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
                   >
                     <svg
@@ -138,7 +138,7 @@ const NavBar = () => {
                       />
                     </svg>
 
-                    <span className="sr-only">Cart</span>
+                    <span className="sr-only">cart</span>
                   </a>
                 </span>
               </div>
