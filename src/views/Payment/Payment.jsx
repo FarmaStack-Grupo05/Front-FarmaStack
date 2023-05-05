@@ -1,4 +1,5 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { useSelector } from "react-redux"
 
 const paypalOptions = {
 	"client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID, // Viene de Paypal
@@ -7,12 +8,14 @@ const paypalOptions = {
 };
 
 function Payment() {
+	const cart = useSelector((state) => state.cartState)
+
 	const handleCreateOrder = (data, actions) => {
 		return actions.order.create({
 			purchase_units: [
 				{
 					amount: {
-						value: "100.00",
+						value: cart.totalPrice,
 					},
 				},
 			],
@@ -21,10 +24,55 @@ function Payment() {
 
 	return (
 		<PayPalScriptProvider options={paypalOptions}>
-			<PayPalButtons
-				createOrder={handleCreateOrder}
-				style={{ layout: "horizontal" }}
-			/>
+			<div className="grid grid-cols-3 flex-wrap mx-auto max-w-4xl gap-4 md:gap-8 items-center my-8">
+
+				<div className=" shadow col-span-3 md:col-span-2 flex flex-col justify-center h-full px-2 py-4">
+					<h1 className="text-2xl font-bold">Resumen:</h1>
+					<p className="text-md text-gray-700 my-2">
+						Productos distintos en el carrito: {cart.products.length}
+					</p>
+					<ul className="divide-y divide-gray-300 divide-solid">
+						{cart.products.map((product) => (
+							<li className="flex justify-between items-center py-4 px-8 border-b" key={product.id}>
+								<div className="flex items-center">
+									<img
+										src={product.image}
+										alt={product.name}
+										className="w-16 h-16 object-cover rounded-full"
+									/>
+									<div className="ml-4">
+										<h2 className="text-md font-bold">
+											{product.name}
+										</h2>
+									</div>
+								</div>
+								<p className="text-md font-bold">
+									${product.price} x {product.quantity}
+								</p>
+							</li>
+						))}
+					</ul>
+					<div className="flex justify-between items-center py-4 px-8">
+						<h1 className="text-xl font-semibold">
+							Total:
+						</h1>
+						<p className="text-2xl font-bold">
+							${cart.totalPrice}
+						</p>
+					</div>
+				</div>
+
+				<div className="border-l shadow-lg col-span-3 md:col-span-1 px-4 md:px-8 h-full flex flex-col justify-center">
+					<h1 className="text-xl font-semibold my-4">
+						Metodos de pago:
+					</h1>
+					<PayPalButtons
+						createOrder={handleCreateOrder}
+						style={{ layout: "vertical" }}
+					/>
+				</div>
+
+			</div>
 		</PayPalScriptProvider>
 	);
 }
