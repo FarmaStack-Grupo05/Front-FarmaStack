@@ -5,19 +5,32 @@ import { useEffect, useState } from "react";
 import { getId as getProductById } from "../../redux/slices/products/sliceProducts";
 import { setProduct } from "../../redux/slices/products/sliceProducts";
 import { addProducts } from "../../redux/slices/cart/sliceCart";
+import { PlusIcon, MinusIcon } from '@heroicons/react/24/solid'
 
 const Details = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cartState);
   const { detail } = useSelector((state) => state.productsState);
+  const [productQuantity, setProductQuantity] = useState(1);
+  const productInCart = cart.products.find((product) => product.id === detail.id);
+
+  const handleAddQuantity = () => {
+    setProductQuantity(productQuantity + 1);
+  }
+
+  const handleSubtractQuantity = () => {
+    if (productQuantity > 1) {
+      setProductQuantity(productQuantity - 1)
+    }
+  }
 
   useEffect(() => {
     dispatch(getProductById(id));
   }, [dispatch, id]);
 
   const handlerProduct = () => {
-    dispatch(addProducts(detail));
+    dispatch(addProducts(detail, productQuantity));
   };
 
   return (
@@ -25,7 +38,7 @@ const Details = () => {
       <div className="no-underline text-decoration-none lg:col-span-3 shadow-xl h-full w-1/3 p-5 rounded-3xl">
         {" "}
         {/* Añade la clase "flex-col" para que los elementos se coloquen en una columna */}
-        <a href="#" className="group relative block overflow-hidden">
+        <div className="group relative block overflow-hidden">
           <button className="absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
             <span className="sr-only">Wishlist</span>
 
@@ -67,12 +80,29 @@ const Details = () => {
 
             <button
               onClick={handlerProduct}
-              className="block w-full rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105 mt-4"
+              className="block w-full rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105"
             >
               Add to Cart
             </button>
+            <div className="flex items-center justify-between">
+              <button onClick={handleAddQuantity} type="button" className="bg-yellow-300 rounded-full p-1 font-bold my-2 hover:bg-yellow-400 transition hover:shadow-lg">
+                <PlusIcon className="h-6 w-6" aria-hidden="true" />
+              </button>
+              <span>
+                {productQuantity}
+              </span>
+              <button onClick={handleSubtractQuantity} type="button" className="bg-yellow-300 rounded-full p-1 font-bold my-2 hover:bg-yellow-400 transition hover:shadow-lg">
+                <MinusIcon className="h-6 w-6" aria-hidden="true" />
+              </button>
+            </div>
+            {productInCart?.quantity > 0 && (
+              <p className="mt-1.5 text-sm font-medium text-gray-500">
+                You already have this product {productInCart.quantity} times in your cart
+              </p>
+            )}
+
           </div>
-        </a>
+        </div>
       </div>
       <a
         href="/"
