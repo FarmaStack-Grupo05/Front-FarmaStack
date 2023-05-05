@@ -1,5 +1,6 @@
 import emma from "../../assets/emma.jpg";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function ProfileButton() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -54,12 +55,12 @@ function ProfileButton() {
 					</li>
 
 					<li>
-						<a
-							href="/farmastack/dashboard"
+						<Link
+							to={"/dashboard"}
 							className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
 						>
 							Dashboard
-						</a>
+						</Link>
 					</li>
 					<li>
 						<a
