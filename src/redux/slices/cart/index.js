@@ -22,7 +22,7 @@ export const cartSlice = createSlice({
                 count += product.price * product.quantity
             })
 
-            state.totalPrice = count
+            state.totalPrice = count.toFixed(2)
         },
         deleteProduct: (state, action) => {
             state.products = state.products.filter(product => product.id !== action.payload)
@@ -32,7 +32,7 @@ export const cartSlice = createSlice({
                 count += product.price * product.quantity
             })
 
-            state.totalPrice = count
+            state.totalPrice = count.toFixed(2)
         }
     },
 });
