@@ -1,6 +1,6 @@
 import React from "react";
 
-const TableUsers = () => {
+const TableShopping = () => {
 	return (
 		<>
 			<div className="overflow-x-auto">
@@ -74,4 +74,4 @@ const TableUsers = () => {
 	);
 };
 
-export default TableUsers;
+export default TableShopping;

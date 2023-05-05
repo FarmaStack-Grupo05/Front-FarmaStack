@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo1.png";
 import { useLocation, Route, Routes } from "react-router-dom";
-import FormProduct from "../FormProduct/FormProduct";
+import FormProduct from "../../Components/FormProduct/FormProduct";
 import fotoProfile from "../../assets/emma.jpg";
 import TableUsers from "../../Components/TableUsers/TableUsers";
+import TableProducts from "../../Components/TableProducts/TableProducts";
+import TableShopping from "../../Components/TableShopping/TableShopping";
+import Stadictis from "../../Components/Stadictis/Stadictis";
 
 const Dashboard = () => {
 	const location = useLocation();
-	const [routes, setRoutes] = useState({
-		table: "",
-	});
-	const change = () => {
-		console.log(routes);
-	};
+	const [routes, setRoutes] = useState("");
+
 	return (
 		<div className="flex bg-gray-100 min-h-screen">
 			<aside className="hidden sm:flex sm:flex-col">
@@ -29,7 +28,7 @@ const Dashboard = () => {
 				<div className="flex-grow flex flex-col justify-between text-green-500 bg-green-600">
 					<div className="flex flex-col mx-4 my-6 space-y-4">
 						<button
-							onClick={setRoutes("users")}
+							onClick={() => setRoutes("users")}
 							className="inline-flex items-center justify-center py-3 hover:text-green-400 hover:bg-green-700 focus:text-green-400 focus:bg-green-700 rounded-lg"
 						>
 							<span className="sr-only">Folders</span>
@@ -48,8 +47,8 @@ const Dashboard = () => {
 								/>
 							</svg>
 						</button>
-						<a
-							href="#"
+						<button
+							onClick={() => setRoutes("products")}
 							className="inline-flex items-center justify-center py-3 text-green-600 bg-white rounded-lg"
 						>
 							<span className="sr-only">Dashboard</span>
@@ -67,9 +66,9 @@ const Dashboard = () => {
 									d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
 								/>
 							</svg>
-						</a>
-						<a
-							href="#"
+						</button>
+						<button
+							onClick={() => setRoutes("shopping")}
 							className="inline-flex items-center justify-center py-3 hover:text-green-400 hover:bg-green-700 focus:text-green-400 focus:bg-green-700 rounded-lg"
 						>
 							<span className="sr-only">Messages</span>
@@ -87,7 +86,7 @@ const Dashboard = () => {
 									d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
 								/>
 							</svg>
-						</a>
+						</button>
 					</div>
 					<div className="inline-flex items-center justify-center h-20 w-20 border-t border-gray-700">
 						<button className="p-3 hover:text-green-400 hover:bg-green-700 focus:text-green-400 focus:bg-green-700 rounded-lg">
@@ -228,10 +227,9 @@ const Dashboard = () => {
 				<main className="p-6 sm:p-10 space-y-6">
 					<div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
 						<div className="mr-6">
-							<h1 className="text-4xl font-semibold mb-2">Administration</h1>
-							<h2 className="text-green-600 ml-0.5">
-								Panel administration products
-							</h2>
+							<h1 className="text-4xl font-semibold mb-2">
+								Administration {routes}
+							</h1>
 						</div>
 						<div className="flex flex-wrap items-start justify-end -mb-3">
 							<button className="inline-flex px-5 py-3 text-green-500 hover:text-green-700 focus:text-green-700 hover:bg-green-100 focus:bg-green-100 border border-green-500 rounded-md mb-3">
@@ -251,29 +249,44 @@ const Dashboard = () => {
 								</svg>
 								Edit Product
 							</button>
-							<Link to={"/dashboard/formProduct"}>
-								<button className="inline-flex px-5 py-3 text-white bg-green-500 hover:bg-green-700 focus:bg-green-700 rounded-md ml-6 mb-3">
-									<svg
-										aria-hidden="true"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-										className="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2"
-									>
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth="2"
-											d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-										/>
-									</svg>
-									Create new product
-								</button>
-							</Link>
+							<button
+								onClick={() => {
+									setRoutes("newProduct");
+								}}
+								className="inline-flex px-5 py-3 text-white bg-green-500 hover:bg-green-700 focus:bg-green-700 rounded-md ml-6 mb-3"
+							>
+								<svg
+									aria-hidden="true"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+									className="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="2"
+										d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+									/>
+								</svg>
+								Create new product
+							</button>
 						</div>
 					</div>
 
-					<section>{routes === "users" && <TableUsers />}</section>
+					<section>
+						{routes === "users" ? (
+							<TableUsers />
+						) : routes === "newProduct" ? (
+							<FormProduct />
+						) : routes === "products" ? (
+							<TableProducts />
+						) : routes === "shopping" ? (
+							<TableShopping />
+						) : (
+							<Stadictis />
+						)}
+					</section>
 				</main>
 			</div>
 		</div>

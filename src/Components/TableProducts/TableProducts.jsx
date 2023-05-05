@@ -1,6 +1,6 @@
 import React from "react";
 
-const TableUsers = () => {
+const TableProducts = () => {
 	return (
 		<>
 			<div className="overflow-x-auto">
@@ -14,16 +14,19 @@ const TableUsers = () => {
 								Name
 							</th>
 							<th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-								Email
+								Description
 							</th>
 							<th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-								Address
+								Image
 							</th>
 							<th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-								Phone
+								Category
 							</th>
 							<th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-								Rol
+								Price
+							</th>
+							<th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+								Stock
 							</th>
 
 							<th className="px-4 py-2"></th>
@@ -44,20 +47,22 @@ const TableUsers = () => {
 								/>
 							</td>
 							<td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-								Emmanuel Nuñez
+								Aspirin
+							</td>
+							<td className="whitespace-nowrap px-1 py-2 text-gray-700">
+								Aspirin is a nonsteroidal anti-inflammatory drug (NSAID) used to
+								treat pain, fever, and inflammation.
 							</td>
 							<td className="whitespace-nowrap px-4 py-2 text-gray-700">
-								emmanuel@email.com
+								https://www.ecured.cu/images/f/f1/Foto_de_Ibuprofeno.JPG
 							</td>
 							<td className="whitespace-nowrap px-4 py-2 text-gray-700">
-								cll falsa 123
+								Medicines
 							</td>
 							<td className="whitespace-nowrap px-4 py-2 text-gray-700">
-								32244556677
+								6.99
 							</td>
-							<td className="whitespace-nowrap px-4 py-2 text-gray-700">
-								Admin
-							</td>
+							<td className="whitespace-nowrap px-4 py-2 text-gray-700">5</td>
 							<td className="whitespace-nowrap px-4 py-2">
 								<a
 									href="#"
@@ -74,4 +79,4 @@ const TableUsers = () => {
 	);
 };
 
-export default TableUsers;
+export default TableProducts;

@@ -5,7 +5,6 @@ import Home from "./Home/Home";
 import Payment from "./Payment/Payment";
 import Profile from "./Profile/Profile";
 import Products from "./Products/Products";
-import FormProduct from "./FormProduct/FormProduct";
 import Dashboard from "./Dashboard/Dashboard";
 import Cart from "./Carts/Carts";
 
@@ -17,7 +16,6 @@ export {
 	Payment,
 	Profile,
 	Products,
-	FormProduct,
 	Dashboard,
 	Cart,
 };
