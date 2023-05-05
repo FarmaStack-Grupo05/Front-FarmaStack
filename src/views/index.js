@@ -18,5 +18,4 @@ export {
 	Products,
 	Dashboard,
 	Cart,
-	
 };
