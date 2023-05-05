@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -65,25 +64,6 @@ const Details = () => {
 
             <p className="mt-1.5 text-lg text-gray-700">{detail.price}</p>
 
-<<<<<<< HEAD
-					<div className="mt-4">
-						<button 
-						onClick={handlerProduct}
-						className="block w-full rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105">
-							Add to Cart
-						</button>
-					</div>
-				</div>
-			</a>
-			<Link
-				to="/"
-				className="block mt-4 font-medium text-gray-500 hover:text-gray-900"
-			>
-				Volver a Home
-			</Link>
-		</div>
-	);
-=======
             <div className="mt-4">
               <button
                 onClick={handlerProduct}
@@ -103,7 +83,6 @@ const Details = () => {
       </a>
     </div>
   );
->>>>>>> developer
 };
 
 export default Details;

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   filterProduct,
   getProducts,
+  setProduct,
+  addProduct,
 } from "../../redux/slices/products/sliceProducts";
 import Pagination from "../../Components/Pagination/Pagination";
 
@@ -23,10 +25,14 @@ const Products = () => {
   };
 
   const detail = useSelector((state) => state.productsState.detail);
-  // console.log(detail);
+  
   const handlerProduct = () => {
     dispatch(setProduct(detail));
+    dispatch(addProduct(detail));
+    console.log("product",addProduct)
+    console.log("carrito",detail);
   };
+ 
 
   return (
     <div>
@@ -269,7 +275,7 @@ const Products = () => {
                             className="h-auto w-auto mx-auto p-3 object-cover transition duration-500 group-hover:scale-105 sm:h-[120px]"
                           />
                         </div>
-
+                        </a>
                         <div className="flex flex-row cursor-pointer items-center justify-between">
                           <div className="duration-500 hover:text-white group-hover:text-white">
                             <h1 className="text-xl text-gray-700 group-hover:text-white">
@@ -296,7 +302,7 @@ const Products = () => {
                             </button>
                           </div>
                         </div>
-                      </a>
+                     
                     </li>
                   );
                 })}

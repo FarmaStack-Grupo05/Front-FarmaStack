@@ -1,12 +1,13 @@
 import Logo from "../../assets/logo1.png";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchProducts } from "../../redux/slices/products/sliceProducts";
 
 import LoginButton from "./loginButton";
 import ProfileButton from "./ProfileButton";
 
 const NavBar = () => {
+  const {amount} = useSelector((state) => state.productsState);
   const dispatch = useDispatch();
 
   const handlerChange = (event) => {
@@ -168,13 +169,9 @@ const NavBar = () => {
                     <span className="sr-only"> Account </span>
 
                     <span className="sr-only">cart</span>
-<<<<<<< HEAD
                     <div className="absolute w-4 h-4 rounded-full z-10 right-[-3px] bottom-[-3px] flex items-center justify-center text-[10px] bg-black text-white">
-            {/* {amount} */}
+            {amount}
           </div>
-=======
-
->>>>>>> developer
                   </a>
 
                 </span>
