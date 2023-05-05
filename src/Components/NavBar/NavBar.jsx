@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchProducts } from "../../redux/slices/products/sliceProducts";
 
+import LoginButton from "./loginButton";
+
+
 
 import ProfileButton from "./ProfileButton";
 
@@ -141,7 +144,11 @@ const NavBar = () => {
                     </svg>
 
 
+                    <span className="sr-only">cart</span>
+
+
                     <span className="sr-only">Cart</span>
+
                   </a>
                 </span>
 
@@ -167,7 +174,10 @@ const NavBar = () => {
 
                     <span className="sr-only"> Account </span>
 
+
+
                     <span className="sr-only">cart</span>
+
 
                   </a>
                 </span>
