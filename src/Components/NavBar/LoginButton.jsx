@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import  {useState} from "react"
 import { useAuth0} from "@auth0/auth0-react"
 
 const LoginButton = ()=>{
@@ -11,18 +11,21 @@ const LoginButton = ()=>{
     const handleLogin = ()=> {
         loginWithRedirect()
         setIsOpen(false)
+ 
       
     }
 
     return(
         <div>
-            <button className=""  onClick={ logout} >Logout</button>
+            
             <button className="" onClick={handleTaggle} >Log In</button>
+          
             {!isOpen && (
                 <ul>
                     <li onClick={handleLogin}>Log In with Auth0</li>
                 </ul>
             )}
+              <button className=""  onClick={ logout} >Logout</button>
         </div>
     )
 }
