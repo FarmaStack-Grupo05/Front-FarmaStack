@@ -1,26 +1,6 @@
-import { useContext } from "react";
-import { FilterContext } from "./FilterContext";
 
 const Filter = () => {
-  const {
-    categoryFilter,
-    priceFilter,
-    setCategoryFilter,
-    setPriceFilter,
-    resetFilters,
-  } = useContext(FilterContext);
-
-  const handleCategoryFilter = (event) => {
-    setCategoryFilter(event.target.value);
-  };
-
-  const handlePriceFilter = (event) => {
-    setPriceFilter(event.target.value);
-  };
-
-  const handleResetFilters = () => {
-    resetFilters();
-  };
+ 
 
   return (
     <div>
@@ -30,34 +10,7 @@ const Filter = () => {
   Plugins:
     - @tailwindcss/forms
 */}
-      <>
-        <h2>Filter By:</h2>
-        <label htmlFor="category-filter">Category:</label>
-        <select
-          id="category-filter"
-          value={categoryFilter}
-          onChange={handleCategoryFilter}
-        >
-          <option value="">All</option>
-          <option value="electronics">Electronics</option>
-          <option value="clothing">Clothing</option>
-          <option value="home">Home</option>
-        </select>
-        <br />
-        <label htmlFor="price-filter">Price:</label>
-        <select
-          id="price-filter"
-          value={priceFilter}
-          onChange={handlePriceFilter}
-        >
-          <option value="">All</option>
-          <option value="under-50">Under $50</option>
-          <option value="50-100">$50 - $100</option>
-          <option value="over-100">Over $100</option>
-        </select>
-        <br />
-        <button onClick={handleResetFilters}>Reset Filters</button>
-      </>
+     
       <div className="space-y-2">
         <details className="overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden">
           <summary className="flex cursor-pointer items-center justify-between gap-2 bg-white p-4 text-gray-900 transition">
