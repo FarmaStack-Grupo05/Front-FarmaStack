@@ -8,12 +8,12 @@ import {
 	Profile,
 	Products,
 	FormProduct,
-	Cart,
 } from "./views/index";
 import NavBar from "./Components/NavBar/NavBar";
 import Footer from "./Components/Footer/Footer";
 import LoginButton from "./Components/NavBar/loginButton";
 import ContactMe from "./Components/Contact/ContactMe";
+import LogoutButton from "./Components/NavBar/LogoutButton";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	return (
@@ -37,7 +37,7 @@ function App() {
 				<Route exact path="/farmastack/auth" element={<LoginButton/>}></Route>
 				<Route exact path="/farmastack/formProduct" element={<FormProduct />} />
 				<Route exact path="/farmastack/contact" element={< ContactMe/>} />
-				<Route exact path="/farmastack/cart" element={< Cart/>} />
+				<Route exact path="/farmastack/logout" element={<LogoutButton/>} />
 			</Routes>
 			<Footer />
 		</>
