@@ -1,51 +1,18 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { useSelector } from 'react-redux'
-
-
-	
-const products = [
-    {   
-category: 
-"Personal care",
-description: 
-"Toothpaste is a paste or gel used with a toothbrush to clean and maintain the health of teeth.",
-id:4,
-image:"https://unidrogas.vteximg.com.br/arquivos/ids/356798-1000-1000/7702010111556.jpg?v=638181093808600000",
-name:"Toothpaste",
-price:3.99
-}
-//   {
-//     id: 1,
-//     name: 'Throwback Hip Bag',
-//     href: '#',
-//     color: 'Salmon',
-//     price: '$90.00',
-//     quantity: 1,
-//     imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
-//     imageAlt: 'Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.',
-//   },
-//   {
-//     id: 2,
-//     name: 'Medium Stuff Satchel',
-//     href: '#',
-//     color: 'Blue',
-//     price: '$32.00',
-//     quantity: 1,
-//     imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
-//     imageAlt:
-//       'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
-//   },
-  // More products...
-]
+import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { deleteProducts } from '../../redux/slices/cart/sliceCart'
 
 export default function Cart() {
   const [open, setOpen] = useState(true)
-  const carro = useSelector((state) => state.productsState.cartProduct);
+  const cart = useSelector((state) => state.cartState);
+  const dispatch = useDispatch()
 
-  products.push(carro)
-
+  const handleRemoveProduct = (product) => {
+    dispatch(deleteProducts(product.id))
+  }
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -94,7 +61,12 @@ export default function Cart() {
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {products.map((product) => (
+                            {cart.products.length === 0 && (
+                              <p className="text-center text-gray-500">
+                                Your cart is empty
+                              </p>
+                            )}
+                            {cart.products.map((product) => (
                               <li key={product.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
@@ -115,11 +87,12 @@ export default function Cart() {
                                     </div>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
-                                    {/* <p className="text-gray-500">Qty {product.quantity}</p> */}
+                                    <p className="text-gray-500">Qty {product.quantity}</p>
 
                                     <div className="flex">
                                       <button
                                         type="button"
+                                        onClick={() => handleRemoveProduct(product)}
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
                                       >
                                         Remove
@@ -137,20 +110,21 @@ export default function Cart() {
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>$262.00</p>
+                        <p>${cart.totalPrice}</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">
-                        <a
-                          href="#"
+                        <Link
+                          to="/farmastack/payment"
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         >
                           Checkout
-                        </a>
+                        </Link>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
                           or
+                          {' '}
                           <button
                             type="button"
                             className="font-medium text-indigo-600 hover:text-indigo-500"

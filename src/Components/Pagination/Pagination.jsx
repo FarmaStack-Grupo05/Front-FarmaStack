@@ -7,10 +7,11 @@ import { changePageProduct } from "../../redux/slices/products/sliceProducts";
 const Pagination = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
+  const [filters, setFilters] = useState({});
 
   useEffect(() => {
-    dispatch(changePageProduct(page));
-  }, [dispatch, page]);
+    dispatch(changePageProduct(page, filters));
+  }, [dispatch, page, filters]);
 
   const { results } = useSelector((state) => state.productsState.list);
   const { next } = useSelector((state) => state.productsState.list);
@@ -19,16 +20,22 @@ const Pagination = () => {
   const handleChangePrev = (e, p) => {
     if (previous) {
       setPage(p);
-    }
-  };
-  const handleChangeNext = (e, p) => {
-    if (next) {
-      setPage(p);
+      dispatch(changePageProduct(p, filters));
     }
   };
 
+  const handleChangeNext = (e, p) => {
+    if (next) {
+      setPage(p);
+      dispatch(changePageProduct(p, filters));
+    }
+  };
+
+  
+
   console.log(results);
   return (
+    
     <div className="flex justify-center items-center gap-3 text-gray-500">
       <a
         className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 hover:bg-green-500 hover:text-white"
