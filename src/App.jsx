@@ -9,7 +9,7 @@ import {
 	Products,
 	FormProduct,
 } from "./views/index";
-import FilterProvider  from "./Components/Filter/FilterContext";
+
 import NavBar from "./Components/NavBar/NavBar";
 import Footer from "./Components/Footer/Footer";
 import LoginButton from "./Components/NavBar/loginButton";
@@ -38,9 +38,9 @@ function App() {
 				<Route path="/farmastack/profile" element={<Profile />}>
 					<Route path="informacion-personal" element={<Profile />} />
 				</Route>
-				<FilterProvider>
+				
 				<Route exact path="/farmastack/products" element={<Products />} />
-				</FilterProvider>
+			
 				<Route exact path="/farmastack/auth" element={<LoginButton/>}></Route>
 				<Route exact path="/farmastack/formProduct" element={<FormProduct />} />
 				<Route exact path="/farmastack/contact" element={< ContactMe/>} />
