@@ -85,14 +85,14 @@ const Details = () => {
               Add to Cart
             </button>
             <div className="flex items-center justify-between">
-              <button onClick={handleAddQuantity} type="button" className="bg-yellow-300 rounded-full p-1 font-bold my-2 hover:bg-yellow-400 transition hover:shadow-lg">
-                <PlusIcon className="h-6 w-6" aria-hidden="true" />
+              <button onClick={handleSubtractQuantity} type="button" className="bg-yellow-300 rounded-full p-1 font-bold my-2 hover:bg-yellow-400 transition hover:shadow-lg">
+                <MinusIcon className="h-6 w-6" aria-hidden="true" />
               </button>
               <span>
                 {productQuantity}
               </span>
-              <button onClick={handleSubtractQuantity} type="button" className="bg-yellow-300 rounded-full p-1 font-bold my-2 hover:bg-yellow-400 transition hover:shadow-lg">
-                <MinusIcon className="h-6 w-6" aria-hidden="true" />
+              <button onClick={handleAddQuantity} type="button" className="bg-yellow-300 rounded-full p-1 font-bold my-2 hover:bg-yellow-400 transition hover:shadow-lg">
+                <PlusIcon className="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
             {productInCart?.quantity > 0 && (
