@@ -7,12 +7,23 @@ export const cartSlice = createSlice({
         totalPrice: 0,
     },
     reducers: {
-        addProducts: (state, action) => {
-            state.products = action.payload;
+        addProduct: (state, action) => {
+            let existingProduct = state.products.find((product) => product.id === action.payload.id)
+
+            if (existingProduct) {
+                existingProduct.quantity += 1
+            } else {
+                const newProduct = {
+                    ...action.payload,
+                    quantity: 1
+                }
+                state.products.push(newProduct);
+            }
+
 
             let count = 0
-            state.products.forEach((product)=>{
-                count += product.price 
+            state.products.forEach((product) => {
+                count += product.price * product.quantity
             })
 
             state.totalPrice = count
@@ -20,6 +31,6 @@ export const cartSlice = createSlice({
     },
 });
 
-export const { addProducts } = cartSlice.actions;
+export const { addProduct } = cartSlice.actions;
 
 export default cartSlice.reducer;
