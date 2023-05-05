@@ -1,12 +1,18 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { deleteProducts } from '../../redux/slices/cart/sliceCart'
 
 export default function Cart() {
   const [open, setOpen] = useState(true)
   const cart = useSelector((state) => state.cartState);
+  const dispatch = useDispatch()
+
+  const handleRemoveProduct = (product) => {
+    dispatch(deleteProducts(product.id))
+  }
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -55,6 +61,11 @@ export default function Cart() {
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
+                            {cart.products.length === 0 && (
+                              <p className="text-center text-gray-500">
+                                Your cart is empty
+                              </p>
+                            )}
                             {cart.products.map((product) => (
                               <li key={product.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -81,6 +92,7 @@ export default function Cart() {
                                     <div className="flex">
                                       <button
                                         type="button"
+                                        onClick={() => handleRemoveProduct(product)}
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
                                       >
                                         Remove

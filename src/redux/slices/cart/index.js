@@ -24,9 +24,19 @@ export const cartSlice = createSlice({
 
             state.totalPrice = count
         },
+        deleteProduct: (state, action) => {
+            state.products = state.products.filter(product => product.id !== action.payload)
+
+            let count = 0
+            state.products.forEach((product) => {
+                count += product.price * product.quantity
+            })
+
+            state.totalPrice = count
+        }
     },
 });
 
-export const { addProduct } = cartSlice.actions;
+export const { addProduct, deleteProduct } = cartSlice.actions;
 
 export default cartSlice.reducer;
