@@ -2,6 +2,10 @@ import Logo from "../../assets/logo1.png";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchProducts } from "../../redux/slices/products/sliceProducts";
+<<<<<<< HEAD
+=======
+
+>>>>>>> cfbb696b3ccd3f220065284d14887adeafbc4ce8
 import LoginButton from "./loginButton";
 import ProfileButton from "./ProfileButton";
 
@@ -139,7 +143,12 @@ const NavBar = () => {
                       />
                     </svg>
 
+<<<<<<< HEAD
                     <span className="sr-only">cart</span>
+=======
+
+                    <span className="sr-only">Cart</span>
+>>>>>>> cfbb696b3ccd3f220065284d14887adeafbc4ce8
                   </a>
                 </span>
 
@@ -164,6 +173,12 @@ const NavBar = () => {
                     </svg>
 
                     <span className="sr-only"> Account </span>
+<<<<<<< HEAD
+=======
+
+                    <span className="sr-only">cart</span>
+
+>>>>>>> cfbb696b3ccd3f220065284d14887adeafbc4ce8
                   </a>
                 </span>
               </div>
