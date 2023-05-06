@@ -13,6 +13,7 @@ const Products = () => {
 		sortName: "default",
 		sortPrice: "default",
 		category: "default",
+		page: 1,
 	});
 
 	const handlerChange = (event) => {
@@ -23,27 +24,33 @@ const Products = () => {
 			[name]: value,
 		});
 	};
+
+	const { results } = useSelector((state) => state.productsState.list);
+	const { next } = useSelector((state) => state.productsState.list);
+	const { previous } = useSelector((state) => state.productsState.list);
+
+	const handleChangePrev = (e) => {
+		e.preventDefault();
+		setFilters({
+			...filters,
+			page: -1,
+		});
+	};
+
+	const handleChangeNext = (e) => {
+		e.preventDefault();
+		setFilters({
+			...filters,
+			page: +1,
+		});
+	};
+
 	useEffect(() => {
 		dispatch(filterProduct(filters));
 	}, [dispatch, filters]);
-	const { results } = useSelector((state) => state.productsState.list);
-	// console.log(filters);
-	// const filterChange = (event) => {
-	// 	const { name } = event.target;
-	// 	dispatch(filterProduct(name));
-	// };
 
 	return (
 		<div>
-			{/*
-	Heads up! 👋
-  
-	This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
-  
-	Plugins:
-	  - @tailwindcss/forms
-  */}
-
 			<section>
 				<div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
 					<header>
@@ -66,7 +73,47 @@ const Products = () => {
 							paddingTop: 30,
 						}}
 					>
-						<Pagination />
+						<div className="flex justify-center items-center gap-3 text-gray-500">
+							<a
+								className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 hover:bg-green-500 hover:text-white"
+								onClick={handleChangePrev}
+							>
+								<span className="sr-only">Prev Page</span>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									className="h-4 w-4"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+								>
+									<path
+										fillRule="evenodd"
+										d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+										clipRule="evenodd"
+									/>
+								</svg>
+							</a>
+
+							<p className="text-sm font-medium">Page {filters.page} of 6</p>
+
+							<a
+								className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 hover:bg-green-500 hover:text-white"
+								onClick={handleChangeNext}
+							>
+								<span className="sr-only">Next Page</span>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									className="h-4 w-4"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+								>
+									<path
+										fillRule="evenodd"
+										d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+										clipRule="evenodd"
+									/>
+								</svg>
+							</a>
+						</div>
 					</div>
 
 					<div className="mt-8 block lg:hidden">

@@ -4,29 +4,36 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changePageProduct } from "../../redux/slices/products/sliceProducts";
 
-const Pagination = () => {
+const Pagination = ({ setFilters, filters }) => {
 	const dispatch = useDispatch();
 	const [page, setPage] = useState(1);
-	const [filters, setFilters] = useState({});
-
-	useEffect(() => {
-		dispatch(changePageProduct(page, filters));
-	}, [dispatch, page, filters]);
+	// const [filters, setFilters] = useState({});
+	// useEffect(() => {
+	// 	dispatch(changePageProduct(page, filters));
+	// }, [dispatch, page, filters]);
 
 	const { results } = useSelector((state) => state.productsState.list);
 	const { next } = useSelector((state) => state.productsState.list);
 	const { previous } = useSelector((state) => state.productsState.list);
 
 	const handleChangePrev = (e, p) => {
+		e.preventDefault();
 		if (previous) {
-			setPage(p);
+			setFilters({
+				...filters,
+				page: p,
+			});
 			dispatch(changePageProduct(p, filters));
 		}
 	};
 
 	const handleChangeNext = (e, p) => {
+		e.preventDefault();
 		if (next) {
-			setPage(p);
+			setFilters({
+				...filters,
+				page: p,
+			});
 			dispatch(changePageProduct(p, filters));
 		}
 	};

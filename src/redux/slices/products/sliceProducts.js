@@ -46,11 +46,11 @@ export const searchProducts = (name) => {
 		}
 	};
 };
-export const filterProduct = ({ sortName, sortPrice, category }) => {
+export const filterProduct = ({ sortName, sortPrice, category, page }) => {
 	return async (dispatch) => {
 		try {
 			let res = await axios.get(
-				`${URL}/products?sortName=${sortName}&sortPrice=${sortPrice}&category=${category}`
+				`http://localhost:3001/products?sortName=${sortName}&sortPrice=${sortPrice}&category=${category}&page=${page}`
 			);
 			dispatch(setProductsList(res.data));
 		} catch (error) {
