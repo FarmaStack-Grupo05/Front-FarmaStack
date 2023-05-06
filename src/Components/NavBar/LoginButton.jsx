@@ -21,14 +21,13 @@ const LoginButton = ()=>{
     return(
         <div>
             
-            <button className="" onClick={handleTaggle} >Log In</button>
           
             {!isOpen && (
                 <ul>
                     <li onClick={handleLogin}>Log In</li>
                 </ul>
             )}
-              <button className=""  onClick={ logout} >Logout</button>
+            
         </div>
     )
 }
