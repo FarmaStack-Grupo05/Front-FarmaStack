@@ -1,13 +1,18 @@
 import axios from "axios";
-import { setProductsList, getIdProducts, setProductCart } from ".";
+import {
+	setProductsList,
+	getIdProducts,
+	setProductCart,
+	setProductsHome,
+} from ".";
 
 const URL = import.meta.env.VITE_BACK_URL || "http://localhost:3001";
 
-export const getProducts = (value, text) => {
+export const getProducts = () => {
 	return async (dispatch) => {
 		try {
-			let res = await axios.get(`${URL}/products?${value}=${text}`);
-			dispatch(setProductsList(res.data));
+			let res = await axios.get(`${URL}/products`);
+			dispatch(setProductsHome(res.data));
 		} catch (err) {
 			console.log("error", err.message);
 		}
@@ -45,10 +50,9 @@ export const filterProduct = ({ sortName, sortPrice, category }) => {
 	return async (dispatch) => {
 		try {
 			let res = await axios.get(
-				`http://localhost:3001/products?sortName=${sortName}&sortPrice=${sortPrice}&category=${category}`
+				`${URL}/products?sortName=${sortName}&sortPrice=${sortPrice}&category=${category}`
 			);
 			dispatch(setProductsList(res.data));
-			console.log(res.data);
 		} catch (error) {
 			console.log(error);
 		}

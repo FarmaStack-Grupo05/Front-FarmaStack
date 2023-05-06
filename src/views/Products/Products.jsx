@@ -7,26 +7,26 @@ import {
 import Pagination from "../../Components/Pagination/Pagination";
 
 const Products = () => {
+	const dispatch = useDispatch();
+
 	const [filters, setFilters] = useState({
 		sortName: "default",
 		sortPrice: "default",
 		category: "default",
 	});
-	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(getProducts());
-	}, [dispatch]);
-	const { results } = useSelector((state) => state.productsState.list);
 
 	const handlerChange = (event) => {
+		event.preventDefault();
 		const { value, name } = event.target;
-		// const text = event.target.selectedOptions[0].label;
 		setFilters({
 			...filters,
 			[name]: value,
 		});
-		dispatch(filterProduct(filters));
 	};
+	useEffect(() => {
+		dispatch(filterProduct(filters));
+	}, [dispatch, filters]);
+	const { results } = useSelector((state) => state.productsState.list);
 	// console.log(filters);
 	// const filterChange = (event) => {
 	// 	const { name } = event.target;
@@ -147,8 +147,8 @@ const Products = () => {
 								>
 									<option>Filters for category</option>
 									<option value="medicines">Medicines</option>
-									<option value="Sexualhealth">Sexual health</option>
-									<option value="Personalcare">Personal care</option>
+									<option value="Sexual health">Sexual health</option>
+									<option value="Personal care">Personal care</option>
 									<option value="Maternity">Maternity</option>
 								</select>
 							</div>
