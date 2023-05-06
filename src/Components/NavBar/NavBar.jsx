@@ -2,18 +2,20 @@ import Logo from "../../assets/logo1.png";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchProducts } from "../../redux/slices/products/sliceProducts";
+import { Cart } from "../../views";
 
 import LoginButton from "./loginButton";
 
 import ProfileButton from "./ProfileButton";
+import { useState } from "react";
 
 const NavBar = () => {
 	const dispatch = useDispatch();
-
 	const handlerChange = (event) => {
 		event.preventDefault();
 		dispatch(searchProducts(event.target.value));
 	};
+	const [showCart, setShowCart] = useState(false);
 
 	return (
 		<>
@@ -122,8 +124,8 @@ const NavBar = () => {
 
 							<div className="flex items-center border-x border-gray-100">
 								<span className="border-e border-e-gray-100">
-									<a
-										href="/farmastack/cart"
+									<button
+										onClick={() => setShowCart(!showCart)}
 										className="grid h-16 w-16  place-content-center border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
 									>
 										<svg
@@ -142,9 +144,8 @@ const NavBar = () => {
 										</svg>
 
 										<span className="sr-only">cart</span>
-
-										<span className="sr-only">Cart</span>
-									</a>
+										{showCart && <Cart />}
+									</button>
 								</span>
 
 								<span className="border-e border-e-gray-100">

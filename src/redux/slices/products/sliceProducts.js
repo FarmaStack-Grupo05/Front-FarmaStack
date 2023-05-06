@@ -41,10 +41,12 @@ export const searchProducts = (name) => {
 		}
 	};
 };
-export const filterProduct = (category) => {
+export const filterProduct = ({ sortName, sortPrice, category }) => {
 	return async (dispatch) => {
 		try {
-			let res = await axios.get(`${URL}/products?category=${category}`);
+			let res = await axios.get(
+				`http://localhost:3001/products?sortName=${sortName}&sortPrice=${sortPrice}&category=${category}`
+			);
 			dispatch(setProductsList(res.data));
 			console.log(res.data);
 		} catch (error) {
@@ -55,15 +57,13 @@ export const filterProduct = (category) => {
 export const setProduct = (product) => {
 	// console.log(product)
 	return (dispatch) => {
-	// 	try {
-	// 		let res = await axios.get(`${URL}/products?category=${category}`);
-	// 		dispatch(setProductsList(res.data));
-	// 		console.log(res.data);
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-	dispatch(setProductCart(product))
+		// 	try {
+		// 		let res = await axios.get(`${URL}/products?category=${category}`);
+		// 		dispatch(setProductsList(res.data));
+		// 		console.log(res.data);
+		// 	} catch (error) {
+		// 		console.log(error);
+		// 	}
+		dispatch(setProductCart(product));
 	};
-
-
 };
