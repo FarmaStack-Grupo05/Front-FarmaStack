@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-	filterProduct,
-	getProducts,
-} from "../../redux/slices/products/sliceProducts";
-import Pagination from "../../Components/Pagination/Pagination";
+import { Link } from "react-router-dom";
+import { filterProduct } from "../../redux/slices/products/sliceProducts";
 
 const Products = () => {
 	const dispatch = useDispatch();
@@ -31,20 +28,22 @@ const Products = () => {
 
 	const handleChangePrev = (e) => {
 		e.preventDefault();
-		setFilters({
-			...filters,
-			page: -1,
-		});
+		if (previous) {
+			setFilters({
+				...filters,
+				page: filters.page - 1,
+			});
+		}
 	};
 
 	const handleChangeNext = (e) => {
 		e.preventDefault();
-		setFilters({
-			...filters,
-			page: +1,
-		});
+		if (next)
+			setFilters({
+				...filters,
+				page: filters.page + 1,
+			});
 	};
-
 	useEffect(() => {
 		dispatch(filterProduct(filters));
 	}, [dispatch, filters]);
@@ -209,8 +208,8 @@ const Products = () => {
 											key={product.name}
 											className="card no-underline text-decoration-none bg-white shadow-xl h-full p-5 rounded-3xl transition duration-500 hover:bg-green-500 hover:text-white group-hover:text-white hover:transform hover:scale-105"
 										>
-											<a
-												href={`/farmastack/details/${product.id}`}
+											<Link
+												to={`/farmastack/details/${product.id}`}
 												className="group block overflow-hidden"
 											>
 												<div className="card rounded-xl relative bg-white mb-3">
@@ -247,7 +246,7 @@ const Products = () => {
 														</button>
 													</div>
 												</div>
-											</a>
+											</Link>
 										</li>
 									);
 								})}
