@@ -19,6 +19,7 @@ const Products = () => {
 		setFilters({
 			...filters,
 			[name]: value,
+			page: 1,
 		});
 	};
 
@@ -51,13 +52,13 @@ const Products = () => {
 	return (
 		<div>
 			<section>
-				<div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+				<div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8  text-center">
 					<header>
-						<h2 className="text-xl font-bold text-gray-900 sm:text-3xl pl-5">
+						<h2 className="text-xl font-bold text-green-900 sm:text-3xl pl-5">
 							Product Collection
 						</h2>
-
-						<p className="mt-4 w-auto text-gray-500 shadow-xl p-5 rounded-3xl">
+						<div className="w-16 h-1 mt-2 bg-yellow-400 mx-auto"></div>
+						<p className="mt-4 w-auto text-green-500 shadow-xl p-5 rounded-3xl">
 							Welcome to our pharmaceuticals page. here You will find a wide
 							variety of medicines and products high-quality and reliable
 							healthcare, designed to help improve their well-being and quality
@@ -141,57 +142,57 @@ const Products = () => {
 							<div>
 								<label
 									htmlFor="SortBy"
-									className="block text-xs font-medium text-gray-700"
+									className="block text-xl font-medium text-green-700"
 								>
 									Sort By Name
 								</label>
 
 								<select
 									id="SortBy"
-									className="w-full mt-1 rounded border-gray-300 text-gray-700 text-sm font-medium"
+									className="w-full mt-1 rounded border-green-300 text-green-700 text-sm font-medium"
 									onChange={handlerChange}
 									name="sortName"
 								>
-									<option>Sort By name</option>
-									<option value="des">des</option>
-									<option value="asc">asc</option>
+									<option value={"default"}>-- all --</option>
+									<option value="des">ASC</option>
+									<option value="asc">DES</option>
 								</select>
 							</div>
 							<div>
 								<label
 									htmlFor="SortBy"
-									className="block text-xs font-medium text-gray-700"
+									className="block text-xl font-medium text-green-700"
 								>
 									Sort By Price
 								</label>
 
 								<select
 									id="SortBy"
-									className="w-full mt-1 rounded border-gray-300 text-gray-700 text-sm font-medium"
+									className="w-full mt-1 rounded border-green-300 text-green-700 text-sm font-medium"
 									onChange={handlerChange}
 									name="sortPrice"
 								>
-									<option>Sort By Price</option>
-									<option value="asc">asc</option>
-									<option value="des">des</option>
+									<option value={"default"}>-- all -</option>
+									<option value="asc">ACS</option>
+									<option value="des">DES</option>
 								</select>
 							</div>
 
 							<div>
 								<label
 									htmlFor="SortBy"
-									className="block text-xs font-medium text-gray-700"
+									className="block text-xl font-medium text-green-700"
 								>
-									Filters
+									Filters for category
 								</label>
 
 								<select
 									id="SortBy"
-									className="w-full mt-1 rounded border-gray-300 text-gray-700 text-sm font-medium"
+									className="w-full mt-1 rounded border-green-300 text-green-700 text-sm font-medium"
 									onChange={handlerChange}
 									name="category"
 								>
-									<option>Filters for category</option>
+									<option value={"default"}>-- all -</option>
 									<option value="medicines">Medicines</option>
 									<option value="Sexual health">Sexual health</option>
 									<option value="Personal care">Personal care</option>
