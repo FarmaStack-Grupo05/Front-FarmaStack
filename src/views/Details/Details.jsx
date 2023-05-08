@@ -6,6 +6,7 @@ import { addProducts } from "../../redux/slices/cart/sliceCart";
 import { getProductById } from "../../redux/slices/products/sliceProducts";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Details = () => {
 	const { id } = useParams();
