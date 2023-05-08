@@ -11,12 +11,17 @@ import { useState } from "react";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 const NavBar = () => {
+<<<<<<< HEAD
 	const dispatch = useDispatch();
 	const handlerChange = (event) => {
 		event.preventDefault();
 		dispatch(searchProducts(event.target.value));
 	};
 	const [showCart, setShowCart] = useState(false);
+=======
+  const {amount} = useSelector((state) => state.productsState);
+  const dispatch = useDispatch();
+>>>>>>> Alejo
 
 	const { products } = useSelector((state) => state.cartState);
 
@@ -166,6 +171,7 @@ const NavBar = () => {
 
 										<span className="sr-only"> Account </span>
 
+<<<<<<< HEAD
 										<span className="sr-only">cart</span>
 									</a>
 								</span> */}
@@ -176,6 +182,24 @@ const NavBar = () => {
 			</header>
 		</>
 	);
+=======
+                    <span className="sr-only"> Account </span>
+
+                    <span className="sr-only">cart</span>
+                    <div className="absolute w-4 h-4 rounded-full z-10 right-[-3px] bottom-[-3px] flex items-center justify-center text-[10px] bg-black text-white">
+            {amount}
+          </div>
+                  </a>
+
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    </>
+  );
+>>>>>>> Alejo
 };
 
 export default NavBar;

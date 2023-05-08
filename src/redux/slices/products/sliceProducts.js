@@ -1,10 +1,14 @@
 import axios from "axios";
+<<<<<<< HEAD
 import {
 	setProductsList,
 	getIdProducts,
 	setProductCart,
 	setAllProducts,
 } from ".";
+=======
+import { setProductsList, getIdProducts, setProductCart,addToCart, removeFromCart } from ".";
+>>>>>>> Alejo
 
 const URL = import.meta.env.VITE_BACK_URL || "http://localhost:3001";
 
@@ -70,3 +74,13 @@ export const setProduct = (product) => {
 		dispatch(setProductCart(product));
 	};
 };
+export const addProduct = (product) => {
+	return (dispatch) => {
+		dispatch(addToCart(product))
+	}
+}
+export const remove = (product) => {
+	return(dispatch) => {
+		dispatch(removeFromCart(product))
+	}
+}
