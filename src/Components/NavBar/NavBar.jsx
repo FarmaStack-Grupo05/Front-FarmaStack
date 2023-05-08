@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { searchProducts } from "../../redux/slices/products/sliceProducts";
 import { Cart } from "../../views";
 
-// import LoginButton from "./loginButton";
+// import LoginButton from "./LoginButton";
 
 import ProfileButton from "./ProfileButton";
 import { useState } from "react";
