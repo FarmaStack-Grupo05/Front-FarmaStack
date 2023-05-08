@@ -5,21 +5,34 @@ export const productSlice = createSlice({
 	initialState: {
 		list: [],
 		detail: {},
-		cartProduct:[],
+		cartProduct: [],
+		allProducts: [],
 	},
 	reducers: {
 		setProductsList: (state, action) => {
 			state.list = action.payload;
 		},
+		setAllProducts: (state, action) => {
+			state.allProducts = action.payload;
+		},
 		setProductCart: (state, action) => {
 			state.cartProduct = action.payload;
 		},
-		getIdProducts:(state,action) => {
-			state.detail = action.payload
-		}
+		getIdProducts: (state, action) => {
+			state.detail = action.payload;
+		},
+		setProductsHome: (state, action) => {
+			state.productsHome = action.payload;
+		},
 	},
 });
 
-export const { setProductsList, getIdProducts, setProductCart } = productSlice.actions;
+export const {
+	setProductsList,
+	getIdProducts,
+	setProductCart,
+	setProductsHome,
+	setAllProducts,
+} = productSlice.actions;
 
 export default productSlice.reducer;

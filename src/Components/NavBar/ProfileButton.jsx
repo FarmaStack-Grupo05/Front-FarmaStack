@@ -1,6 +1,8 @@
 import emma from "../../assets/emma.jpg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
 
 function ProfileButton() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -39,10 +41,10 @@ function ProfileButton() {
 				>
 					<li>
 						<a
-							href="/farmastack/auth"
+							href=""
 							className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
 						>
-							Log in
+							<LoginButton/>
 						</a>
 					</li>
 					<li>
@@ -81,15 +83,16 @@ function ProfileButton() {
 				</ul>
 				<div className="py-1">
 					<a
-						href="/farmastack/logout"
+					
 						className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
 					>
-						Sign out
+						<LogoutButton/>
 					</a>
 				</div>
 			</div>
 		</>
 	);
 }
+
 
 export default ProfileButton;

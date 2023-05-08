@@ -1,19 +1,23 @@
 import Logo from "../../assets/logo1.png";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchProducts } from "../../redux/slices/products/sliceProducts";
+import { Cart } from "../../views";
 
 import LoginButton from "./loginButton";
 
 import ProfileButton from "./ProfileButton";
+import { useState } from "react";
 
 const NavBar = () => {
 	const dispatch = useDispatch();
-
 	const handlerChange = (event) => {
 		event.preventDefault();
 		dispatch(searchProducts(event.target.value));
 	};
+	const [showCart, setShowCart] = useState(false);
+
+	const { products } = useSelector((state) => state.cartState);
 
 	return (
 		<>
@@ -122,10 +126,18 @@ const NavBar = () => {
 
 							<div className="flex items-center border-x border-gray-100">
 								<span className="border-e border-e-gray-100">
-									<a
-										href="/farmastack/cart"
-										className="grid h-16 w-16  place-content-center border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
+									<button
+										onClick={() => setShowCart(!showCart)}
+										className="relative grid h-16 w-16  place-content-center border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
 									>
+										<span className="sr-only">Shopping</span>
+										{products.length >= 1 && (
+											<>
+												<span className="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full"></span>
+												<span className="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full animate-ping"></span>
+											</>
+										)}
+
 										<svg
 											className="h-4 w-4"
 											fill="none"
@@ -133,6 +145,7 @@ const NavBar = () => {
 											stroke="currentColor"
 											xmlns="http://www.w3.org/2000/svg"
 										>
+											<span className="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full animate-ping"></span>
 											<path
 												strokeLinecap="round"
 												strokeLinejoin="round"
@@ -140,11 +153,8 @@ const NavBar = () => {
 												d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
 											/>
 										</svg>
-
-										<span className="sr-only">cart</span>
-
-										<span className="sr-only">Cart</span>
-									</a>
+										{showCart && <Cart />}
+									</button>
 								</span>
 
 								<span className="border-e border-e-gray-100">
