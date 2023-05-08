@@ -37,9 +37,22 @@ export const cartSlice = createSlice({
 
 			state.totalPrice = count.toFixed(2);
 		},
+		// Sets cart from API response
+		setCart: (state, action) => {
+			const products = action.payload.products.map((product) => {
+				return {
+					...product.Product,
+					price: product.price.toFixed(2),
+					quantity: product.quantity,
+					subtotal: product.subtotal.toFixed(2),
+				};
+			})
+			state.products = products;
+			state.totalPrice = action.payload.total_price.toFixed(2);
+		}
 	},
 });
 
-export const { addProduct, deleteProduct } = cartSlice.actions;
+export const { addProduct, deleteProduct, setCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

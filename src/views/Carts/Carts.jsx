@@ -4,14 +4,16 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteProducts } from "../../redux/slices/cart/sliceCart";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Cart() {
 	const [open, setOpen] = useState(true);
 	const cart = useSelector((state) => state.cartState);
+	const { user } = useAuth0();
 	const dispatch = useDispatch();
 
 	const handleRemoveProduct = (product) => {
-		dispatch(deleteProducts(product.id));
+		dispatch(deleteProducts(user.sub, product.id));
 	};
 
 	return (
