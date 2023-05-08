@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,13 +6,6 @@ import { addProducts } from "../../redux/slices/cart/sliceCart";
 import { getProductById } from "../../redux/slices/products/sliceProducts";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
-=======
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getId } from "../../redux/slices/products/sliceProducts";
-import { setProduct } from "../../redux/slices/products/sliceProducts";
->>>>>>> Alejo
 
 const Details = () => {
 	const { id } = useParams();
@@ -93,7 +85,6 @@ const Details = () => {
 						/>
 					</div>
 
-<<<<<<< HEAD
 					<div className="no-underline text-decoration-none h-1/3 w-auto m-2 p-5 rounded-3xl">
 						<h3 className="mt-4 text-sm font-medium text-gray-700">
 							Description:
@@ -146,27 +137,6 @@ const Details = () => {
 			</a>
 		</div>
 	);
-=======
-            <div className="mt-4">
-              <button
-                onClick={handlerProduct}
-                className="block w-full rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105"
-              >
-                Add to Cart
-              </button>
-            </div>
-          </div>
-        </a>
-      </div>
-      <a
-        href="/"
-        className="block mt-4 font-medium text-gray-500 hover:text-green-500"
-      >
-        Volver a Home
-      </a>
-    </div>
-  );
->>>>>>> Alejo
 };
 
 export default Details;
