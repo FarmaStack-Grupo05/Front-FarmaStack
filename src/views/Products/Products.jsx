@@ -1,39 +1,17 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< HEAD
 import { Link } from "react-router-dom";
 import { filterProduct } from "../../redux/slices/products/sliceProducts";
-=======
-import {
-  filterProduct,
-  getProducts,
-  setProduct,
-  addProduct,
-} from "../../redux/slices/products/sliceProducts";
-import Pagination from "../../Components/Pagination/Pagination";
->>>>>>> Alejo
 
 const Products = () => {
 	const dispatch = useDispatch();
 
-<<<<<<< HEAD
 	const [filters, setFilters] = useState({
 		sortName: "default",
 		sortPrice: "default",
 		category: "default",
 		page: 1,
 	});
-=======
-  const detail = useSelector((state) => state.productsState.detail);
-  
-  const handlerProduct = () => {
-    dispatch(setProduct(detail));
-    dispatch(addProduct(detail));
-    console.log("product",addProduct)
-    console.log("carrito",detail);
-  };
- 
->>>>>>> Alejo
 
 	const handlerChange = (event) => {
 		event.preventDefault();
@@ -253,7 +231,6 @@ const Products = () => {
 															{product.category}
 														</h3>
 
-<<<<<<< HEAD
 														<p className="mt-2">
 															<span className="sr-only"> Regular Price </span>
 															<span className="tracking-wider text-gray-900 group-hover:text-white">
@@ -281,109 +258,6 @@ const Products = () => {
 			</section>
 		</div>
 	);
-=======
-                        <li>
-                          <label
-                            htmlFor="FilterOutOfStock"
-                            className="inline-flex items-center gap-2"
-                          >
-                            <input
-                              type="checkbox"
-                              id="FilterOutOfStock"
-                              className="h-5 w-5 rounded border-gray-300"
-                              name="personal"
-                              onChange={filterChange}
-                            />
-
-                            <span className="text-sm font-medium text-gray-700">
-                              Personal care (10+)
-                            </span>
-                          </label>
-                        </li>
-
-                        <li>
-                          <label
-                            htmlFor="FilterOutOfStock"
-                            className="inline-flex items-center gap-2"
-                          >
-                            <input
-                              type="checkbox"
-                              id="FilterOutOfStock"
-                              className="h-5 w-5 rounded border-gray-300"
-                              name="maternity"
-                              onChange={filterChange}
-                            />
-
-                            <span className="text-sm font-medium text-gray-700">
-                              Maternity (10+)
-                            </span>
-                          </label>
-                        </li>
-                      </ul>
-                    </div>
-                  </details>
-                </div>
-              </div>
-            </div>
-
-            <div className="no-underline text-decoration-none lg:col-span-3 shadow-xl h-full p-5 rounded-3xl">
-              <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 text-decoration-none">
-                {results?.map((product) => {
-                  return (
-                    <li
-                      key={product.name}
-                      className="card no-underline text-decoration-none bg-white shadow-xl h-full p-5 rounded-3xl transition duration-500 hover:bg-green-500 hover:text-white group-hover:text-white hover:transform hover:scale-105"
-                    >
-                      <a
-                        href={`/farmastack/details/${product.id}`}
-                        className="group block overflow-hidden"
-                      >
-                        <div className="card rounded-xl relative bg-white mb-3">
-                          <img
-                            src={product.image}
-                            alt=""
-                            className="h-auto w-auto mx-auto p-3 object-cover transition duration-500 group-hover:scale-105 sm:h-[120px]"
-                          />
-                        </div>
-                        </a>
-                        <div className="flex flex-row cursor-pointer items-center justify-between">
-                          <div className="duration-500 hover:text-white group-hover:text-white">
-                            <h1 className="text-xl text-gray-700 group-hover:text-white">
-                              {product.name}
-                            </h1>
-
-                            <h3 className="text-xs text-gray-700 group-hover:text-white">
-                              {product.category}
-                            </h3>
-
-                            <p className="mt-2">
-                              <span className="sr-only"> Regular Price </span>
-                              <span className="tracking-wider text-gray-900 group-hover:text-white">
-                                ${product.price}
-                              </span>
-                            </p>
-                          </div>
-                          <div>
-                            <button
-                              onClick={handlerProduct}
-                              className="block w-auto rounded bg-yellow-400 p-2 text-sm font-medium transition hover:scale-105"
-                            >
-                              Add to cart
-                            </button>
-                          </div>
-                        </div>
-                     
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
->>>>>>> Alejo
 };
 
 export default Products;
