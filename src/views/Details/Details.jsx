@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addProducts } from "../../redux/slices/cart/sliceCart";
 import { getProductById } from "../../redux/slices/products/sliceProducts";
+import { useAuth0 } from "@auth0/auth0-react";
+import Swal from "sweetalert2";
 
 const Details = () => {
 	const { id } = useParams();
@@ -14,6 +16,7 @@ const Details = () => {
 	const productInCart = cart.products.find(
 		(product) => product.id === detail.id
 	);
+	const { loginWithRedirect, isAuthenticated, user } = useAuth0();
 
 	const handleAddQuantity = () => {
 		setProductQuantity(productQuantity + 1);
@@ -30,7 +33,23 @@ const Details = () => {
 	}, [dispatch, id]);
 
 	const handlerProduct = () => {
-		dispatch(addProducts(detail, productQuantity));
+		if (isAuthenticated) {
+			dispatch(addProducts(user.sub, detail, productQuantity));
+		} else {
+			Swal.fire({
+				title: "You must be logged in to add products to the cart",
+				text: "After logging in, you need to add the product again",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Login",
+			}).then((result) => {
+				if (result.isConfirmed) {
+					loginWithRedirect();
+				}
+			});
+		}
 	};
 
 	return (
