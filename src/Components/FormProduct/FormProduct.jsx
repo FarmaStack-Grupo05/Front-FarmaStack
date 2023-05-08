@@ -68,16 +68,8 @@ const FormProduct = () => {
 			</option>
 		)
 	);
-	console.log(inputs);
 	return (
 		<div>
-			{/*
-  Heads up! 👋
-
-  Plugins:
-    - @tailwindcss/forms
-*/}
-
 			<section className="bg-gray-100">
 				<div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
 					<form action="" className="space-y-4">

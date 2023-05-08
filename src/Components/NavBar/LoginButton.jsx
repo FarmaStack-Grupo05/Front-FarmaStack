@@ -23,9 +23,9 @@ const LoginButton = ()=>{
             
           
             {!isOpen && (
-                <ul>
-                    <li onClick={handleLogin}>Log In</li>
-                </ul>
+                <button onClick={handleLogin}>
+                    Log In
+                </button>
             )}
             
         </div>
