@@ -4,6 +4,8 @@ import {
 	getIdProducts,
 	setProductCart,
 	setAllProducts,
+	addToCart,
+	removeFromCart
 } from ".";
 
 const URL = import.meta.env.VITE_BACK_URL || "http://localhost:3001";
