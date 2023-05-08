@@ -22,10 +22,9 @@ const ContactMe = () => {
     return validName && validEmail && validMsg;
   };
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!verifyInputs) return window.alert("Not valid inputs");
+    if (!verifyInputs()) return window.alert("Not valid inputs");
 
     setSending(true);
     const templateParams = {
@@ -45,48 +44,60 @@ const ContactMe = () => {
       .then(() => {
         resetInputs();
         setSending(false);
-        alert("Email sent :)")
+        alert("Email sent :)");
       })
       .catch((e) => console.error("mistakes have ben made", e));
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="contact">
-      <input
-              id="name"
-              type="text"
-              onChange={(e) => setName(e.currentTarget.value)}
-              value={name}
-              placeholder=" "
-            />
-               <label htmlFor="name">Name:</label>
-               <div className="input-container">
-
-            <input
-              id="email"
-              type="text"
-              onChange={(e) => setEmail(e.currentTarget.value)}
-              value={email}
-              placeholder=" "
-            />
-            <label htmlFor="email">Email:</label>
-          </div>
-          <div className="input-container">
-            <textarea
-              id="msg"
-              onChange={(e) => setMsg(e.currentTarget.value)}
-              value={msg}
-              placeholder=" "
-            />
-            <label htmlFor="msg">Message:</label>
-          </div>
-          <button className="neon-button" disabled={sending}>
-            Send
-          </button>
+    <div className="flex justify-center">
+      <form onSubmit={handleSubmit} className="contact w-full max-w-lg">
+        <div className="mb-4 mt-8">
+          <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
+            Name:
+          </label>
+          <input
+            id="name"
+            type="text"
+            className="appearance-none border-2 border-green-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-300"
+            onChange={(e) => setName(e.currentTarget.value)}
+            value={name}
+            placeholder="John Doe"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
+            Email:
+          </label>
+          <input
+            id="email"
+            type="text"
+            className="appearance-none border-2 border-green-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-300"
+            onChange={(e) => setEmail(e.currentTarget.value)}
+            value={email}
+            placeholder="example@gmail.com"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="msg" className="block text-gray-700 font-bold mb-2">
+            Message:
+          </label>
+          <textarea
+            id="msg"
+            className="appearance-none border-2 border-green-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-300"
+            onChange={(e) => setMsg(e.currentTarget.value)}
+            value={msg}
+            placeholder="Enter your message here"
+            rows="5"
+          />
+        </div>
+        <button className="bg-white hover:bg-green-500 hover:text-white text-green-500 font-bold py-2 px-4 rounded-full" disabled={sending}>
+          Send
+        </button>
       </form>
     </div>
   );
 };
 
 export default ContactMe;
+
