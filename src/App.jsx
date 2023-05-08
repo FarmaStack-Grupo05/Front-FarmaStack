@@ -45,7 +45,7 @@ function App() {
 						<Route exact path="/farmastack/products" element={<Products />} />
 						<Route exact path="/farmastack/contact" element={<ContactMe />} />
 						<Route exact path="/farmastack/auth" element={<LoginButton />} />
-						<Route exact path="farmastack/logout" element={<LogoutButton />} />
+						{/* <Route exact path="farmastack/logout" element={<LogoutButton />} /> */}
 					</Routes>
 					<Footer />
 				</>

@@ -1,9 +1,22 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getUser } from "../../redux/slices/users/sliceUsers";
+
 
 const Profile = () => {
+  const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log( user, isAuthenticated, isLoading)
+  const  usuario= useSelector(state => state.userState.user)
+
+  useEffect(()=>{
+    dispatch(getUser(user))
+    console.log("Profile")
+  }, [dispatch])
+
+
+  
+  console.log( user)
   if (isLoading) {
     return <div>Loading ...</div>;
   }
