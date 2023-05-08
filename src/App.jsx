@@ -16,10 +16,34 @@ import Footer from "./Components/Footer/Footer";
 import LoginButton from "./Components/NavBar/loginButton";
 import ContactMe from "./Components/Contact/ContactMe";
 import LogoutButton from "./Components/NavBar/LogoutButton";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getUser } from "./redux/slices/users/sliceUsers";
+import { getCart } from "./redux/slices/cart/sliceCart";
 
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	const location = useLocation();
+	const dispatch = useDispatch();
+	const { getAccessTokenSilently, isAuthenticated, user } = useAuth0();
+
+	useEffect(() => {
+		const getAccessToken = async () => {
+			const accessToken = await getAccessTokenSilently();
+			localStorage.setItem("token", accessToken);
+		}
+
+		if (isAuthenticated) {
+			getAccessToken();
+			dispatch(getUser(user));
+			dispatch(getCart(user.sub));
+		} else {
+			localStorage.removeItem("token");
+			dispatch(getUser({}));
+		}
+	}, [isAuthenticated])
+	
 	return (
 		<>
 			{location.pathname === "/dashboard" ? (
