@@ -32,7 +32,7 @@ const ContactMe = () => {
       subject: `check me out :D - by: ${name}`,
       message: msg,
     };
-    console.log(templateParams);
+    // console.log(templateParams);
 
     emailjs
       .send(
