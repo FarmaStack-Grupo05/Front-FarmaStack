@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getProducts } from "../../redux/slices/products/sliceProducts";
+import { getAllProducts } from "../../redux/slices/products/sliceProducts";
 
 const CardsHome = () => {
 	const dispatch = useDispatch();
 	useEffect(() => {
-		dispatch(getProducts());
+		dispatch(getAllProducts());
 	}, [dispatch]);
-	const { results } = useSelector((state) => state.productsState.productsHome);
-	const limitResults = results?.slice(0, 8);
+	const { allProducts } = useSelector((state) => state.productsState);
+	const limitResults = allProducts?.slice(0, 8);
 
 	return (
 		<div>

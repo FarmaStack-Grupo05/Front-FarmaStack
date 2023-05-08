@@ -154,8 +154,8 @@ const Products = () => {
 									name="sortName"
 								>
 									<option value={"default"}>-- all --</option>
-									<option value="des">ASC</option>
-									<option value="asc">DES</option>
+									<option value="asc">ASC</option>
+									<option value="des">DES</option>
 								</select>
 							</div>
 							<div>

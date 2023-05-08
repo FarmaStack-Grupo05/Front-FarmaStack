@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const Stadictis = () => {
-	const { results } = useSelector((state) => state.productsState.productsHome);
+	const { allProducts } = useSelector((state) => state.productsState);
 	return (
 		<div>
 			{" "}
@@ -25,7 +25,9 @@ const Stadictis = () => {
 						</svg>
 					</div>
 					<div>
-						<span className="block text-2xl font-bold">{results?.length}</span>
+						<span className="block text-2xl font-bold">
+							{allProducts?.length}
+						</span>
 						<span className="block text-gray-500">Users</span>
 					</div>
 				</div>
@@ -47,7 +49,9 @@ const Stadictis = () => {
 						</svg>
 					</div>
 					<div>
-						<span className="block text-2xl font-bold">{results?.length}</span>
+						<span className="block text-2xl font-bold">
+							{allProducts?.length}
+						</span>
 						<span className="block text-gray-500">Products</span>
 					</div>
 				</div>
@@ -69,7 +73,9 @@ const Stadictis = () => {
 						</svg>
 					</div>
 					<div>
-						<span className="block text-2xl font-bold">{results?.length}</span>
+						<span className="block text-2xl font-bold">
+							{allProducts?.length}
+						</span>
 						<span className="block text-gray-500">Shopping</span>
 					</div>
 				</div>

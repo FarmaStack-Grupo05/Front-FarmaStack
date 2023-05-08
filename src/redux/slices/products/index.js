@@ -6,11 +6,14 @@ export const productSlice = createSlice({
 		list: [],
 		detail: {},
 		cartProduct: [],
-		productsHome: [],
+		allProducts: [],
 	},
 	reducers: {
 		setProductsList: (state, action) => {
 			state.list = action.payload;
+		},
+		setAllProducts: (state, action) => {
+			state.allProducts = action.payload;
 		},
 		setProductCart: (state, action) => {
 			state.cartProduct = action.payload;
@@ -29,6 +32,7 @@ export const {
 	getIdProducts,
 	setProductCart,
 	setProductsHome,
+	setAllProducts,
 } = productSlice.actions;
 
 export default productSlice.reducer;

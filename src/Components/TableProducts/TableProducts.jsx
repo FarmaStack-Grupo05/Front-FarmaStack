@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../redux/slices/products/sliceProducts";
+import { getAllProducts } from "../../redux/slices/products/sliceProducts";
 
 const TableProducts = () => {
 	const dispatch = useDispatch();
-	const { results } = useSelector((state) => state.productsState.productsHome);
+	const { allProducts } = useSelector((state) => state.productsState);
 	useEffect(() => {
-		dispatch(getProducts());
+		dispatch(getAllProducts());
 	}, [dispatch]);
 
 	return (
@@ -42,7 +42,7 @@ const TableProducts = () => {
 					</thead>
 
 					<tbody className="divide-y divide-gray-200">
-						{results?.map((product) => {
+						{allProducts?.map((product) => {
 							return (
 								<tr key={product.id}>
 									<td className="px-4 py-2">

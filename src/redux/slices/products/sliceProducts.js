@@ -3,16 +3,16 @@ import {
 	setProductsList,
 	getIdProducts,
 	setProductCart,
-	setProductsHome,
+	setAllProducts,
 } from ".";
 
 const URL = import.meta.env.VITE_BACK_URL || "http://localhost:3001";
 
-export const getProducts = () => {
+export const getAllProducts = () => {
 	return async (dispatch) => {
 		try {
-			let res = await axios.get(`http://localhost:3001/products`);
-			dispatch(setProductsHome(res.data));
+			let res = await axios.get(`http://localhost:3001/products?page=all`);
+			dispatch(setAllProducts(res.data));
 		} catch (err) {
 			console.log("error", err.message);
 		}
