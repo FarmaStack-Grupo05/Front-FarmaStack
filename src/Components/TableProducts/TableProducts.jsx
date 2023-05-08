@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/slices/products/sliceProducts";
+import { Link } from "react-router-dom";
 
 const TableProducts = () => {
 	const dispatch = useDispatch();
