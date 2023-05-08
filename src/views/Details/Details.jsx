@@ -129,12 +129,12 @@ const Details = () => {
 					</div>
 				</div>
 			</div>
-			<a
-				href="/"
+			<Link
+				to="/"
 				className="block mt-4 font-medium text-gray-500 hover:text-green-500"
 			>
 				Volver a Home
-			</a>
+			</Link>
 		</div>
 	);
 };
