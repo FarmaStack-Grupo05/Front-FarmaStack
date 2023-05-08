@@ -73,6 +73,7 @@ const Slides = () => {
           backgroundRepeat: "no-repeat",
           backgroundColor: "white",
           padding: "50px",
+          boxShadow: "5px 0px 5px -5px rgba(128,128,128,0.75), -5px 0px 5px -5px rgba(128,128,128,0.75)"
         }}
         className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
       ></div>

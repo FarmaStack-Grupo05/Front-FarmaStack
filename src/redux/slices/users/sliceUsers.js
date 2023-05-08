@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setUserList } from ".";
+import { setUserList, setUser } from ".";
 
 const URL = import.meta.env.VITE_BACK_URL || "http://localhost:3001";
 
@@ -13,3 +13,16 @@ export const getAllUsers = () => {
 		}
 	};
 };
+
+export const getUser =  (user) =>{
+	console.log(user)
+	return (dispatch) => {
+		
+		try {
+			dispatch(setUser(user))
+			
+		} catch (error){
+			console.log(error)
+		}
+	}
+}
