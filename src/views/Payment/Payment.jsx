@@ -49,9 +49,12 @@ function Payment() {
 										</p>
 									</div>
 								</div>
-								<p className="text-md font-bold">
-									${product.price}
-								</p>
+								<div className="flex flex-col items-end">
+									<p className="font-bold">${product.subtotal}</p>
+									<p className="text-sm text-gray-500">
+										${product.price}/each one
+									</p>
+								</div>
 							</li>
 						))}
 					</ul>
