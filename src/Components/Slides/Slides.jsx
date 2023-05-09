@@ -6,55 +6,54 @@ import { Link } from "react-router-dom";
 
 const Slides = () => {
   const slides = [
-    { 
-      id:1,
+    {
+      id: 1,
       url: "https://i.ibb.co/gdD9Q8t/Beauty-Product-Banner-Landscape.png",
     },
     {
-      id:2,
+      id: 2,
       url: "https://i.ibb.co/zbHH9Hw/Purple-and-White-Elegant-Lavender-Flowers-Cosmetics-Product-Medium-Banner-691-345-px.png",
     },
-    { 
-      id:3,
+    {
+      id: 3,
       url: "https://i.ibb.co/BNwCd8x/Green-Yellow-Product-Big-Sale-Banner-Landscape.png",
     },
     {
-      id:4,
+      id: 4,
       url: "https://i.ibb.co/X5Sg42C/Green-Yellow-Product-Big-Sale-Banner-Landscape-1.png",
     },
     {
-      id:5,
+      id: 5,
       url: "https://i.ibb.co/s6qNjtb/70972816-excelentes-anuncios-cosm-ticos-crema-facial-y-crema-para-manos-para-el-anuncio-de-venta-o.webp",
     },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(currentIndex);
+//nuevo estado
 
-  const prevSlide = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-  };
-  
+const prevSlide = () => {
+  const isFirstSlide = currentIndex === 0;
+  const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
+  setCurrentIndex(newIndex);
+  setActiveIndex(newIndex);
+};
 
-  const nextSlide = () => {
-    const isLastSlide = currentIndex === slides.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
-  };
+const nextSlide = () => {
+  const isLastSlide = currentIndex === slides.length - 1;
+  const newIndex = isLastSlide ? 0 : currentIndex + 1;
+  setCurrentIndex(newIndex);
+  setActiveIndex(newIndex);
+};
 
   const navigate = useNavigate();
 
-  // const redirectToDetail = (id) => {
-  //   const detailUrl = `/products/${id}`;
-  //   navigate(detailUrl);
-  // };
-
-  const redirectToDetail = (id) => {
-    const detailUrl = `farmastack/details/${id}`;
+  const redirectToDetail = (id, index) => {
+    const detailUrl = `farmastack/products`;
     navigate(detailUrl);
+    setActiveIndex(index); //nuevo
   };
-  
+
   useEffect(() => {
     const slideInterval = setInterval(() => {
       nextSlide();
@@ -63,20 +62,25 @@ const Slides = () => {
   });
 
   return (
-    <div className="max-w-[1400px] h-[400px] w-full m-auto py-16 px-4 relative group
-">
+    <div
+      className="max-w-[1400px] h-[400px] w-full m-auto py-16 px-4 relative group
+"
+    >
       <div
-        style={{
-          backgroundImage: `url(${slides[currentIndex].url})`,
-          backgroundSize: "contain",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundColor: "white",
-          padding: "50px",
-          boxShadow: "5px 0px 5px -5px rgba(128,128,128,0.75), -5px 0px 5px -5px rgba(128,128,128,0.75)"
-        }}
-        className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
-      ></div>
+  style={{
+    backgroundImage: `url(${slides[currentIndex].url})`,
+    backgroundSize: "contain",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundColor: "white",
+    padding: "50px",
+    boxShadow:
+      "5px 0px 5px -5px rgba(128,128,128,0.75), -5px 0px 5px -5px rgba(128,128,128,0.75)",
+  }}
+  className="w-full h-full rounded-2xl bg-center bg-cover duration-500 cursor-pointer"
+  onClick={() => redirectToDetail(slides[currentIndex].id, currentIndex)}
+></div>
+
       {/* Left Arrow */}
       <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
         <BsChevronCompactLeft onClick={prevSlide} size={30} />
@@ -86,22 +90,21 @@ const Slides = () => {
         <BsChevronCompactRight onClick={nextSlide} size={30} />
       </div>
       <div className="flex top-4 justify-center py-2">
-      {slides.map((slide, slideIndex) => (
-        <Link
-          key={slideIndex}
-          to={`farmastack/details/${slide.id}`} // Agregar la URL del componente Detail correspondiente
-          className="text-2xl cursor-pointer"
-          onClick={(e) => {
-            e.preventDefault(); // Evitar que se recargue la página
-            redirectToDetail(slide.id); // Llamar a la función redirectToDetail con el identificador único de la imagen del carrusel correspondiente
-          }}
-        >
-          <RxDotFilled />
-        </Link>
-      ))}
-      </div>
+  {slides.map((slide, index) => (
+  <Link
+    key={index}
+    to={`farmastack/details/${slide.id}`}
+    className={`text-2xl cursor-pointer ${activeIndex === index ? 'text-blue-500' : 'text-gray-500'}`}
+    onClick={(e) => {
+      e.preventDefault();
+      redirectToDetail(slide.id, index);
+    }}
+  >
+    <RxDotFilled />
+  </Link>
+))}
+</div>
     </div>
   );
 };
-// let res = await axios.get(`${URL}/products/${id}`);
 export default Slides;
