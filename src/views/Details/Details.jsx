@@ -6,6 +6,7 @@ import { addProducts } from "../../redux/slices/cart/sliceCart";
 import { getProductById } from "../../redux/slices/products/sliceProducts";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Details = () => {
 	const { id } = useParams();
@@ -129,12 +130,12 @@ const Details = () => {
 					</div>
 				</div>
 			</div>
-			<a
-				href="/"
+			<Link
+				to="/"
 				className="block mt-4 font-medium text-gray-500 hover:text-green-500"
 			>
 				Volver a Home
-			</a>
+			</Link>
 		</div>
 	);
 };

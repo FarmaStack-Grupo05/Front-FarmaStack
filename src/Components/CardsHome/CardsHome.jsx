@@ -32,8 +32,8 @@ const CardsHome = () => {
 								key={product.name}
 								className="no-underline list-none rounded-3xl"
 							>
-								<a
-									href={`/farmastack/products`}
+								<Link
+									to={`/farmastack/products`}
 									className="bg-white no-underline text-decoration-none group block overflow-hidden border border-slate-200 rounded-3xl"
 								>
 									<img
@@ -41,17 +41,17 @@ const CardsHome = () => {
 										alt=""
 										className="no-underline border-none mx-auto h-auto w-auto object-cover transition duration-500 group-hover:scale-105 sm:h-[250px] rounded-md"
 									/>
-								</a>
+								</Link>
 
 								<div>
-									<a
-										href={`/farmastack/products`}
+									<Link
+										to={`/farmastack/products`}
 										className="group block overflow-hidden no-underline text-decoration-none"
 									>
 										<p className="group block text-xl text-center font-semibold no-underline">
 											{product.name}
 										</p>
-									</a>
+									</Link>
 
 									<p className="group block text-xs mt-1">{product.category}</p>
 

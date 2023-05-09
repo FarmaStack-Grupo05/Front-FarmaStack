@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteProducts } from "../../redux/slices/cart/sliceCart";
+import { deleteProducts, modifyProducts } from "../../redux/slices/cart/sliceCart";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Cart() {
@@ -14,6 +14,10 @@ export default function Cart() {
 
 	const handleRemoveProduct = (product) => {
 		dispatch(deleteProducts(user.sub, product.id));
+	};
+
+	const handleUpdateProduct = (product, quantity) => {
+		dispatch(modifyProducts(user.sub, product.id, quantity));
 	};
 
 	return (
@@ -91,16 +95,31 @@ export default function Cart() {
 																					{product.name}
 																				</a>
 																			</h3>
-																			<p className="ml-4">{product.price}</p>
-																			<p className="ml-4">
-																				{product.description}
-																			</p>
+																			<div className="flex flex-col items-end">
+																				<p className="ml-4">${product.subtotal}</p>
+																				<p className="ml-4 text-sm text-gray-500 opacity-50">
+																					${product.price}/each one
+																				</p>
+																			</div>
 																		</div>
 																	</div>
 																	<div className="flex flex-1 items-end justify-between text-sm">
-																		<p className="text-gray-500">
-																			Qty {product.quantity}
-																		</p>
+																		<div className="flex flex-col items-start">
+																			<span>
+																				Qty{" "}
+																			</span>
+																			<select
+																				className="rounded pr-8 pl-1 py-0"
+																				value={product.quantity}
+																				onChange={(e) => handleUpdateProduct(product, e.target.value)}
+																			>
+																				{[...Array(10).keys()].map((x) => (
+																					<option key={x + 1} value={x + 1}>
+																						{x + 1}
+																					</option>
+																				))}
+																			</select>
+																		</div>
 
 																		<div className="flex">
 																			<button

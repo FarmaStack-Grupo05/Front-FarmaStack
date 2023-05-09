@@ -11,7 +11,7 @@ const URL = import.meta.env.VITE_BACK_URL || "http://localhost:3001";
 export const getAllProducts = () => {
 	return async (dispatch) => {
 		try {
-			let res = await axios.get(`http://localhost:3001/products?page=all`);
+			let res = await axios.get(`${URL}/products?page=all`);
 			dispatch(setAllProducts(res.data));
 		} catch (err) {
 			console.log("error", err.message);
@@ -22,7 +22,7 @@ export const getAllProducts = () => {
 export const getProductById = (id) => {
 	return async (dispatch) => {
 		try {
-			let res = await axios.get(`http://localhost:3001/products/${id}`);
+			let res = await axios.get(`${URL}/products/${id}`);
 			dispatch(getIdProducts(res.data));
 		} catch (error) {
 			console.log(error);
@@ -43,7 +43,7 @@ export const searchProducts = (name) => {
 export const filterProduct = ({ sortName, sortPrice, category, page }) => {
 	return async (dispatch) => {
 		try {
-			let res = await axios.get(`http://localhost:3001/products`, {
+			let res = await axios.get(`${URL}/products`, {
 				params: {
 					sortName: sortName,
 					sortPrice: sortPrice,

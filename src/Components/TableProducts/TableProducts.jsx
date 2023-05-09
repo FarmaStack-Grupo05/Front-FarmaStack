@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/slices/products/sliceProducts";
+import { Link } from "react-router-dom";
 
 const TableProducts = () => {
 	const dispatch = useDispatch();
@@ -77,12 +78,12 @@ const TableProducts = () => {
 										5
 									</td>
 									<td className="whitespace-nowrap px-4 py-2">
-										<a
-											href="#"
+										<Link
+											to="#"
 											className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
 										>
 											Delete
-										</a>
+										</Link>
 									</td>
 								</tr>
 							);

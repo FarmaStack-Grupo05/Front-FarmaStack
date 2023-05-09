@@ -36,6 +36,22 @@ export function deleteProducts(userId, productId) {
 	};
 }
 
+export function modifyProducts(userId, productId, quantity) {
+	return async function (dispatch) {
+		const result = await axios.put(`${URL}/cart/update`, {
+			userId,
+			productId,
+			quantity
+		});
+		if (result) {
+			dispatch(setCart(result.data))
+		} else {
+			console.error("No se pudo modificar el producto");
+		}
+	};
+}
+
+
 export function getCart(userId) {
 	return async function (dispatch) {
 		const result = await axios.get(`${URL}/cart`, {
