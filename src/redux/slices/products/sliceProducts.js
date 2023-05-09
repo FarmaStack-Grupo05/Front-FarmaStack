@@ -72,13 +72,3 @@ export const setProduct = (product) => {
 		dispatch(setProductCart(product));
 	};
 };
-export const addProduct = (product) => {
-	return (dispatch) => {
-		dispatch(addToCart(product));
-	};
-};
-export const remove = (product) => {
-	return (dispatch) => {
-		dispatch(removeFromCart(product));
-	};
-};

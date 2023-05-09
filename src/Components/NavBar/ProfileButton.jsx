@@ -61,20 +61,20 @@ function ProfileButton() {
 								</Link>
 							</li>
 							<li>
-								<a
-									href="#"
+								<Link
+									to="#"
 									className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
 								>
 									Settings
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href="/farmastack/profile"
+								<Link
+									to="/farmastack/profile"
 									className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
 								>
 									Profile
-								</a>
+								</Link>
 							</li>
 						</>
 					) : (

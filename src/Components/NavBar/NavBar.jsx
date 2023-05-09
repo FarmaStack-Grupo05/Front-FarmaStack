@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { searchProducts } from "../../redux/slices/products/sliceProducts";
 import { Cart } from "../../views";
 
-// import LoginButton from "./loginButton";
+// import LoginButton from "./LoginButton";
 
 import ProfileButton from "./ProfileButton";
 import { useState } from "react";
@@ -61,33 +61,33 @@ const NavBar = () => {
 							className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500 text-white"
 						>
 							{window.location.pathname !== "/" && (
-								<a
-									href="/"
+								<Link
+									to="/"
 									className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current  text-white"
 								>
 									Home
-								</a>
+								</Link>
 							)}
-							<a
-								href="/farmastack/aboutus"
+							<Link
+								to="/farmastack/aboutus"
 								className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current  text-white"
 							>
 								About Us
-							</a>
+							</Link>
 
-							<a
+							<Link
 								className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
-								href={"/farmastack/products"}
+								to={"/farmastack/products"}
 							>
 								Products
-							</a>
+							</Link>
 
-							<a
+							<Link
 								className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
-								href={"/farmastack/contact"}
+								to={"/farmastack/contact"}
 							>
 								contact
-							</a>
+							</Link>
 
 							<div className="relative">
 								<input

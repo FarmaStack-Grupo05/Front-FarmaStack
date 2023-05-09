@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-	filterProduct,
-	// getProducts,
-	setProduct,
-	addProduct,
-} from "../../redux/slices/products/sliceProducts";
 import { Link } from "react-router-dom";
+import { filterProduct } from "../../redux/slices/products/sliceProducts";
 
 const Products = () => {
 	const dispatch = useDispatch();

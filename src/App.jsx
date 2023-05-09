@@ -13,7 +13,7 @@ import {
 
 import NavBar from "./Components/NavBar/NavBar";
 import Footer from "./Components/Footer/Footer";
-import LoginButton from "./Components/NavBar/loginButton";
+import LoginButton from "./Components/NavBar/LoginButton";
 import ContactMe from "./Components/Contact/ContactMe";
 import LogoutButton from "./Components/NavBar/LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
