@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { filterProduct } from "../../redux/slices/products/sliceProducts";
+import Search from "../../Components/Search/Search";
 
 const Products = () => {
 	const dispatch = useDispatch();
@@ -114,6 +115,7 @@ const Products = () => {
 								</svg>
 							</a>
 						</div>
+						<Search/>
 					</div>
 
 					<div className="mt-8 block lg:hidden">
