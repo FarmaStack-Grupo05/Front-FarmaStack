@@ -25,7 +25,7 @@ export default function Cart() {
 		dispatch(modifyProducts(user.sub, product.id, quantity));
 	};
 	useEffect(() => {
-		dispatch(getDataBaseUser(user.email));
+		dispatch(getDataBaseUser(user?.email));
 	}, []);
 	const { dataBaseUser } = useSelector((state) => state.userState);
 
