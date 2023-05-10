@@ -3,6 +3,8 @@ import {
 	setProductsList,
 	getIdProducts,
 	setProductCart,
+	addToCart,
+	removeFromCart,
 	setAllProducts,
 } from ".";
 
