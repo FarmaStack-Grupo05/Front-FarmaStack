@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 
 const FormRegister = () => {
+	const navigate = useNavigate();
 	const [inputs, setInputs] = useState({
 		name: "",
 		email: "",
@@ -41,16 +42,12 @@ const FormRegister = () => {
 					title: "Great !",
 					text: "Registro exitoso",
 				});
-				redirect("/farmastack/payment");
+				navigate("/farmastack/payment");
 			} catch (error) {
 				console.log(inputs);
 			}
 		}
 	};
-
-	useEffect(() => {
-		console.log(inputs);
-	}, [inputs]);
 
 	return (
 		<div className=" shadow col-span-3 md:col-span-2 px-2 md:px-4 py-4">

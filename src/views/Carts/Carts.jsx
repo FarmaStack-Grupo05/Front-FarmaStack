@@ -1,15 +1,17 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
 	deleteProducts,
 	modifyProducts,
 } from "../../redux/slices/cart/sliceCart";
 import { useAuth0 } from "@auth0/auth0-react";
+import { getDataBaseUser } from "../../redux/slices/users/sliceUsers";
 
 export default function Cart() {
+	const navigate = useNavigate();
 	const [open, setOpen] = useState(true);
 	const cart = useSelector((state) => state.cartState);
 	const { user } = useAuth0();
@@ -22,7 +24,19 @@ export default function Cart() {
 	const handleUpdateProduct = (product, quantity) => {
 		dispatch(modifyProducts(user.sub, product.id, quantity));
 	};
+	useEffect(() => {
+		dispatch(getDataBaseUser(user.email));
+	}, []);
+	const { dataBaseUser } = useSelector((state) => state.userState);
 
+	const handlerRedirect = (event) => {
+		event.preventDefault();
+		if (dataBaseUser.length >= 1) {
+			navigate("/farmastack/payment");
+		} else {
+			navigate("farmastack/formRegister");
+		}
+	};
 	return (
 		<Transition.Root show={open} as={Fragment}>
 			<Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -157,14 +171,15 @@ export default function Cart() {
 											<p className="mt-0.5 text-sm text-gray-500">
 												Shipping and taxes calculated at checkout.
 											</p>
-											<div className="mt-6">
+											<div className="mt-6 text-center">
 												{cart.products.length >= 1 && (
-													<Link
+													<button
+														onClick={handlerRedirect}
 														to="/farmastack/payment"
-														className="flex items-center justify-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700"
+														className="rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700"
 													>
 														Checkout
-													</Link>
+													</button>
 												)}
 											</div>
 											<div className="mt-6 flex justify-center text-center text-sm text-gray-500">

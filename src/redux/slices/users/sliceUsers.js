@@ -29,7 +29,6 @@ export const getDataBaseUser = (email) => {
 		try {
 			const res = await axios.get(`http://localhost:3001/user?email=${email}`);
 			const dbUser = res.data;
-			console.log(dbUser);
 			dispatch(setDbUser(dbUser));
 		} catch (error) {
 			console.log(error);
