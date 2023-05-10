@@ -2,12 +2,10 @@ import Logo from "../../assets/logo1.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { searchProducts } from "../../redux/slices/products/sliceProducts";
-
-import LoginButton from "./loginButton";
 import ProfileButton from "./ProfileButton";
 
 const NavBar = () => {
-  const {amount} = useSelector((state) => state.productsState);
+  const { amount } = useSelector((state) => state.productsState);
   const dispatch = useDispatch();
 
   const handlerChange = (event) => {
@@ -15,21 +13,28 @@ const NavBar = () => {
     dispatch(searchProducts(event.target.value));
   };
 
+  const toggleMenu = () => {
+    const menu = document.getElementById("menu");
+    menu.classList.toggle("hidden");
+  };
+
   return (
     <>
       <header aria-label="Site Header" className="border-b border-gray-100">
         <div className="flex items-center justify-between px-4 py-2 bg-green-500">
           <div className="flex items-center gap-4">
-            <Link to={"/"} className="flex">
-              <img
-                src={Logo}
-                alt="Logo"
-                className="pl-20 h-16 w-30 object-contain"
-              />
-            </Link>
+          <Link to={"/"} className="flex items-center">
+  <img
+    src={Logo}
+    alt="Logo"
+    className="pl-20 h-16 sm:h-20 md:h-24 w-auto sm:w-40 md:w-48 object-contain"
+  />
+</Link>
+
             <button
               type="button"
-              className="bg-green-500 text-white py-2 px-0 rounded"
+              className="bg-green-500 text-white py-2 px-0 rounded lg:hidden"
+              onClick={toggleMenu}
             >
               <svg
                 className="h-6 w-6"
@@ -48,12 +53,11 @@ const NavBar = () => {
             </button>
           </div>
 
-          <div></div>
-
           <div className="flex flex-1 items-center justify-end gap-8">
             <nav
               aria-label="Site Nav"
               className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500 text-white"
+              id="menu"
             >
               {window.location.pathname !== "/" && (
                 <a
@@ -81,7 +85,7 @@ const NavBar = () => {
                 className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
                 href={"/farmastack/contact"}
               >
-                contact
+                Contact
               </a>
 
               <div className="relative">
@@ -141,7 +145,6 @@ const NavBar = () => {
                       />
                     </svg>
 
-
                     <span className="sr-only">Cart</span>
                   </a>
                 </span>
@@ -170,10 +173,9 @@ const NavBar = () => {
 
                     <span className="sr-only">cart</span>
                     <div className="absolute w-4 h-4 rounded-full z-10 right-[-3px] bottom-[-3px] flex items-center justify-center text-[10px] bg-black text-white">
-            {amount}
-          </div>
+                      {amount}
+                    </div>
                   </a>
-
                 </span>
               </div>
             </div>
