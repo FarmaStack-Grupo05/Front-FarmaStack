@@ -6,6 +6,7 @@ export const productSlice = createSlice({
 		list: [],
 		detail: {},
 		cartProduct: [],
+		amount: 0,
 		allProducts: [],
 	},
 	reducers: {
@@ -17,12 +18,20 @@ export const productSlice = createSlice({
 		},
 		setProductCart: (state, action) => {
 			state.cartProduct = action.payload;
+			state.amount++;
 		},
 		getIdProducts: (state, action) => {
 			state.detail = action.payload;
 		},
-		setProductsHome: (state, action) => {
-			state.productsHome = action.payload;
+		addToCart: (state, action) => {
+			if (Array.isArray(state.cartProduct)) {
+				state.cartProduct.push(action.payload); // añadir un producto al carrito
+			}
+		},
+		removeFromCart: (state, action) => {
+			state.cartProduct = state.cartProduct.filter(
+				(cart) => cart.id !== action.payload.id
+			); // remover un producto del carrito
 		},
 	},
 });
@@ -31,7 +40,8 @@ export const {
 	setProductsList,
 	getIdProducts,
 	setProductCart,
-	setProductsHome,
+	addToCart,
+	removeFromCart,
 	setAllProducts,
 } = productSlice.actions;
 
