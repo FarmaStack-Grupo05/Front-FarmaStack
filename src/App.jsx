@@ -32,7 +32,7 @@ function App() {
 		const getAccessToken = async () => {
 			const accessToken = await getAccessTokenSilently();
 			localStorage.setItem("token", accessToken);
-		}
+		};
 
 		if (isAuthenticated) {
 			getAccessToken();
@@ -42,8 +42,8 @@ function App() {
 			localStorage.removeItem("token");
 			dispatch(getUser({}));
 		}
-	}, [isAuthenticated])
-	
+	}, [isAuthenticated]);
+
 	return (
 		<>
 			{location.pathname === "/dashboard" ? (
@@ -63,9 +63,7 @@ function App() {
 						<Route exact path="/farmastack/aboutus" element={<AboutUs />} />
 						<Route exact path="/farmastack/details/:id" element={<Details />} />
 						<Route exact path="/farmastack/payment" element={<Payment />} />
-						<Route path="/farmastack/profile" element={<Profile />}>
-							<Route path="informacion-personal" element={<Profile />} />
-						</Route>
+						<Route path="/farmastack/profile" element={<Profile />} />
 						<Route exact path="/farmastack/products" element={<Products />} />
 						<Route exact path="/farmastack/contact" element={<ContactMe />} />
 						<Route exact path="/farmastack/auth" element={<LoginButton />} />
