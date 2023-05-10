@@ -10,7 +10,7 @@ import thunk from "redux-thunk";
 const persistConfig = {
 	key: "root",
 	storage,
-	whitelist: ["userState"],
+	whitelist: [],
 };
 
 export const rootReducer = combineReducers({
