@@ -14,14 +14,11 @@ export const getAllUsers = () => {
 	};
 };
 
-export const getUser =  (user) =>{
-	console.log(user)
+export const getUser = (user) => {
 	return (dispatch) => {
-		
 		try {
 			dispatch(setUser(user))
-			
-		} catch (error){
+		} catch (error) {
 			console.log(error)
 		}
 	}

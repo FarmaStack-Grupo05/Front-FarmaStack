@@ -8,19 +8,17 @@ import {
 	Profile,
 	Products,
 	Dashboard,
-	Cart,
 } from "./views/index";
 
 import NavBar from "./Components/NavBar/NavBar";
 import Footer from "./Components/Footer/Footer";
 import LoginButton from "./Components/NavBar/LoginButton";
 import ContactMe from "./Components/Contact/ContactMe";
-import LogoutButton from "./Components/NavBar/LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getUser } from "./redux/slices/users/sliceUsers";
-import { getCart } from "./redux/slices/cart/sliceCart";
+import { clearCart, getCart } from "./redux/slices/cart/sliceCart";
 
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
@@ -41,8 +39,9 @@ function App() {
 		} else {
 			localStorage.removeItem("token");
 			dispatch(getUser({}));
+			dispatch(clearCart());
 		}
-	}, [isAuthenticated])
+	}, [dispatch, getAccessTokenSilently, isAuthenticated, user])
 	
 	return (
 		<>
