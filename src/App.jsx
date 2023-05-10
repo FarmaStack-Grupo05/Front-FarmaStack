@@ -19,6 +19,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getUser } from "./redux/slices/users/sliceUsers";
 import { clearCart, getCart } from "./redux/slices/cart/sliceCart";
+import PaymentSuccess from "./views/PaymentSuccess/PaymentSuccess";
 
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
@@ -62,6 +63,7 @@ function App() {
 						<Route exact path="/farmastack/aboutus" element={<AboutUs />} />
 						<Route exact path="/farmastack/details/:id" element={<Details />} />
 						<Route exact path="/farmastack/payment" element={<Payment />} />
+						<Route exact path="/farmastack/payment/:id" element={<PaymentSuccess />} />
 						<Route path="/farmastack/profile" element={<Profile />}>
 							<Route path="informacion-personal" element={<Profile />} />
 						</Route>
