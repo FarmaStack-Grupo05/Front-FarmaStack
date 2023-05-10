@@ -2,25 +2,25 @@ import emailjs from "emailjs-com";
 import { useState } from "react";
 
 const ContactMe = () => {
-  const [name, setName] = useState("");
-  const [msg, setMsg] = useState("");
-  const [email, setEmail] = useState("");
-  const [sending, setSending] = useState(false);
+	const [name, setName] = useState("");
+	const [msg, setMsg] = useState("");
+	const [email, setEmail] = useState("");
+	const [sending, setSending] = useState(false);
 
-  const resetInputs = () => {
-    setName("");
-    setEmail("");
-    setMsg("");
-  };
+	const resetInputs = () => {
+		setName("");
+		setEmail("");
+		setMsg("");
+	};
 
-  const verifyInputs = () => {
-    const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-    const validName = name.length > 3;
-    const validEmail = emailRegex.test(email);
-    const validMsg = msg.length > 10;
+	const verifyInputs = () => {
+		const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+		const validName = name.length > 3;
+		const validEmail = emailRegex.test(email);
+		const validMsg = msg.length > 10;
 
-    return validName && validEmail && validMsg;
-  };
+		return validName && validEmail && validMsg;
+	};
 
   const handleSubmit = (event) => {
     event.preventDefault();

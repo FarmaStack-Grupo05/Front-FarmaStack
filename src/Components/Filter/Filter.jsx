@@ -1,4 +1,8 @@
+
+
 const Filter = () => {
+
+
   return (
     <div>
       {/*
@@ -7,7 +11,7 @@ const Filter = () => {
   Plugins:
     - @tailwindcss/forms
 */}
-
+ß
       <div className="space-y-2">
         <details className="overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden">
           <summary className="flex cursor-pointer items-center justify-between gap-2 bg-white p-4 text-gray-900 transition">
