@@ -1,7 +1,4 @@
 import Logo from "../../assets/logo1.png";
-
-
-
 const Footer = () => {
 	return (
 		<div>
@@ -152,7 +149,7 @@ const Footer = () => {
 										<li>
 											<a
 												
-												href="/"
+												href="/farmastack/aboutus"
 											>
 												Quienes somos
 											</a>
@@ -161,7 +158,7 @@ const Footer = () => {
 										<li>
 											<a
 												className="text-whit"
-												href="/"
+												href="/farmastack/contact"
 											>
 												Trabaja Con Nosotros
 											</a>
@@ -170,9 +167,9 @@ const Footer = () => {
 										<li>
 											<a
 												className= "text-white"
-												href="/"
+												href="/farmastack/contact"
 											>
-												Embajadores Línea 155
+												Consultas
 											</a>
 										</li>
 									</ul>
@@ -244,7 +241,7 @@ const Footer = () => {
 										<li>
 											<a
 												className="text-white"
-												href="/"
+												href="/farmastack/products"
 											>
 												Retiros En Tienda
 											</a>
@@ -253,7 +250,7 @@ const Footer = () => {
 										<li>
 											<a
 												className="group flex justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
-												href="/"
+												href="/farmastack/products"
 											>
 												<span className="text-white">
 													Catalogo FarmaStack
@@ -278,7 +275,7 @@ const Footer = () => {
 									<li>
 										<a
 											className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
-											href="/"
+											href="/farmastack/registrarse"
 										>
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
