@@ -18,11 +18,11 @@ const Footer = () => {
 									xmlns=""
 								></svg>
 							</div>
-							<p >
+							{/* <p >
 								Domicilios <br />
 								Desde Celular A Nivel Nacional <br />
 								601 458 4595
-							</p>
+							</p> */}
 
 							<ul className="mt-8 flex justify-center gap-6 sm:justify-start md:gap-8">
 								<li>
@@ -92,7 +92,7 @@ const Footer = () => {
 
 								<li>
 									<a
-										href="/"
+										href="https://github.com/FarmaStack-Grupo05"
 										rel="noreferrer"
 										target="_blank"
 									
