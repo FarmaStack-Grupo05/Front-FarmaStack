@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { getProductById } from "../../redux/slices/products/sliceProducts";
 
-const FormProduct = () => {
+const EditProduct = () => {
+	const { id } = useParams();
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const [inputs, setInputs] = useState({
 		name: "",
-		price: "",
+		price: 0,
 		category: "",
 		description: "",
 		image: "",
-		stock: "",
+		stock: 0,
 	});
 
 	const handlerChange = (event) => {
@@ -50,14 +56,15 @@ const FormProduct = () => {
 			});
 		} else {
 			try {
-				await axios.post("http://localhost:3001/products", inputs);
+				await axios.put(`http://localhost:3001/products/edit/${id}`, inputs);
 				Swal.fire({
 					icon: "success",
 					title: "Great !",
-					text: "Nuevo producto creado",
+					text: `Se edito el producto ${id}`,
 				});
+				navigate("/dashboard/products");
 			} catch (error) {
-				console.log(inputs);
+				console.log(error);
 			}
 		}
 	};
@@ -68,9 +75,14 @@ const FormProduct = () => {
 			</option>
 		)
 	);
+	useEffect(() => {
+		dispatch(getProductById(id));
+	}, [dispatch]);
+	const { detail } = useSelector((state) => state.productsState);
+	console.log(inputs);
 	return (
-		<div>
-			<section className="bg-gray-100">
+		<div className="flex">
+			<section className="bg-gray-100 w-2/3">
 				<div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
 					<form action="" className="space-y-4">
 						<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -159,25 +171,19 @@ const FormProduct = () => {
 								onChange={handlerChange}
 							></textarea>
 						</div>
-						<div className="flex">
-							<div>
-								<label
-									className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-									htmlFor="file_input"
-								>
-									Upload file
-								</label>
-								<input
-									className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-									id="file_input"
-									type="file"
-									onChange={handlerUpload}
-								/>
-							</div>
-							<div className="ml-24 w-1/6">
-								<h1>{inputs.name}</h1>
-								<img src={inputs.image} alt={inputs.name} />
-							</div>
+						<div>
+							<label
+								className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+								htmlFor="file_input"
+							>
+								Upload file
+							</label>
+							<input
+								className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+								id="file_input"
+								type="file"
+								onChange={handlerUpload}
+							/>
 						</div>
 
 						<div className="mt-4">
@@ -192,8 +198,20 @@ const FormProduct = () => {
 					</form>
 				</div>
 			</section>
+			<section className="flex-grow-0 flex-shrink-0 w-1/3 bg-gray-100 ml-6">
+				<div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
+					<h1>Name : {detail.name}</h1>
+					<h1>Price : {detail.price}</h1>
+					<h1>Stock : {detail.stock}</h1>
+					<h1>Category : {detail.category}</h1>
+					<h1>Description : {detail.description}</h1>
+					<div className="whitespace-nowrap px-4 py-4 w-1/2">
+						<img src={detail.image} alt={detail.name} />
+					</div>
+				</div>
+			</section>
 		</div>
 	);
 };
 
-export default FormProduct;
+export default EditProduct;
