@@ -47,6 +47,11 @@ function App() {
 
 	return (
 		<>
+			{location.pathname !== "/dashboard/" ||
+				location.pathname !== "/dashboard/products" ||
+				location.pathname !== "/dashboard/users" ||
+				location.pathname !== "/dashboard/editProduct/:id" ||
+				(location.pathname !== "/dashboard/addProduct" && <NavBar />)}
 			<NavBar />
 			<Routes>
 				<Route path="/" element={<Home />} />
@@ -64,13 +69,14 @@ function App() {
 				/>
 			</Routes>
 			<Routes>
-				<Route path="/dashboard/*" element={<Dashboard />}>
+				<Route path="/dashboard/" element={<Dashboard />}>
 					<Route exact path="products" element={<TableProducts />} />
+					<Route exact path="users" element={<TableProducts />} />
 					<Route exact path="editProduct/:id" element={<EditProduct />} />
 					<Route exact path="addProduct" element={<FormProduct />} />
 				</Route>
 			</Routes>
-			{/* <Footer /> */}
+			<Footer />
 		</>
 	);
 }

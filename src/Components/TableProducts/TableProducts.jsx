@@ -5,13 +5,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const TableProducts = ({ routes, setRoutes }) => {
+const TableProducts = () => {
 	const dispatch = useDispatch();
 	const { allProducts } = useSelector((state) => state.productsState);
 	const [shouldReload, setShouldReload] = useState(false);
-	// useEffect(() => {
-	// 	dispatch(getAllProducts());
-	// }, [dispatch]);
 
 	const handlerActive = async (id) => {
 		try {
@@ -39,8 +36,9 @@ const TableProducts = ({ routes, setRoutes }) => {
 
 	useEffect(() => {
 		dispatch(getAllProducts());
-		setShouldReload(false);
-	}, [shouldReload, dispatch]);
+		// setShouldReload(false);
+	}, [dispatch, shouldReload]);
+
 	return (
 		<>
 			<div className="overflow-x-auto">
@@ -89,7 +87,7 @@ const TableProducts = ({ routes, setRoutes }) => {
 											checked={product.active}
 											onChange={() => {
 												handlerChange(product.id);
-												setShouldReload(true);
+												setShouldReload(!shouldReload);
 											}}
 										/>
 									</td>
@@ -109,7 +107,7 @@ const TableProducts = ({ routes, setRoutes }) => {
 										{product.price}
 									</td>
 									<td className="whitespace-nowrap px-4 py-2 text-gray-700">
-										5
+										{product.stock}
 									</td>
 									<td className="whitespace-nowrap px-4 py-2">
 										<Link

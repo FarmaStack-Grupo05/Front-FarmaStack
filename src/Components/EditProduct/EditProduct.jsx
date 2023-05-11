@@ -205,6 +205,7 @@ const EditProduct = () => {
 					<h1>Stock : {detail.stock}</h1>
 					<h1>Category : {detail.category}</h1>
 					<h1>Description : {detail.description}</h1>
+					<h1>Stock : {detail.stock}</h1>
 					<div className="whitespace-nowrap px-4 py-4 w-1/2">
 						<img src={detail.image} alt={detail.name} />
 					</div>
