@@ -49,14 +49,12 @@ const NavBar = () => {
           <div></div>
 
           <div className="flex flex-1 items-center justify-end gap-8">
-          <nav
-  aria-label="Site Nav"
-  className={`${
-    showMenu ? "block" : "hidden"
-  } } lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500 text-white flex-col lg:flex-row`}
->
-  
-
+            <nav
+              aria-label="Site Nav"
+              className={`${
+                showMenu ? "block" : "hidden"
+              } } lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500 text-white flex-col lg:flex-row`}
+            >
               {window.location.pathname !== "/" && (
                 <div className="lg:w-auto w-full">
                   <Link
