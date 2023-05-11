@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import ContactMe from "./Components/Contact/ContactMe";
 import Footer from "./Components/Footer/Footer";
-import LoginButton from "./Components/NavBar/LoginButton";
+
 import NavBar from "./Components/NavBar/NavBar";
 import { getCart } from "./redux/slices/cart/sliceCart";
 import { getUser } from "./redux/slices/users/sliceUsers";
@@ -23,11 +23,18 @@ import TableProducts from "./Components/TableProducts/TableProducts";
 import EditProduct from "./Components/EditProduct/EditProduct";
 import FormProduct from "./Components/FormProduct/FormProduct";
 
+import { useNavigate } from "react-router-dom";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	const location = useLocation();
 	const dispatch = useDispatch();
 	const { getAccessTokenSilently, isAuthenticated, user } = useAuth0();
+	const navigate = useNavigate();
+	const refreshPage = () => {
+		navigate(0);
+	};
+	const sarasa = localStorage.getItem("token");
+	console.log(sarasa);
 
 	useEffect(() => {
 		const getAccessToken = async () => {
@@ -47,26 +54,23 @@ function App() {
 
 	return (
 		<>
-			{location.pathname !== "/dashboard/" ||
-				location.pathname !== "/dashboard/products" ||
-				location.pathname !== "/dashboard/users" ||
-				location.pathname !== "/dashboard/editProduct/:id" ||
-				(location.pathname !== "/dashboard/addProduct" && <NavBar />)}
 			<NavBar />
 			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/farmastack/aboutus" element={<AboutUs />} />
-				<Route path="/farmastack/details/:id" element={<Details />} />
-				<Route path="/farmastack/payment" element={<Payment />} />
-				<Route path="/farmastack/profile" element={<Profile />} />
-				<Route path="/farmastack/products" element={<Products />} />
-				<Route path="/farmastack/contact" element={<ContactMe />} />
-				<Route path="/farmastack/auth" element={<LoginButton />} />
-				<Route
-					exact
-					path="farmastack/formRegister"
-					element={<FormRegister />}
-				/>
+				<Route exact path="/" element={<Home />} />
+				<Route exact path="/farmastack/aboutus" element={<AboutUs />} />
+				<Route exact path="/farmastack/details/:id" element={<Details />} />
+				<Route exact path="/farmastack/payment" element={<Payment />} />
+				{sarasa && <Route path="/farmastack/profile" element={<Profile />} />}
+				<Route exact path="/farmastack/products" element={<Products />} />
+				<Route exact path="/farmastack/contact" element={<ContactMe />} />
+
+				{sarasa && (
+					<Route
+						exact
+						path="farmastack/formRegister"
+						element={<FormRegister />}
+					/>
+				)}
 			</Routes>
 			<Routes>
 				<Route path="/dashboard/" element={<Dashboard />}>
