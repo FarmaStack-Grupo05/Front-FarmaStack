@@ -1,14 +1,13 @@
 import Logo from "../../assets/logo1.png";
-
 const Footer = () => {
-  return (
-    <div>
-      <footer
-        aria-label="Site Footer"
-        className="bg-green-500 max-w-full px-4 pb-6 pt-8 sm:px-6 lg:px-8 mt-10 text-white"
-      >
-        <div className="max-w-screen-xl mx-auto px-4 pb-6 sm:px-6 lg:px-8">
-          <img src={Logo} alt="Logo" className="w-24 h-24" />
+	return (
+		<div>
+			<footer
+				aria-label="Site Footer"
+				className= "bg-green-500 max-w-full px-4 pb-6 pt-8 sm:px-6 lg:px-8  mt-10 text-white "
+			>
+				<div className="max-w-screen-xl mx-auto px-4 pb-6  sm:px-6 lg:px-8 ">
+					<img  src={Logo}  alt="Logo" className="w-24 h-24" />
 					<div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
 						<div>
 							<div className="flex justify-center text-white sm:justify-start">
@@ -150,7 +149,7 @@ const Footer = () => {
 										<li>
 											<a
 												
-												href="/"
+												href="/farmastack/aboutus"
 											>
 												Quienes somos
 											</a>
@@ -159,7 +158,7 @@ const Footer = () => {
 										<li>
 											<a
 												className="text-whit"
-												href="/"
+												href="/farmastack/contact"
 											>
 												Trabaja Con Nosotros
 											</a>
@@ -168,9 +167,9 @@ const Footer = () => {
 										<li>
 											<a
 												className= "text-white"
-												href="/"
+												href="/farmastack/contact"
 											>
-												Embajadores Línea 155
+												Consultas
 											</a>
 										</li>
 									</ul>
@@ -242,7 +241,7 @@ const Footer = () => {
 										<li>
 											<a
 												className="text-white"
-												href="/"
+												href="/farmastack/products"
 											>
 												Retiros En Tienda
 											</a>
@@ -251,7 +250,7 @@ const Footer = () => {
 										<li>
 											<a
 												className="group flex justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
-												href="/"
+												href="/farmastack/products"
 											>
 												<span className="text-white">
 													Catalogo FarmaStack
@@ -276,7 +275,7 @@ const Footer = () => {
 									<li>
 										<a
 											className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
-											href="/"
+											href="/farmastack/registrarse"
 										>
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
