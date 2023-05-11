@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react"
 
 const LoginButton = () => {
     const [isOpen, setIsOpen] = useState(false)
-    const { loginWithRedirect, isAuthenticated, getAccessTokenWithPopup } = useAuth0()
+    const { loginWithPopup, isAuthenticated, getAccessTokenWithPopup } = useAuth0()
 
     useEffect(() => {
         const setToken = async () => {
@@ -14,20 +14,17 @@ const LoginButton = () => {
         }
     }, [isAuthenticated])
 
-    const handleTaggle = () => setIsOpen(!isOpen)
-
-    const handleLogin = () => {
-        console.log(isAuthenticated)
-        loginWithRedirect()
-        setIsOpen(false)
-    }
+    const login = (e) => {
+        e.preventDefault();
+        loginWithPopup();
+      };
 
     return (
         <div>
 
 
             {!isOpen && (
-                <button onClick={handleLogin} >
+                <button onClick={login} >
                     Log In
                 </button>
             )}

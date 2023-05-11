@@ -1,7 +1,7 @@
 import Logo from "../../assets/logo1.png";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { searchProducts } from "../../redux/slices/products/sliceProducts";
+import {  useSelector } from "react-redux";
+// import { searchProducts } from "../../redux/slices/products/sliceProducts";
 import { Cart } from "../../views";
 
 // import LoginButton from "./LoginButton";
@@ -11,36 +11,31 @@ import { useState } from "react";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 const NavBar = () => {
-  const dispatch = useDispatch();
-  const handlerChange = (event) => {
-    event.preventDefault();
-    dispatch(searchProducts(event.target.value));
-  };
+//   const dispatch = useDispatch();
+//   const handlerChange = (event) => {
+//     event.preventDefault();
+//     dispatch(searchProducts(event.target.value));
+//   };
+
   const [showCart, setShowCart] = useState(false);
 
   const { products } = useSelector((state) => state.cartState);
-
-  const toggleMenu = () => {
-    const menu = document.getElementById("menu");
-    menu.classList.toggle("hidden");
-  };
 
   return (
     <>
       <header aria-label="Site Header" className="border-b border-gray-100">
         <div className="flex items-center justify-between px-4 py-2 bg-green-500">
-          <div className="flex items-center gap-4 justify-start">
-            <Link to={"/"} className="flex items-center">
+          <div className="flex items-center gap-4">
+            <Link to={"/"} className="flex">
               <img
                 src={Logo}
                 alt="Logo"
-                className="pl-20 h-16 sm:h-20 md:h-24 w-auto sm:w-auto object-contain"
+                className="pl-20 h-16 w-30 object-contain"
               />
             </Link>
             <button
               type="button"
-              className="bg-green-500 text-white py-2 px-0 rounded lg:hidden"
-              onClick={toggleMenu}
+              className="bg-green-500 text-white py-2 px-0 rounded"
             >
               <svg
                 className="h-6 w-6"
@@ -59,26 +54,27 @@ const NavBar = () => {
             </button>
           </div>
 
+          <div></div>
+
           <div className="flex flex-1 items-center justify-end gap-8">
             <nav
               aria-label="Site Nav"
               className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500 text-white"
-              id="menu"
             >
               {window.location.pathname !== "/" && (
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current  text-white"
                 >
                   Home
-                </a>
+                </Link>
               )}
-              <a
-                href="/farmastack/aboutus"
+              <Link
+                to="/farmastack/aboutus"
                 className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current  text-white"
               >
                 About Us
-              </a>
+              </Link>
 
               <Link
                 className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
@@ -94,35 +90,8 @@ const NavBar = () => {
                 contact
               </Link>
 
-              <div className="relative">
-                <input
-                  type="search"
-                  id="Search"
-                  name="search"
-                  className="mt-3  border-gray-200 bg-white  text-gray-700 shadow-sm border-2 h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none"
-                  placeholder="Search ..."
-                  onChange={handlerChange}
-                />
-                <button
-                  type="submit"
-                  className="absolute right-0 top-0 mt-5 mr-2"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                    />
-                  </svg>
-                </button>
-              </div>
+
+
             </nav>
 
             <div className="flex items-center pr-20">

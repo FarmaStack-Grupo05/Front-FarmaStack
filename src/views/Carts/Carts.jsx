@@ -1,12 +1,17 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { deleteProducts, modifyProducts } from "../../redux/slices/cart/sliceCart";
+import { Link, useNavigate } from "react-router-dom";
+import {
+	deleteProducts,
+	modifyProducts,
+} from "../../redux/slices/cart/sliceCart";
 import { useAuth0 } from "@auth0/auth0-react";
+import { getDataBaseUser } from "../../redux/slices/users/sliceUsers";
 
 export default function Cart() {
+	const navigate = useNavigate();
 	const [open, setOpen] = useState(true);
 	const cart = useSelector((state) => state.cartState);
 	const { user } = useAuth0();
@@ -19,7 +24,19 @@ export default function Cart() {
 	const handleUpdateProduct = (product, quantity) => {
 		dispatch(modifyProducts(user.sub, product.id, quantity));
 	};
+	useEffect(() => {
+		dispatch(getDataBaseUser(user?.email));
+	}, []);
+	const { dataBaseUser } = useSelector((state) => state.userState);
 
+	const handlerRedirect = (event) => {
+		event.preventDefault();
+		if (dataBaseUser.length >= 1) {
+			navigate("/farmastack/payment");
+		} else {
+			navigate("farmastack/formRegister");
+		}
+	};
 	return (
 		<Transition.Root show={open} as={Fragment}>
 			<Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -96,7 +113,9 @@ export default function Cart() {
 																				</a>
 																			</h3>
 																			<div className="flex flex-col items-end">
-																				<p className="ml-4">${product.subtotal}</p>
+																				<p className="ml-4">
+																					${product.subtotal}
+																				</p>
 																				<p className="ml-4 text-sm text-gray-500 opacity-50">
 																					${product.price}/each one
 																				</p>
@@ -105,13 +124,16 @@ export default function Cart() {
 																	</div>
 																	<div className="flex flex-1 items-end justify-between text-sm">
 																		<div className="flex flex-col items-start">
-																			<span>
-																				Qty{" "}
-																			</span>
+																			<span>Qty </span>
 																			<select
 																				className="rounded pr-8 pl-1 py-0"
 																				value={product.quantity}
-																				onChange={(e) => handleUpdateProduct(product, e.target.value)}
+																				onChange={(e) =>
+																					handleUpdateProduct(
+																						product,
+																						e.target.value
+																					)
+																				}
 																			>
 																				{[...Array(10).keys()].map((x) => (
 																					<option key={x + 1} value={x + 1}>
@@ -149,13 +171,16 @@ export default function Cart() {
 											<p className="mt-0.5 text-sm text-gray-500">
 												Shipping and taxes calculated at checkout.
 											</p>
-											<div className="mt-6">
-												<Link
-													to="/farmastack/payment"
-													className="flex items-center justify-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700"
-												>
-													Checkout
-												</Link>
+											<div className="mt-6 text-center">
+												{cart.products.length >= 1 && (
+													<button
+														onClick={handlerRedirect}
+														to="/farmastack/payment"
+														className="rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700"
+													>
+														Checkout
+													</button>
+												)}
 											</div>
 											<div className="mt-6 flex justify-center text-center text-sm text-gray-500">
 												<p>
