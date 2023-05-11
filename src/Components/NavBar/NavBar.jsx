@@ -1,23 +1,14 @@
 import Logo from "../../assets/logo1.png";
 import { Link } from "react-router-dom";
-import {  useSelector } from "react-redux";
-// import { searchProducts } from "../../redux/slices/products/sliceProducts";
+import { useSelector } from "react-redux";
 import { Cart } from "../../views";
-
-// import LoginButton from "./LoginButton";
-
 import ProfileButton from "./ProfileButton";
 import { useState } from "react";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 const NavBar = () => {
-//   const dispatch = useDispatch();
-//   const handlerChange = (event) => {
-//     event.preventDefault();
-//     dispatch(searchProducts(event.target.value));
-//   };
-
   const [showCart, setShowCart] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   const { products } = useSelector((state) => state.cartState);
 
@@ -35,7 +26,8 @@ const NavBar = () => {
             </Link>
             <button
               type="button"
-              className="bg-green-500 text-white py-2 px-0 rounded"
+              className="lg:hidden bg-green-500 text-white py-2 px-0 rounded"
+              onClick={() => setShowMenu(!showMenu)}
             >
               <svg
                 className="h-6 w-6"
@@ -59,39 +51,46 @@ const NavBar = () => {
           <div className="flex flex-1 items-center justify-end gap-8">
             <nav
               aria-label="Site Nav"
-              className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500 text-white"
+              className={`${
+                showMenu ? "block" : "hidden"
+              } } lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500 text-white flex-col lg:flex-row`}
             >
               {window.location.pathname !== "/" && (
+                <div className="lg:w-auto w-full">
+                  <Link
+                    to="/"
+                    className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current  text-white"
+                  >
+                    Home
+                  </Link>
+                </div>
+              )}
+              <div className="lg:w-auto w-full">
                 <Link
-                  to="/"
+                  to="/farmastack/aboutus"
                   className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current  text-white"
                 >
-                  Home
+                  About Us
                 </Link>
-              )}
-              <Link
-                to="/farmastack/aboutus"
-                className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current  text-white"
-              >
-                About Us
-              </Link>
+              </div>
 
-              <Link
-                className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
-                to={"/farmastack/products"}
-              >
-                Products
-              </Link>
+              <div className="lg:w-auto w-full">
+                <Link
+                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
+                  to={"/farmastack/products"}
+                >
+                  Products
+                </Link>
+              </div>
 
-              <Link
-                className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
-                to={"/farmastack/contact"}
-              >
-                contact
-              </Link>
-
-
-
+              <div className="lg:w-auto w-full">
+                <Link
+                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
+                  to={"/farmastack/contact"}
+                >
+                  contact
+                </Link>
+              </div>
             </nav>
 
             <div className="flex items-center pr-20">
@@ -117,32 +116,6 @@ const NavBar = () => {
                     {showCart && <Cart />}
                   </button>
                 </span>
-
-                {/* <span className="border-e border-e-gray-100">
-									<a
-										href="/farmastack/auth"
-										className="grid h-16 w-16  place-content-center border-b-4 border-transparent leading-[4rem] hover:border-current text-white"
-									>
-										<svg
-											className="h-4 w-4"
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											stroke="currentColor"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												strokeWidth="2"
-												d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-											/>
-										</svg>
-
-										<span className="sr-only"> Account </span>
-
-										<span className="sr-only">cart</span>
-									</a>
-								</span> */}
               </div>
             </div>
           </div>
