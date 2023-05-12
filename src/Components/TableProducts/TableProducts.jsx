@@ -1,14 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/slices/products/sliceProducts";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const TableProducts = () => {
 	const dispatch = useDispatch();
 	const { allProducts } = useSelector((state) => state.productsState);
+	const [shouldReload, setShouldReload] = useState(false);
+
+	const handlerActive = async (id) => {
+		try {
+			await axios.put(`http://localhost:3001/products/${id}`);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	const handlerChange = (id) => {
+		Swal.fire({
+			title: "Are you sure?",
+			text: "You won't be able to revert this!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Yes, active it!",
+		}).then((result) => {
+			if (result.isConfirmed) {
+				handlerActive(id);
+				Swal.fire("Activate!", "The product has change state.", "success");
+			}
+		});
+	};
+
 	useEffect(() => {
 		dispatch(getAllProducts());
-	}, [dispatch]);
+		// setShouldReload(false);
+	}, [dispatch, shouldReload]);
 
 	return (
 		<>
@@ -56,7 +85,10 @@ const TableProducts = () => {
 											type="checkbox"
 											id="Row1"
 											checked={product.active}
-											readOnly
+											onChange={() => {
+												handlerChange(product.id);
+												setShouldReload(!shouldReload);
+											}}
 										/>
 									</td>
 									<td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
@@ -75,14 +107,14 @@ const TableProducts = () => {
 										{product.price}
 									</td>
 									<td className="whitespace-nowrap px-4 py-2 text-gray-700">
-										5
+										{product.stock}
 									</td>
 									<td className="whitespace-nowrap px-4 py-2">
 										<Link
-											to="#"
-											className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+											to={`/dashboard/editProduct/${product.id}`}
+											className="inline-flex px-5 py-2 text-green-500 hover:text-green-700 focus:text-green-700 hover:bg-green-100 focus:bg-green-100 border border-green-500 rounded-md mb-3"
 										>
-											Delete
+											Edit
 										</Link>
 									</td>
 								</tr>

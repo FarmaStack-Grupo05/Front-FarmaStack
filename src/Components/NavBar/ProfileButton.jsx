@@ -43,7 +43,7 @@ function ProfileButton() {
 				onMouseLeave={() => setIsOpen(false)}
 			>
 				<div className="px-4 py-3 text-sm text-green-900 dark:text-white">
-					<div>{user ? 'Bonnie Green' : 'Guest'}</div>
+					<div>{user?.name || 'Guest'}</div>
 					<div className="font-medium truncate">{user?.email}</div>
 				</div>
 				<ul
@@ -60,14 +60,7 @@ function ProfileButton() {
 									Dashboard
 								</Link>
 							</li>
-							<li>
-								<Link
-									to="#"
-									className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-								>
-									Settings
-								</Link>
-							</li>
+						
 							<li>
 								<Link
 									to="/farmastack/profile"
