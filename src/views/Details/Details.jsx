@@ -17,7 +17,7 @@ const Details = () => {
   const productInCart = cart.products.find(
     (product) => product.id === detail.id
   );
-  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
+  const { loginWithPopup, isAuthenticated, user } = useAuth0();
 
   const handleAddQuantity = () => {
     setProductQuantity(productQuantity + 1);
@@ -47,7 +47,7 @@ const Details = () => {
         confirmButtonText: "Login",
       }).then((result) => {
         if (result.isConfirmed) {
-          loginWithRedirect();
+          loginWithPopup();
         }
       });
     }

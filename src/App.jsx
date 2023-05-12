@@ -9,22 +9,25 @@ import {
 	Profile,
 } from "./views/index";
 
+import NavBar from "./Components/NavBar/NavBar";
+import Footer from "./Components/Footer/Footer";
+import LoginButton from "./Components/NavBar/LoginButton";
+import ContactMe from "./Components/Contact/ContactMe";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import ContactMe from "./Components/Contact/ContactMe";
-import Footer from "./Components/Footer/Footer";
 
-import NavBar from "./Components/NavBar/NavBar";
-import { getCart } from "./redux/slices/cart/sliceCart";
-import { getUser } from "./redux/slices/users/sliceUsers";
+import { getUser, getDataBaseUser } from "./redux/slices/users/sliceUsers";
 import FormRegister from "./Components/FormRegister/FormRegister";
 import TableProducts from "./Components/TableProducts/TableProducts";
 import EditProduct from "./Components/EditProduct/EditProduct";
 import FormProduct from "./Components/FormProduct/FormProduct";
+import { clearCart, getCart } from "./redux/slices/cart/sliceCart";
+import PaymentSuccess from "./views/PaymentSuccess/PaymentSuccess";
 
 import { useNavigate } from "react-router-dom";
 import NotFound from "./Components/NotFound/NotFound";
+import { setDbUser } from "./redux/slices/users";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	const location = useLocation();
@@ -34,7 +37,6 @@ function App() {
 	const refreshPage = () => {
 		navigate(0);
 	};
-	const proteg = localStorage.getItem("token");
 
 
 	useEffect(() => {
@@ -47,11 +49,14 @@ function App() {
 			getAccessToken();
 			dispatch(getUser(user));
 			dispatch(getCart(user.sub));
+			dispatch(getDataBaseUser(user.email));
 		} else {
 			localStorage.removeItem("token");
 			dispatch(getUser({}));
+			dispatch(clearCart());
+			dispatch(setDbUser(null));
 		}
-	}, [isAuthenticated]);
+	}, [dispatch, getAccessTokenSilently, isAuthenticated, user]);
 
 	return (
 		<>
@@ -61,19 +66,20 @@ function App() {
 				<Route exact path="/farmastack/aboutus" element={<AboutUs />} />
 				<Route exact path="/farmastack/details/:id" element={<Details />} />
 				<Route exact path="/farmastack/payment" element={<Payment />} />
-				<Route path="/farmastack/profile"  element={ proteg? <Profile />:<NotFound/>} />
+				<Route exact path="/farmastack/payment/:paymentId" element={<PaymentSuccess />} />
+				<Route path="/farmastack/profile" element={isAuthenticated ? <Profile /> : <NotFound />} />
 				<Route exact path="/farmastack/products" element={<Products />} />
-				<Route exact path="/farmastack/contact" element={ proteg? <ContactMe />:<NotFound/>} />
-			
+				<Route exact path="/farmastack/contact" element={isAuthenticated ? <ContactMe /> : <NotFound />} />
 
-				{proteg && (
+
+				{isAuthenticated && (
 					<Route
 						exact
 						path="farmastack/formRegister"
 						element={<FormRegister />}
 					/>
 				)}
-				
+
 			</Routes>
 			<Routes>
 				<Route path="/dashboard/" element={<Dashboard />}>
