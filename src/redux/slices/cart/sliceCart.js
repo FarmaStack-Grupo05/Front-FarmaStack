@@ -1,5 +1,5 @@
 import axios from "axios";
-import { addProduct, deleteProduct, setCart } from ".";
+import { setCart } from ".";
 
 const URL = import.meta.env.VITE_BACK_URL || "http://localhost:3001";
 
@@ -62,5 +62,11 @@ export function getCart(userId) {
 		} else {
 			console.error("No se pudo obtener el carrito");
 		}
+	};
+}
+
+export function clearCart() {
+	return function (dispatch) {
+		dispatch(setCart({ products: [], total_price: 0 }));
 	};
 }

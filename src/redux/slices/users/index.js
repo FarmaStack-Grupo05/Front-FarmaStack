@@ -5,7 +5,7 @@ export const userSlice = createSlice({
 	initialState: {
 		list: [],
 		user: {},
-		dataBaseUser: [],
+		dataBaseUser: null,
 	},
 	reducers: {
 		setUserList: (state, action) => {

@@ -17,9 +17,9 @@ export const getAllUsers = () => {
 export const getUser = (user) => {
 	return (dispatch) => {
 		try {
-			dispatch(setUser(user));
+			dispatch(setUser(user))
 		} catch (error) {
-			console.log(error);
+			console.log(error)
 		}
 	};
 };
@@ -27,7 +27,7 @@ export const getUser = (user) => {
 export const getDataBaseUser = (email) => {
 	return async (dispatch) => {
 		try {
-			const res = await axios.get(`http://localhost:3001/user?email=${email}`);
+			const res = await axios.get(`${URL}/user?email=${email}`);
 			const dbUser = res.data;
 			dispatch(setDbUser(dbUser));
 		} catch (error) {
