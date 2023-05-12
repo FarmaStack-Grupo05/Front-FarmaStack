@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import {
 	AboutUs,
 	Dashboard,
@@ -9,39 +9,28 @@ import {
 	Profile,
 } from "./views/index";
 
-import NavBar from "./Components/NavBar/NavBar";
-import Footer from "./Components/Footer/Footer";
-import LoginButton from "./Components/NavBar/LoginButton";
-import ContactMe from "./Components/Contact/ContactMe";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import ContactMe from "./Components/Contact/ContactMe";
+import Footer from "./Components/Footer/Footer";
+import NavBar from "./Components/NavBar/NavBar";
 
-import { getUser, getDataBaseUser } from "./redux/slices/users/sliceUsers";
-import FormRegister from "./Components/FormRegister/FormRegister";
-import TableProducts from "./Components/TableProducts/TableProducts";
 import EditProduct from "./Components/EditProduct/EditProduct";
 import FormProduct from "./Components/FormProduct/FormProduct";
-import { useNavigate } from "react-router-dom";
+import FormRegister from "./Components/FormRegister/FormRegister";
+import TableProducts from "./Components/TableProducts/TableProducts";
 import { clearCart, getCart } from "./redux/slices/cart/sliceCart";
+import { getDataBaseUser, getUser } from "./redux/slices/users/sliceUsers";
 import PaymentSuccess from "./views/PaymentSuccess/PaymentSuccess";
 
 import NotFound from "./Components/NotFound/NotFound";
 import { setDbUser } from "./redux/slices/users";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
-	const location = useLocation();
 	const dispatch = useDispatch();
-	const { getAccessTokenSilently, isAuthenticated, user } = useAuth0();
-	const navigate = useNavigate();
-	const refreshPage = () => {
-		navigate(0);
-	};
-	const sarasa = localStorage.getItem("token");
-
-	console.log(sarasa);
-
-	console.log(user);
+	const { loginWithPopup, getAccessTokenSilently, isAuthenticated, user } =
+		useAuth0();
 
 	useEffect(() => {
 		const getAccessToken = async () => {
@@ -86,13 +75,11 @@ function App() {
 					element={isAuthenticated ? <ContactMe /> : <NotFound />}
 				/>
 
-				{isAuthenticated && (
-					<Route
-						exact
-						path="farmastack/formRegister"
-						element={<FormRegister />}
-					/>
-				)}
+				<Route
+					exact
+					path="farmastack/formRegister"
+					element={<FormRegister />}
+				/>
 			</Routes>
 			<Routes>
 				<Route path="/dashboard/" element={<Dashboard />}>
