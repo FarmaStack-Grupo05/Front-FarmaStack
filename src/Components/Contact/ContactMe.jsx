@@ -1,5 +1,6 @@
 import emailjs from "emailjs-com";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const ContactMe = () => {
 	const [name, setName] = useState("");
@@ -24,7 +25,11 @@ const ContactMe = () => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		if (!verifyInputs()) return window.alert("Not valid inputs");
+		if (!verifyInputs()) return Swal.fire({
+			icon: "warning",
+			title: "Datos incompletos",
+			text: "Mensaje +10 carácteres",
+		});
 
 		setSending(true);
 		const templateParams = {
@@ -44,7 +49,12 @@ const ContactMe = () => {
 			.then(() => {
 				resetInputs();
 				setSending(false);
-				alert("Email sent :)");
+				
+				Swal.fire({
+					icon: "success",
+					title: "Datos Completados",
+					text: "Mensaje ¡Exitoso!",
+				});
 			})
 			.catch((e) => console.error("mistakes have ben made", e));
 	};
