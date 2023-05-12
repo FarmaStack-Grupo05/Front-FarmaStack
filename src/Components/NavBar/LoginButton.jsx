@@ -3,11 +3,11 @@ import { useAuth0 } from "@auth0/auth0-react"
 
 const LoginButton = () => {
     const [isOpen, setIsOpen] = useState(false)
-    const { loginWithPopup, isAuthenticated, getAccessTokenWithPopup } = useAuth0()
+    const { loginWithPopup, isAuthenticated, getAccessTokenSilently} = useAuth0()
 
     useEffect(() => {
         const setToken = async () => {
-            const accessToken = await getAccessTokenWithPopup()
+            const accessToken = await getAccessTokenSilently()
             if (accessToken && isAuthenticated) {
                 localStorage.setItem("authToken", accessToken)
             }
