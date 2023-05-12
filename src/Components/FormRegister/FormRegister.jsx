@@ -90,7 +90,7 @@ const FormRegister = () => {
 								type="email"
 								id="email"
 								name="email"
-								value={user.email}
+								defaultValue={user.email}
 								disabled
 							/>
 						</div>
