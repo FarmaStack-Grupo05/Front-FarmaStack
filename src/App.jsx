@@ -37,7 +37,6 @@ function App() {
 	const refreshPage = () => {
 		navigate(0);
 	};
-	const proteg = localStorage.getItem("token");
 
 
 	useEffect(() => {
@@ -68,19 +67,19 @@ function App() {
 				<Route exact path="/farmastack/details/:id" element={<Details />} />
 				<Route exact path="/farmastack/payment" element={<Payment />} />
 				<Route exact path="/farmastack/payment/:paymentId" element={<PaymentSuccess />} />
-				<Route path="/farmastack/profile"  element={ proteg? <Profile />:<NotFound/>} />
+				<Route path="/farmastack/profile" element={isAuthenticated ? <Profile /> : <NotFound />} />
 				<Route exact path="/farmastack/products" element={<Products />} />
-				<Route exact path="/farmastack/contact" element={ proteg? <ContactMe />:<NotFound/>} />
-			
+				<Route exact path="/farmastack/contact" element={isAuthenticated ? <ContactMe /> : <NotFound />} />
 
-				{proteg && (
+
+				{isAuthenticated && (
 					<Route
 						exact
 						path="farmastack/formRegister"
 						element={<FormRegister />}
 					/>
 				)}
-				
+
 			</Routes>
 			<Routes>
 				<Route path="/dashboard/" element={<Dashboard />}>

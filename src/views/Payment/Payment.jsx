@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearCart } from "../../redux/slices/cart/sliceCart";
 import axios from "axios";
+import { useEffect } from "react";
 
 const paypalOptions = {
 	"client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID, // Viene de Paypal
@@ -14,7 +15,7 @@ function Payment() {
 	const cart = useSelector((state) => state.cartState);
 	const navigate = useNavigate();
 	const { user: auth0User } = useSelector((state) => state.userState);
-	const { dataBaseUser: user } = useSelector((state) => state.userState);
+	const { dataBaseUser } = useSelector((state) => state.userState);
 	const dispatch = useDispatch();
 
 	const handleCreateOrder = (data, actions) => {
@@ -34,12 +35,18 @@ function Payment() {
 		const order = {
 			paymentId,
 			userAuth0Id: auth0User.sub,
-			userId: user.id,
+			userId: dataBaseUser.id,
 		}
 		const { data: paymentData } = await axios.post("http://localhost:3001/order", order)
 		dispatch(clearCart())
 		navigate(`/farmastack/payment/${paymentData.payment_id}`)
 	}
+
+	useEffect(() => {
+		if (!dataBaseUser) {
+			navigate("/farmastack/formRegister");
+		}
+	}, [dataBaseUser, navigate])
 
 	return (
 		<PayPalScriptProvider options={paypalOptions}>
