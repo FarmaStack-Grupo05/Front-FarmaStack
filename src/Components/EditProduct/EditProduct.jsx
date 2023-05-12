@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getProductById } from "../../redux/slices/products/sliceProducts";
+import { API_URL } from "../../utils/api";
 
 const EditProduct = () => {
 	const { id } = useParams();
@@ -33,7 +34,7 @@ const EditProduct = () => {
 		formData.append("image", event.target.files[0]);
 		try {
 			const response = await axios.post(
-				`http://localhost:3001/products/upload`,
+				`${API_URL}/products/upload`,
 				formData
 			);
 			setInputs({
@@ -56,7 +57,7 @@ const EditProduct = () => {
 			});
 		} else {
 			try {
-				await axios.put(`http://localhost:3001/products/edit/${id}`, inputs);
+				await axios.put(`${API_URL}/products/edit/${id}`, inputs);
 				Swal.fire({
 					icon: "success",
 					title: "Great !",
