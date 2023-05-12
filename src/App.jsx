@@ -34,8 +34,8 @@ function App() {
 	const refreshPage = () => {
 		navigate(0);
 	};
-	const sarasa = localStorage.getItem("token");
-	console.log(sarasa);
+	const proteg = localStorage.getItem("token");
+
 
 	useEffect(() => {
 		const getAccessToken = async () => {
@@ -61,17 +61,19 @@ function App() {
 				<Route exact path="/farmastack/aboutus" element={<AboutUs />} />
 				<Route exact path="/farmastack/details/:id" element={<Details />} />
 				<Route exact path="/farmastack/payment" element={<Payment />} />
-				{sarasa && <Route path="/farmastack/profile" element={<Profile />} />}
+				<Route path="/farmastack/profile"  element={ proteg? <Profile />:<NotFound/>} />
 				<Route exact path="/farmastack/products" element={<Products />} />
-				<Route exact path="/farmastack/contact" element={<ContactMe />} />
+				<Route exact path="/farmastack/contact" element={ proteg? <ContactMe />:<NotFound/>} />
+			
 
-				{sarasa && (
+				{proteg && (
 					<Route
 						exact
 						path="farmastack/formRegister"
 						element={<FormRegister />}
 					/>
 				)}
+				
 			</Routes>
 			<Routes>
 				<Route path="/dashboard/" element={<Dashboard />}>
@@ -79,6 +81,7 @@ function App() {
 					<Route exact path="users" element={<TableProducts />} />
 					<Route exact path="editProduct/:id" element={<EditProduct />} />
 					<Route exact path="addProduct" element={<FormProduct />} />
+					<Route exact path="*" element={<NotFound />} />
 				</Route>
 			</Routes>
 			<Footer />
