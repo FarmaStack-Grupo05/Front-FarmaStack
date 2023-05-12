@@ -1,14 +1,13 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
 	deleteProducts,
 	modifyProducts,
 } from "../../redux/slices/cart/sliceCart";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getDataBaseUser } from "../../redux/slices/users/sliceUsers";
 
 export default function Cart() {
 	const navigate = useNavigate();
@@ -24,9 +23,6 @@ export default function Cart() {
 	const handleUpdateProduct = (product, quantity) => {
 		dispatch(modifyProducts(user.sub, product.id, quantity));
 	};
-	useEffect(() => {
-		dispatch(getDataBaseUser(user?.email));
-	}, []);
 	const { dataBaseUser } = useSelector((state) => state.userState);
 
 	const handlerRedirect = (event) => {
