@@ -22,8 +22,8 @@ import FormRegister from "./Components/FormRegister/FormRegister";
 import TableProducts from "./Components/TableProducts/TableProducts";
 import EditProduct from "./Components/EditProduct/EditProduct";
 import FormProduct from "./Components/FormProduct/FormProduct";
-
 import { useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	const location = useLocation();
@@ -34,7 +34,10 @@ function App() {
 		navigate(0);
 	};
 	const sarasa = localStorage.getItem("token");
+
 	console.log(sarasa);
+
+	console.log(user);
 
 	useEffect(() => {
 		const getAccessToken = async () => {
@@ -60,7 +63,7 @@ function App() {
 				<Route exact path="/farmastack/aboutus" element={<AboutUs />} />
 				<Route exact path="/farmastack/details/:id" element={<Details />} />
 				<Route exact path="/farmastack/payment" element={<Payment />} />
-				{sarasa && <Route path="/farmastack/profile" element={<Profile />} />}
+				<Route path="/farmastack/profile" element={<Profile />} />
 				<Route exact path="/farmastack/products" element={<Products />} />
 				<Route exact path="/farmastack/contact" element={<ContactMe />} />
 
