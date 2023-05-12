@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getDataBaseUser } from "../../redux/slices/users/sliceUsers";
+import { API_URL } from "../../utils/api";
 
 const FormRegister = () => {
 	const navigate = useNavigate();
@@ -35,7 +36,7 @@ const FormRegister = () => {
 			});
 		} else {
 			try {
-				await axios.post("http://localhost:3001/user", {
+				await axios.post(`${API_URL}/user`, {
 					...inputs,
 					rol: "user",
 					active: true,
