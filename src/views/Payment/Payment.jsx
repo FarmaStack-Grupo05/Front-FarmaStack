@@ -1,5 +1,8 @@
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { clearCart } from "../../redux/slices/cart/sliceCart";
+import axios from "axios";
 
 const paypalOptions = {
 	"client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID, // Viene de Paypal
@@ -9,8 +12,11 @@ const paypalOptions = {
 
 function Payment() {
 	const cart = useSelector((state) => state.cartState);
-	const { user } = useSelector((state) => state.userState);
+	const navigate = useNavigate();
+	const { user: auth0User } = useSelector((state) => state.userState);
+	const { dataBaseUser: user } = useSelector((state) => state.userState);
 	const dispatch = useDispatch();
+
 	const handleCreateOrder = (data, actions) => {
 		return actions.order.create({
 			purchase_units: [
@@ -22,6 +28,18 @@ function Payment() {
 			],
 		});
 	};
+
+	const handlePaymentSuccess = async (data) => {
+		const paymentId = data.orderID;
+		const order = {
+			paymentId,
+			userAuth0Id: auth0User.sub,
+			userId: user.id,
+		}
+		const { data: paymentData } = await axios.post("http://localhost:3001/order", order)
+		dispatch(clearCart())
+		navigate(`/farmastack/payment/${paymentData.payment_id}`)
+	}
 
 	return (
 		<PayPalScriptProvider options={paypalOptions}>
@@ -70,6 +88,7 @@ function Payment() {
 					<h1 className="text-xl font-semibold my-4">Metodos de pago:</h1>
 					<PayPalButtons
 						createOrder={handleCreateOrder}
+						onApprove={handlePaymentSuccess}
 						style={{ layout: "vertical" }}
 					/>
 				</div>
