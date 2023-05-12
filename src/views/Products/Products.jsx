@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { filterProduct } from "../../redux/slices/products/sliceProducts";
 import Search from "../../Components/Search/Search";
 
+
+
 const Products = () => {
   const dispatch = useDispatch();
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
