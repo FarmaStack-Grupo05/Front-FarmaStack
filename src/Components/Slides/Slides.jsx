@@ -96,11 +96,17 @@ const nextSlide = () => {
       <div className="flex top-4 justify-center py-2">
   {slides.map((slide, index) => (
     <span
-      key={index}
-      className={`text-2xl cursor-pointer ${activeIndex === index ? 'text-blue-500' : 'text-gray-500'}`}
-    >
-      <RxDotFilled />
-    </span>
+    key={index}
+    className={`text-2xl cursor-pointer ${activeIndex === index ? 'text-blue-500' : 'text-gray-500'}`}
+    onClick={() => {
+      const newIndex = index;
+      setCurrentIndex(newIndex);
+      setActiveIndex(newIndex);
+    }}
+  >
+    <RxDotFilled />
+  </span>
+  
   ))}
 </div>
 
