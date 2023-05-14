@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const Slides = () => {
   const slides = [
@@ -48,11 +48,15 @@ const nextSlide = () => {
 
   const navigate = useNavigate();
 
-  const redirectToDetail = (id, index) => {
+  const redirectToDetail = (e, index) => {
     const detailUrl = `farmastack/products`;
     navigate(detailUrl);
     setActiveIndex(index); //nuevo
+    if (e.target.tagName === "A") {
+      e.preventDefault();
+    }
   };
+  
 
   useEffect(() => {
     const slideInterval = setInterval(() => {
@@ -91,19 +95,16 @@ const nextSlide = () => {
       </div>
       <div className="flex top-4 justify-center py-2">
   {slides.map((slide, index) => (
-  <Link
-    key={index}
-    to={`farmastack/details/${slide.id}`}
-    className={`text-2xl cursor-pointer ${activeIndex === index ? 'text-blue-500' : 'text-gray-500'}`}
-    onClick={(e) => {
-      e.preventDefault();
-      redirectToDetail(slide.id, index);
-    }}
-  >
-    <RxDotFilled />
-  </Link>
-))}
+    <span
+      key={index}
+      className={`text-2xl cursor-pointer ${activeIndex === index ? 'text-blue-500' : 'text-gray-500'}`}
+    >
+      <RxDotFilled />
+    </span>
+  ))}
 </div>
+
+
     </div>
   );
 };
