@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../../utils/api";
 
 function PaymentSuccess() {
   const { paymentId } = useParams();
@@ -12,7 +13,7 @@ function PaymentSuccess() {
 
   useEffect(() => {
     const getPayment = async () => {
-      const { data } = await axios.get(`http://localhost:3001/order`, {
+      const { data } = await axios.get(`${API_URL}/order`, {
         params: {
           paymentId,
         },

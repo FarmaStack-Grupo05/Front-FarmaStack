@@ -1,11 +1,10 @@
 import axios from "axios";
 import { setCart } from ".";
-
-const URL = import.meta.env.VITE_BACK_URL || "http://localhost:3001";
+import { API_URL } from "../../../utils/api";
 
 export function addProducts(userId, product, quantity = 1) {
 	return async function (dispatch) {
-		const result = await axios.post(`${URL}/cart/add`, {
+		const result = await axios.post(`${API_URL}/cart/add`, {
 			userId,
 			productId: product.id,
 			quantity,
@@ -21,7 +20,7 @@ export function addProducts(userId, product, quantity = 1) {
 
 export function deleteProducts(userId, productId) {
 	return async function (dispatch) {
-		const result = await axios.delete(`${URL}/cart/remove`, {
+		const result = await axios.delete(`${API_URL}/cart/remove`, {
 			params: {
 				userId,
 				productId,
@@ -38,7 +37,7 @@ export function deleteProducts(userId, productId) {
 
 export function modifyProducts(userId, productId, quantity) {
 	return async function (dispatch) {
-		const result = await axios.put(`${URL}/cart/update`, {
+		const result = await axios.put(`${API_URL}/cart/update`, {
 			userId,
 			productId,
 			quantity
@@ -54,7 +53,7 @@ export function modifyProducts(userId, productId, quantity) {
 
 export function getCart(userId) {
 	return async function (dispatch) {
-		const result = await axios.get(`${URL}/cart`, {
+		const result = await axios.get(`${API_URL}/cart`, {
 			params: { userId },
 		});
 		if (result) {

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { clearCart } from "../../redux/slices/cart/sliceCart";
 import axios from "axios";
 import { useEffect } from "react";
+import { API_URL } from "../../utils/api";
 
 const paypalOptions = {
 	"client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID, // Viene de Paypal
@@ -37,7 +38,7 @@ function Payment() {
 			userAuth0Id: auth0User.sub,
 			userId: dataBaseUser.id,
 		}
-		const { data: paymentData } = await axios.post("http://localhost:3001/order", order)
+		const { data: paymentData } = await axios.post(`${API_URL}/order`, order)
 		dispatch(clearCart())
 		navigate(`/farmastack/payment/${paymentData.payment_id}`)
 	}
