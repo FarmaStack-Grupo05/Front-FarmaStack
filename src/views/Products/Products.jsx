@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { filterProduct } from "../../redux/slices/products/sliceProducts";
 import Search from "../../Components/Search/Search";
 
 
 
-const Products = () => {
+const Products = ( ) => {
+  const {state} = useLocation();
+  
   const dispatch = useDispatch();
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
 
   const [filters, setFilters] = useState({
     sortName: "default",
     sortPrice: "default",
-    category: "default",
+    category: state?.category||"default",
     page: 1,
   });
 
