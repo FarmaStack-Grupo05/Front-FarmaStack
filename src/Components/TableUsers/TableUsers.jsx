@@ -4,6 +4,7 @@ import { getAllUsers } from "../../redux/slices/users/sliceUsers";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { API_URL } from "../../utils/api";
 
 const TableUsers = () => {
 	const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const TableUsers = () => {
 
 	const handlerActive = async (id) => {
 		try {
-			await axios.put(`http://localhost:3001/user/${id}`);
+			await axios.put(`${API_URL}/user/${id}`);
 		} catch (error) {
 			console.log(error);
 		}

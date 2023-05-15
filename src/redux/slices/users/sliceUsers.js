@@ -1,12 +1,11 @@
 import axios from "axios";
 import { setUserList, setUser, setDbUser } from ".";
-
-const URL = import.meta.env.VITE_BACK_URL || "http://localhost:3001";
+import { API_URL } from "../../../utils/api";
 
 export const getAllUsers = () => {
 	return async (dispatch) => {
 		try {
-			let res = await axios.get(`${URL}/user`);
+			let res = await axios.get(`${API_URL}/user`);
 			dispatch(setUserList(res.data));
 		} catch (err) {
 			console.log("error", err.message);
@@ -27,7 +26,7 @@ export const getUser = (user) => {
 export const getDataBaseUser = (email) => {
 	return async (dispatch) => {
 		try {
-			const res = await axios.get(`${URL}/user?email=${email}`);
+			const res = await axios.get(`${API_URL}/user?email=${email}`);
 			const dbUser = res.data;
 			dispatch(setDbUser(dbUser));
 		} catch (error) {
