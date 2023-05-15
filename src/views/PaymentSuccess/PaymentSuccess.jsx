@@ -71,9 +71,9 @@ function PaymentSuccess() {
                 </div>
               </div>
               <div className="flex flex-col items-end">
-                <p className="font-bold">${subtotal}</p>
+                <p className="font-bold">${typeof subtotal === "number" ? subtotal.toFixed(2) : subtotal}</p>
                 <p className="text-sm text-gray-500">
-                  ${price}/each one
+                  ${typeof price === "number" ? price.toFixed(2) : price}/each one
                 </p>
               </div>
             </li>
@@ -81,7 +81,7 @@ function PaymentSuccess() {
         </ul>
         <div className="flex justify-between items-center py-4 px-8">
           <h1 className="text-xl font-semibold">Total:</h1>
-          <p className="text-2xl font-bold">${payment.total_price}</p>
+          <p className="text-2xl font-bold">${typeof payment.total_price === "number" ? payment.total_price.toFixed(2) : payment.total_price}</p>
         </div>
       </div>
 
