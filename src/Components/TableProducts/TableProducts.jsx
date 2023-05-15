@@ -36,7 +36,7 @@ const TableProducts = () => {
 	};
 
 	useEffect(() => {
-		dispatch(getAllProducts());
+		dispatch(getAllProducts(true));
 		// setShouldReload(false);
 	}, [dispatch, shouldReload]);
 
