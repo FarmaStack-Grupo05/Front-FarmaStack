@@ -131,7 +131,7 @@ export default function Cart() {
 																					)
 																				}
 																			>
-																				{[...Array(10).keys()].map((x) => (
+																				{[...Array(product.stock).keys()].map((x) => (
 																					<option key={x + 1} value={x + 1}>
 																						{x + 1}
 																					</option>

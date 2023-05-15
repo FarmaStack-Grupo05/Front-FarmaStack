@@ -1,8 +1,8 @@
-import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { MinusIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addProducts } from "../../redux/slices/cart/sliceCart";
+import { addProducts, deleteProducts, modifyProducts } from "../../redux/slices/cart/sliceCart";
 import { getProductById } from "../../redux/slices/products/sliceProducts";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
@@ -20,12 +20,17 @@ const Details = () => {
   const { loginWithPopup, isAuthenticated, user } = useAuth0();
 
   const handleAddQuantity = () => {
-    setProductQuantity(productQuantity + 1);
+    if (productQuantity < detail.stock) {
+      setProductQuantity(productQuantity + 1);
+    }
   };
 
   const handleSubtractQuantity = () => {
     if (productQuantity > 1) {
       setProductQuantity(productQuantity - 1);
+    }
+    if (productQuantity === 1) {
+      dispatch(deleteProducts(user.sub, detail.id))
     }
   };
 
@@ -33,9 +38,21 @@ const Details = () => {
     dispatch(getProductById(id));
   }, [dispatch, id]);
 
+  useEffect(() => {
+    if (productInCart) {
+      setProductQuantity(productInCart.quantity);
+    } else {
+      setProductQuantity(1);
+    }
+  }, [productInCart])
+
   const handlerProduct = () => {
     if (isAuthenticated) {
-      dispatch(addProducts(user.sub, detail, productQuantity));
+      if (productInCart) {
+        dispatch(modifyProducts(user.sub, detail.id, productQuantity));
+      } else {
+        dispatch(addProducts(user.sub, detail, productQuantity));
+      }
     } else {
       Swal.fire({
         title: "You must be logged in to add products to the cart",
@@ -151,33 +168,37 @@ const Details = () => {
 
             <button
               onClick={handlerProduct}
-              className="block w-full rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105"
+              className="block w-full rounded bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={productQuantity === productInCart?.quantity}
             >
-              Add to Cart
+              {productInCart ? "Update Quantity" : "Add to Cart"}
             </button>
             <div className="flex items-center justify-between">
               <button
                 onClick={handleSubtractQuantity}
                 type="button"
-                className="bg-yellow-300 rounded-full p-1 font-bold my-2 hover:bg-yellow-400 transition hover:shadow-lg"
+                className="bg-yellow-300 rounded-full p-1 font-bold my-2 hover:bg-yellow-400 transition hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={productQuantity === 1 && !productInCart}
               >
-                <MinusIcon className="h-6 w-6" aria-hidden="true" />
+                {productQuantity === 1 && productInCart ? (
+                  <XMarkIcon className="h-6 w-6" />
+                ) : (
+                  <MinusIcon className="h-6 w-6" />
+                )}
               </button>
               <span>{productQuantity}</span>
               <button
                 onClick={handleAddQuantity}
                 type="button"
-                className="bg-yellow-300 rounded-full p-1 font-bold my-2 hover:bg-yellow-400 transition hover:shadow-lg"
+                className="bg-yellow-300 rounded-full p-1 font-bold my-2 hover:bg-yellow-400 transition hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={productQuantity === detail?.stock}
               >
                 <PlusIcon className="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
-            {productInCart?.quantity > 0 && (
-              <p className="mt-1.5 text-sm font-medium text-gray-500">
-                You already have this product {productInCart.quantity} times in
-                your cart
-              </p>
-            )}
+            <p className="text-xs w-full text-center text-gray-500">
+              Available stock: {detail?.stock}
+            </p>
           </div>
         </div>
       </div>
