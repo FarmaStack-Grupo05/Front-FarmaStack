@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { filterProduct } from "../../redux/slices/products/sliceProducts";
 import Search from "../../Components/Search/Search";
 
 
 
-const Products = () => {
+const Products = ( ) => {
+  const {state} = useLocation();
+  
   const dispatch = useDispatch();
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
 
   const [filters, setFilters] = useState({
     sortName: "default",
     sortPrice: "default",
-    category: "default",
+    category: state?.category||"default",
     page: 1,
   });
 
@@ -227,11 +229,13 @@ const Products = () => {
             </div>
 
             <div className="no-underline text-decoration-none lg:col-span-3 shadow-xl h-full p-5 rounded-3xl">
+              {results?.length > 0 ? (
+
               <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 text-decoration-none">
                 {results?.map((product) => {
                   return (
                     <li
-                      key={product.name}
+                      key={product.id}
                       className="card no-underline text-decoration-none bg-white shadow-xl h-full p-5 rounded-3xl transition duration-500 hover:bg-green-500 hover:text-white group-hover:text-white hover:transform hover:scale-105"
                     >
                       <Link
@@ -277,6 +281,11 @@ const Products = () => {
                   );
                 })}
               </ul>
+              ) : (
+                <p className="text-center text-gray-500">
+                  No results found
+                </p>
+              )}
             </div>
           </div>
         </div>
