@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { getDataBaseUser, getUser } from "../../redux/slices/users/sliceUsers";
+import { API_URL } from "../../utils/api";
 
 const Profile = () => {
 	const dispatch = useDispatch();
@@ -17,9 +18,6 @@ const Profile = () => {
 	});
 
 	console.log(user);
-	if (isLoading) {
-		return <div>Loading ...</div>;
-	}
 
 	const handlerChange = (event) => {
 		event.preventDefault();
@@ -36,7 +34,7 @@ const Profile = () => {
 		formData.append("image", event.target.files[0]);
 		try {
 			const response = await axios.post(
-				`http://localhost:3001/products/upload`,
+				`${API_URL}/products/upload`,
 				formData
 			);
 			setInputs({
@@ -59,7 +57,7 @@ const Profile = () => {
 			});
 		} else {
 			try {
-				await axios.put(`http://localhost:3001/user/edit/${id}`, inputs);
+				await axios.put(`${API_URL}/user/edit/${id}`, inputs);
 				Swal.fire({
 					icon: "success",
 					title: "Great !",
@@ -77,6 +75,10 @@ const Profile = () => {
 		dispatch(getUser(user));
 	}, [dispatch]);
 	console.log(inputs);
+
+	if (isLoading) {
+		return <div>Loading ...</div>;
+	}
 
 	return (
 		isAuthenticated && (
@@ -157,13 +159,13 @@ const Profile = () => {
 									xmlns="http://www.w3.org/2000/svg"
 									fill="none"
 									viewBox="0 0 24 24"
-									stroke-width="1.5"
+									strokeWidth="1.5"
 									stroke="currentColor"
-									class="w-6 h-6"
+									className="w-6 h-6"
 								>
 									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
+										strokeLinecap="round"
+										strokeLinejoin="round"
 										d="M3.75 9h16.5m-16.5 6.75h16.5"
 									/>
 								</svg>

@@ -4,6 +4,7 @@ import { getAllProducts } from "../../redux/slices/products/sliceProducts";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { API_URL } from "../../utils/api";
 
 const TableProducts = () => {
 	const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const TableProducts = () => {
 
 	const handlerActive = async (id) => {
 		try {
-			await axios.put(`http://localhost:3001/products/${id}`);
+			await axios.put(`${API_URL}/products/${id}`);
 		} catch (error) {
 			console.log(error);
 		}

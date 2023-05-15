@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { API_URL } from "../../utils/api";
 
 const FormProduct = () => {
 	const [inputs, setInputs] = useState({
@@ -27,7 +28,7 @@ const FormProduct = () => {
 		formData.append("image", event.target.files[0]);
 		try {
 			const response = await axios.post(
-				`http://localhost:3001/products/upload`,
+				`${API_URL}/products/upload`,
 				formData
 			);
 			setInputs({
@@ -50,7 +51,7 @@ const FormProduct = () => {
 			});
 		} else {
 			try {
-				await axios.post("http://localhost:3001/products", inputs);
+				await axios.post(`${API_URL}/products`, inputs);
 				Swal.fire({
 					icon: "success",
 					title: "Great !",
