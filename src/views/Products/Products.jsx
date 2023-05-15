@@ -15,7 +15,7 @@ const Products = ( ) => {
   const [filters, setFilters] = useState({
     sortName: "default",
     sortPrice: "default",
-    category: "personal-care"||"default",
+    category: state?.category||"default",
     page: 1,
   });
 

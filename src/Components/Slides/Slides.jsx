@@ -4,32 +4,32 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 // import { Link } from "react-router-dom";
 
-const Slides = () => {
+const Slides = ( ) => {
   const slides = [
     {
       id: 1,
       url: "https://i.ibb.co/gdD9Q8t/Beauty-Product-Banner-Landscape.png",
-      category: "personal-care",
+      category: "Personal care",
     },
     {
       id: 2,
       url: "https://i.ibb.co/zbHH9Hw/Purple-and-White-Elegant-Lavender-Flowers-Cosmetics-Product-Medium-Banner-691-345-px.png",
-      category: "personal-care",
+      category: "Personal care",
     },
     {
       id: 3,
       url: "https://i.ibb.co/BNwCd8x/Green-Yellow-Product-Big-Sale-Banner-Landscape.png",
-      category: "sexual-health",
+      category: "Sexual health",
     },
     {
       id: 4,
       url: "https://i.ibb.co/X5Sg42C/Green-Yellow-Product-Big-Sale-Banner-Landscape-1.png",
-      category: "maternity",
+      category: "Maternity",
     },
     {
       id: 5,
       url: "https://i.ibb.co/s6qNjtb/70972816-excelentes-anuncios-cosm-ticos-crema-facial-y-crema-para-manos-para-el-anuncio-de-venta-o.webp",
-      category: "personal-care",
+      category: "Personal care",
     },
   ];
 
