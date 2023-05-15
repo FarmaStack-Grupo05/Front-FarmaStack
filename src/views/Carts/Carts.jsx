@@ -27,7 +27,7 @@ export default function Cart() {
 
 	const handlerRedirect = (event) => {
 		event.preventDefault();
-		if (dataBaseUser.length >= 1) {
+		if (dataBaseUser) {
 			navigate("/farmastack/payment");
 		} else {
 			navigate("farmastack/formRegister");
