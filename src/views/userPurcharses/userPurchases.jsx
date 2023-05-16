@@ -2,108 +2,128 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { API_URL } from "../../utils/api";
-
-//esto debería traer las comprar hechas por el usuario: precio, producto; Y ahí mismo poder setear la calificación con un desplegable de 1 a 5. Las compras se mostrarían como en una lista descendente
-//hacer un axios a la ruta /order?userId={}  y desestructurar los datos que voy a requerir idproducto nameproduct, precio y otro componente donde le den click y me traiga ese producto por id y me lleve al detalle y poder volver a comprarlo
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 function UserPurchases() {
-  const [info, setInfo] = useState(null);
-  const [ratings, setRatings] = useState(1);
-  const { dataBaseUser: user } = useSelector((state) => state.userState);
-  console.log(user);
+    const [info, setInfo] = useState(null);
+    const [ratings, setRatings] = useState({});
+    const [ratedProducts, setRatedProducts] = useState([]);
+    const { dataBaseUser: user } = useSelector((state) => state.userState);
 
-  const getUserPurchases = async () => {
-    try {
-      const { data } = await axios.get(`${API_URL}/order?userId=${user.id}`);
-      setInfo(data);
-    } catch (error) {
-      // Manejo del error de la llamada a la API
-      console.error(error);
-      // Puedes agregar una lógica adicional para mostrar un mensaje de error al usuario, por ejemplo.
-    }
-  };
-  const postReviews = async () => {
-    try {
-      const body = {
-        userID: user.id,
-        productId: Object.keys(ratings)[0],
-        rating: Object.values(ratings)[0],
-      };
-      const rantingsArray = Object.values(ratings);
-      const productArray = Object.keys(ratings);
+    const getUserPurchases = async () => {
+        try {
+            const { data } = await axios.get(`${API_URL}/order?userId=${user.id}`);
+            setInfo(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-      const promises = rantingsArray.map((e, index) => {
-        const body = {
-          userID: user.id,
-          productId: productArray[index],
-          rating: e,
-        };
-        return axios.post(`${API_URL}/review`, body);
-      });
-      const promisesArray=  await axios.all(promises)
-      console.log(promisesArray)
+    const postReviews = async () => {
+        try {
+            const ratingsArray = Object.values(ratings);
+            const productArray = Object.keys(ratings);
 
-    } catch (error) {
-      console.log(error);
-    }
-  };
+            const promises = ratingsArray.map((e, index) => {
+                const body = {
+                    userID: user.id,
+                    productId: productArray[index],
+                    rating: e,
+                };
+                return axios.post(`${API_URL}/review`, body);
+            });
 
-  useEffect(() => {
-    if (user) {
-      getUserPurchases();
-    }
-  }, [user]);
+            await axios.all(promises);
 
-  console.log(info);
+            Swal.fire({
+                icon: "success",
+                title: "Review Sent",
+                text: "Your review has been successfully sent.",
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-  return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">Compras</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {info?.flatMap((cualquierCosa) =>
-          cualquierCosa.OrderItems?.map((e, index) => (
-            <div key={index} className="border border-gray-200 rounded-md p-4">
-              <img
-                className="no-underline border-none mx-auto h-auto w-auto object-cover transition duration-500 group-hover:scale-105 sm:h-[250px] rounded-md"
-                src={e.Product.image}
-                alt={e.Product.name}
-              />
-              <h3 className="text-lg font-bold mt-2">{e.Product.name}</h3>
-              <p className="text-gray-500">${e.Product.price}</p>
-              <div className="mt-2">
-                <label htmlFor={`rating-${e.Product.id}`} className="mr-2">
-                  Rating:
-                </label>
-                <select
-                  id={`rating-${e.Product.id}`}
-                  value={ratings[e.Product.id] || 1}
-                  onChange={(event) =>
-                    setRatings((prevRatings) => ({
-                      ...prevRatings,
-                      [e.Product.id]: parseInt(event.target.value),
-                    }))
-                  }
-                  className="border border-gray-300 rounded px-2 py-1"
-                >
-                  {[1, 2, 3, 4, 5].map((value) => (
-                    <option key={value} value={value}>
-                      {value}
-                    </option>
-                  ))}
-                </select>
-              </div>
+    useEffect(() => {
+        if (user) {
+            getUserPurchases();
+        }
+    }, [user]);
+
+    const handleRatingChange = (productId, value) => {
+        setRatings((prevRatings) => ({
+            ...prevRatings,
+            [productId]: value,
+        }));
+    };
+
+    const isProductRated = (productId) => ratedProducts.includes(productId);
+
+    const handleProductRating = (productId) => {
+        if (!isProductRated(productId)) {
+            setRatedProducts((prevRatedProducts) => [...prevRatedProducts, productId]);
+        }
+    };
+
+    return (
+        <div>
+            <h2 className="text-2xl font-bold mb-4">Compras</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {info?.flatMap((cualquierCosa) =>
+                    cualquierCosa.OrderItems?.map((e, index) => {
+                        const productId = e.Product.id;
+                        return (
+                            <div key={index} className="border border-gray-200 rounded-md p-4">
+                                <Link
+                                to={`/farmastack/details/${e.ProductId}`}>
+                                <img
+                                    className="no-underline border-none mx-auto h-auto w-auto object-cover transition duration-500 group-hover:scale-105 sm:h-[250px] rounded-md"
+                                    src={e.Product.image}
+                                    alt={e.Product.name}
+                                />
+                                </Link>
+                                
+                                <h3 className="text-lg font-bold mt-2">{e.Product.name}</h3>
+                                <p className="text-gray-500">${e.Product.price}</p>
+                                <div className="mt-2">
+                                    <label htmlFor={`rating-${productId}`} className="mr-2">
+                                        Rating:
+                                    </label>
+                                    <div className="flex items-center">
+                                        {[1, 2, 3, 4, 5].map((value) => (
+                                            <button
+                                                key={value}
+                                                onClick={() => {
+                                                    handleRatingChange(productId, value);
+                                                    handleProductRating(productId);
+                                                }}
+                                                className={`text-xl focus:outline-none ${ratings[productId] === value ? 'text-yellow-500' : 'text-gray-400'
+                                                    }`}
+                                                disabled={isProductRated(productId)}
+                                            >
+                                                ★
+                                            </button>
+                                        ))}
+                                        <button
+                                            onClick={postReviews}
+                                            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 ml-2 rounded"
+                                        >
+                                            Send Review
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        );
+                    })
+                )}
             </div>
-          ))
-        )}
-      </div>
-      <button
-        onClick={postReviews}
-        className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-      >
-        Enviar Reviews
-      </button>
-    </div>
-  );
+        </div>
+    );
 }
 
+
 export default UserPurchases;
+
