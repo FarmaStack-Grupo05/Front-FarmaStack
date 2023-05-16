@@ -23,6 +23,7 @@ const CardsHome = () => {
 			</div>
 			<div className="w-4/5 mx-auto grid grid-cols-2 rounded-3xl md:grid-cols-4 gap-6 shadow-xl p-10 text-gray-700 hover:text-white">
 				{limitResults?.map((product) => {
+					console.log(product.Reviews)
 					return (
 						<div
 							key={product.name}

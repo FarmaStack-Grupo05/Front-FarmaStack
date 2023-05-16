@@ -46,6 +46,23 @@ const EditProduct = () => {
 		}
 	};
 
+	const handlerDelete = () => {
+		setInputs({
+			...inputs,
+			image: "",
+		})
+	}
+
+	const handleDefaultPic = (e) => {
+		e.preventDefault();
+		if (detail.image) {
+			setInputs({
+				...inputs,
+				image: detail.image,
+			})
+		}
+	}
+
 	const onSubmit = async (event) => {
 		event.preventDefault();
 		const { name, price, category, description, image } = inputs;
@@ -53,7 +70,7 @@ const EditProduct = () => {
 			Swal.fire({
 				icon: "warning",
 				title: "Oops...",
-				text: "Datos incompletos",
+				text: "Incomplete data",
 			});
 		} else {
 			try {
@@ -61,7 +78,7 @@ const EditProduct = () => {
 				Swal.fire({
 					icon: "success",
 					title: "Great !",
-					text: `Se edito el producto ${id}`,
+					text: `Product ${id} edited successfully`,
 				});
 				navigate("/dashboard/products");
 			} catch (error) {
@@ -80,7 +97,20 @@ const EditProduct = () => {
 		dispatch(getProductById(id));
 	}, [dispatch]);
 	const { detail } = useSelector((state) => state.productsState);
-	console.log(inputs);
+
+	useEffect(() => {
+		if (detail) {
+			setInputs({
+				name: detail.name,
+				price: detail.price,
+				category: detail.category,
+				description: detail.description,
+				stock: detail.stock,
+				image: detail.image,
+			});
+		}
+	}, [detail]);
+
 	return (
 		<div className="flex">
 			<section className="bg-gray-100 w-2/3">
@@ -98,6 +128,7 @@ const EditProduct = () => {
 									id="name"
 									name="name"
 									onChange={handlerChange}
+									value={inputs.name}
 								/>
 							</div>
 							<div>
@@ -107,10 +138,11 @@ const EditProduct = () => {
 								<input
 									className="w-full rounded-lg border-gray-200 p-3 text-sm"
 									placeholder="Price"
-									type="text"
+									type="number"
 									id="price"
 									name="price"
 									onChange={handlerChange}
+									value={inputs.price}
 								/>
 							</div>
 						</div>
@@ -125,8 +157,10 @@ const EditProduct = () => {
 									className="w-full rounded-lg border-gray-200 p-3 text-sm"
 									name="stock"
 									onChange={handlerChange}
+									value={inputs.stock}
 								>
-									<option value="">-- Stock --</option>
+									<option value="" defaultChecked disabled>-- Stock --</option>
+									<option value="0">Out of stock</option>
 									{options}
 								</select>
 							</div>
@@ -140,6 +174,7 @@ const EditProduct = () => {
 									className="w-full rounded-lg border-gray-200 p-3 text-sm"
 									name="category"
 									onChange={handlerChange}
+									value={inputs.category}
 								>
 									<option value="">-- Category --</option>
 									{[
@@ -166,10 +201,11 @@ const EditProduct = () => {
 							<textarea
 								className="w-full rounded-lg border-gray-200 p-3 text-sm"
 								placeholder="Description"
-								rows="1"
+								rows="2"
 								id="description"
 								name="description"
 								onChange={handlerChange}
+								value={inputs.description}
 							></textarea>
 						</div>
 						<div>
@@ -179,19 +215,46 @@ const EditProduct = () => {
 							>
 								Upload file
 							</label>
-							<input
-								className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-								id="file_input"
-								type="file"
-								onChange={handlerUpload}
-							/>
+							{inputs.image ? (
+								<div className="flex flex-wrap gap-4">
+									<img
+										className="w-20 h-20 object-cover rounded-full border"
+										src={inputs.image}
+										alt="avatar"
+									/>
+									<button
+										onClick={handlerDelete}
+										className="text-sm text-green-500 hover:text-green-700 focus:text-green-700"
+									>
+										Change picture
+									</button>
+								</div>
+							) : (
+								<div className="flex flex-wrap gap-4">
+									<input
+										className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+										id="file_input"
+										type="file"
+										onChange={handlerUpload}
+									/>
+									{detail.image && (
+										<button
+											type="button"
+											onClick={handleDefaultPic}
+											className="text-sm text-green-500 hover:text-green-700 focus:text-green-700"
+										>
+											Use default picture
+										</button>
+									)}
+								</div>
+							)}
 						</div>
 
 						<div className="mt-4">
 							<button
 								onClick={onSubmit}
 								type="submit"
-								className="inline-flex px-5 py-3 text-white bg-green-500 hover:bg-green-700 focus:bg-green-700 rounded-md ml-6 mb-3"
+								className="inline-flex px-5 py-3 text-white bg-green-500 hover:bg-green-700 focus:bg-green-700 rounded-md mb-3"
 							>
 								Create
 							</button>

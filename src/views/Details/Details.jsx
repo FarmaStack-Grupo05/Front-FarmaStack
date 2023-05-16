@@ -23,6 +23,42 @@ const Details = () => {
 	);
 	const { loginWithPopup, isAuthenticated, user } = useAuth0();
 
+	const [reviews, setReviews] = useState(0);
+
+	const getRating = () => {
+		const ratings = detail.Reviews?.map((review) => review.rating) || [];
+
+		// Calcula la calificación promedio
+		const averageRating =
+			ratings.length > 0
+				? ratings.reduce((acc, rating) => acc + rating, 0) / ratings.length
+				: 0;
+
+		// Redondea la calificación promedio al número entero más cercano
+		const roundedRating = Math.round(averageRating);
+		const stars = [...Array(roundedRating)].map((_, index) => (
+			<svg
+				key={index}
+				aria-hidden="true"
+				className="w-5 h-5 text-yellow-400"
+				fill="currentColor"
+				viewBox="0 0 20 20"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<title>Star {index + 1}</title>
+				<path
+					fillRule="evenodd"
+					d="M10 15.785l-5.406 3.28a.997.997 0 01-1.542-1.06l1.034-6.014L.245 7.785a.997.997 0 01.55-1.7l6.042-.877L9.528.704a.997.997 0 011.884 0l2.691 5.504 6.042.877a.997.997 0 01.55 1.7l-4.799 4.68 1.034 6.014a.997.997 0 01-1.542 1.06L10 15.785z"
+					clipRule="evenodd"
+				></path>
+			</svg>
+		));
+
+		// Renderiza las estrellas
+		return <div className="flex justify-center mt-6 p-3">{stars}</div>;
+	};
+	console.log(getRating());
+
 	const handleAddQuantity = () => {
 		if (productQuantity < detail.stock) {
 			setProductQuantity(productQuantity + 1);
@@ -74,6 +110,8 @@ const Details = () => {
 		}
 	};
 
+	// console.log(detail)
+
 	return (
 		<div className="flex justify-center items-center flex-col">
 			<div className="no-underline text-decoration-none lg:col-span-3 shadow-xl h-full w-1/3 p-5 rounded-3xl">
@@ -107,56 +145,7 @@ const Details = () => {
 						/>
 					</div>
 					<div className="flex justify-center mt-6 p-3">
-						<svg
-							aria-hidden="true"
-							className="w-5 h-5 text-yellow-400"
-							fill="currentColor"
-							viewBox="0 0 20 20"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<title>First star</title>
-							<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-						</svg>
-						<svg
-							aria-hidden="true"
-							className="w-5 h-5 text-yellow-400"
-							fill="currentColor"
-							viewBox="0 0 20 20"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<title>Second star</title>
-							<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-						</svg>
-						<svg
-							aria-hidden="true"
-							className="w-5 h-5 text-yellow-400"
-							fill="currentColor"
-							viewBox="0 0 20 20"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<title>Third star</title>
-							<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-						</svg>
-						<svg
-							aria-hidden="true"
-							className="w-5 h-5 text-yellow-400"
-							fill="currentColor"
-							viewBox="0 0 20 20"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<title>Fourth star</title>
-							<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-						</svg>
-						<svg
-							aria-hidden="true"
-							className="w-5 h-5 text-gray-300 dark:text-gray-500"
-							fill="currentColor"
-							viewBox="0 0 20 20"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<title>Fifth star</title>
-							<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-						</svg>
+						<div className="flex justify-center mt-6 p-3">{getRating()}</div>
 					</div>
 					<div className="no-underline text-decoration-none h-1/3 w-auto m-2 p-5 rounded-3xl">
 						<h3 className="mt-4 text-sm font-medium text-gray-700">
