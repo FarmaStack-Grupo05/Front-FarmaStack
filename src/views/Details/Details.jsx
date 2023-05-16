@@ -199,7 +199,7 @@ const Details = () => {
 				to="/"
 				className="block mt-4 font-medium text-gray-500 hover:text-green-500"
 			>
-				Volver a Home
+				Back to Home
 			</Link>
 		</div>
 	);

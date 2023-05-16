@@ -69,7 +69,7 @@ const Profile = () => {
 			Swal.fire({
 				icon: "warning",
 				title: "Oops...",
-				text: "Datos incompletos",
+				text: "Incomplete Data",
 			});
 		} else {
 			try {
@@ -77,7 +77,7 @@ const Profile = () => {
 				Swal.fire({
 					icon: "success",
 					title: "Great !",
-					text: `Se edito el usuario ${id}`,
+					text: `The user was edited ${id}`,
 				});
 				navigate("/dashboard/products");
 			} catch (error) {

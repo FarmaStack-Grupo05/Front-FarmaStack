@@ -13,16 +13,25 @@ const Footer = () => {
         className="bg-green-500 max-w-full px-4 pb-6 pt-8 sm:px-6 lg:px-8  mt-10 text-white "
       >
         <div className="max-w-screen-xl mx-auto px-4 pb-6  sm:px-6 lg:px-8 ">
-		<img src={Logo} alt="Logo" className="w-24 h-24 mt-8" />
+          <img src={Logo} alt="Logo" className="w-24 h-24 mt-8" />
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-  <div>
-    <div className="flex justify-center text-white sm:justify-start">
-      <svg className="h-8" viewBox="0 0 118 24" fill="none" xmlns=""></svg>
-    </div>
+            <div>
+              <div className="flex justify-center text-white sm:justify-start">
+                <svg
+                  className="h-8"
+                  viewBox="0 0 118 24"
+                  fill="none"
+                  xmlns=""
+                ></svg>
+              </div>
 
-    <ul className="mt-8 flex justify-center gap-6 sm:justify-start md:gap-8">
-	<li>
-                  <a href="https://www.instagram.com/farmastack.drogue123/?igshid=ZGUzMzM3NWJiOQ%3D%3D" rel="noreferrer" target="_blank">
+              <ul className="mt-8 flex justify-center gap-6 sm:justify-start md:gap-8">
+                <li>
+                  <a
+                    href="https://www.instagram.com/farmastack.drogue123/?igshid=ZGUzMzM3NWJiOQ%3D%3D"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
                     <span className="sr-only">Instagram</span>
                     <svg
                       className="h-6 w-6"
@@ -38,7 +47,7 @@ const Footer = () => {
                     </svg>
                   </a>
                 </li>
-				<li>
+                <li>
                   <a
                     href="https://github.com/FarmaStack-Grupo05"
                     rel="noreferrer"
@@ -59,10 +68,14 @@ const Footer = () => {
                     </svg>
                   </a>
                 </li>
-      <li>
-        <a href="/farmastack/aboutus" rel="noreferrer" target="_blank">
-          <span className="sr-only">Dribbble</span>
-          <svg
+                <li>
+                  <a
+                    href="/farmastack/aboutus"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <span className="sr-only">Dribbble</span>
+                    <svg
                       className="h-6 w-6"
                       fill="currentColor"
                       viewBox="0 0 24 24"
@@ -74,33 +87,43 @@ const Footer = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.linkedin.com/tu_perfil" rel="noreferrer" target="_blank">
-          <span className="sr-only">LinkedIn</span>
-          <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            {/* <!-- Icono de LinkedIn --> */}
-          </svg>
-        </a>
-      </li>
-    </ul>
-  </div>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.linkedin.com/tu_perfil"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <span className="sr-only">LinkedIn</span>
+                    <svg
+                      className="h-6 w-6"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      {/* <!-- Icono de LinkedIn --> */}
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2 ">
               <div className="text-center sm:text-left">
                 <p className=" underline text-lg font-medium  white-text">
-                  Nosotros
+                  About Us
                 </p>
-
                 <nav aria-label="Footer About Nav" className="mt-8">
                   <ul className=" space-y-4 text-sm">
                     <li>
-                      <a href="/farmastack/aboutus">Quienes somos</a>
+                      <a href="/farmastack/aboutus">About Us
+</a>
                     </li>
 
                     <li>
                       <a className="text-whit" href="/farmastack/contact">
-                        Trabaja Con Nosotros
+                      Work With Us
+
                       </a>
                     </li>
                   </ul>
@@ -108,20 +131,22 @@ const Footer = () => {
               </div>
               <div className="text-center sm:text-left">
                 <p className=" underline text-lg font-medium">
-                  Nuestros Servicios
+                Our Services
                 </p>
-
                 <nav aria-label="Footer Helpful Nav" className="mt-8">
                   <ul className="space-y-4 text-sm">
                     <li>
-                      <a className="text-white" href="https://www.instagram.com/farmastack.drogue123/?igshid=ZGUzMzM3NWJiOQ%3D%3D">
-                      Nuestras redes
+                      <a
+                        className="text-white"
+                        href="https://www.instagram.com/farmastack.drogue123/?igshid=ZGUzMzM3NWJiOQ%3D%3D"
+                      >
+                        Our Networks
                       </a>
                     </li>
 
                     <li>
                       <a className="text-white" href="/farmastack/products">
-                        Retiros En Tienda
+                      Withdrawals In Store
                       </a>
                     </li>
                   </ul>
@@ -151,11 +176,9 @@ const Footer = () => {
                           d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                         />
                       </svg>
-
-                      <span className="flex-1">Registrate</span>
+                      <span className="flex-1">Sign Up</span>
                     </a>
                   </li>
-
                   <li>
                     <a
                       className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
@@ -175,31 +198,25 @@ const Footer = () => {
                           d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                         />
                       </svg>
-
-                      <span className="flex-1">Beneficios</span>
+                      <span className="flex-1">Benefits</span>
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-
           <div className="mt-12 border-t border-gray-100 pt-6">
             <div className="text-center sm:flex sm:justify-between sm:text-left">
               <p className="text-sm">
                 <span className="block sm:inline">All rights reserved.</span>
-
                 <a className="inline-block text-white" href="/">
                   Terms & Conditions
                 </a>
-
                 <span>&middot;</span>
-
                 <a className="inline-block text-white" href="/">
                   Privacy Policy
                 </a>
               </p>
-
               <p className="mt-4 text-sm">&copy; 2023 Company Farmastack</p>
             </div>
           </div>
@@ -208,5 +225,4 @@ const Footer = () => {
     </div>
   );
 };
-
 export default Footer;

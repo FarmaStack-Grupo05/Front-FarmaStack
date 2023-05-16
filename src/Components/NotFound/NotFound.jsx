@@ -24,10 +24,10 @@ const NotFound = () => {
       <div className="max-w-md mx-auto text-center">
         <h1 className="text-4xl font-bold mb-4 text-gray-800">404</h1>
         <p className="text-xl font-medium mb-8 text-gray-600">
-          ¡Oops! La página que buscas no existe.
+        Oops! The page you are looking for does not exist.
         </p>
         <p className="text-xl font-medium mb-8 text-red-500">
-          No estás logueado, por favor, inicia sesión.
+        You are not logged in, Please Log In.
         </p>
         <button
           onClick={handlerLogin}
@@ -40,7 +40,7 @@ const NotFound = () => {
           to="/"
           className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg shadow-md transition-all duration-300"
         >
-          Volver al inicio
+          Back To Home
         </Link>
       </div>
     </div>
