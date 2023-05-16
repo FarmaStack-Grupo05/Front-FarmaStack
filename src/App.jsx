@@ -29,6 +29,7 @@ import { setDbUser } from "./redux/slices/users";
 import Admin from "./Components/Admin/Admin";
 import getOrders from "./redux/slices/orders/sliceOrder";
 import TableOrders from "./Components/TableOrders/TableOrders";
+import UserPurchases from "./views/userPurcharses/userPurchases";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	const dispatch = useDispatch();
@@ -83,6 +84,11 @@ function App() {
 					exact
 					path="/farmastack/contact"
 					element={isAuthenticated ? <ContactMe /> : <NotFound />}
+				/>
+				<Route
+					exact
+					path="/farmastack/purchases"
+					element={isAuthenticated ? <UserPurchases /> : <NotFound />}
 				/>
 
 				<Route
