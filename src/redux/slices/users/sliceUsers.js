@@ -16,9 +16,9 @@ export const getAllUsers = () => {
 export const getUser = (user) => {
 	return (dispatch) => {
 		try {
-			dispatch(setUser(user))
+			dispatch(setUser(user));
 		} catch (error) {
-			console.log(error)
+			console.log(error);
 		}
 	};
 };

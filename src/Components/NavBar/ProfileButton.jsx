@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
-import { UserCircleIcon } from '@heroicons/react/24/outline';
+import { UserCircleIcon } from "@heroicons/react/24/outline";
+import { useSelector } from "react-redux";
 
 function ProfileButton() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +14,7 @@ function ProfileButton() {
 	const toggleDropdown = () => {
 		setIsOpen(!isOpen);
 	};
+	const { dataBaseUser } = useSelector((state) => state.userState);
 
 	return (
 		<>
@@ -38,12 +40,13 @@ function ProfileButton() {
 			{/* <!-- Dropdown menu --> */}
 			<div
 				id="userDropdown"
-				className={`z-10 ${isOpen ? "" : "hidden"
-					} absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-40 dark:bg-green-700 dark:divide-green-60`}
+				className={`z-10 ${
+					isOpen ? "" : "hidden"
+				} absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-40 dark:bg-green-700 dark:divide-green-60`}
 				onMouseLeave={() => setIsOpen(false)}
 			>
 				<div className="px-4 py-3 text-sm text-green-900 dark:text-white">
-					<div>{user?.name || 'Guest'}</div>
+					<div>{user?.name || "Guest"}</div>
 					<div className="font-medium truncate">{user?.email}</div>
 				</div>
 				<ul
@@ -52,15 +55,17 @@ function ProfileButton() {
 				>
 					{isAuthenticated ? (
 						<>
-							<li>
-								<Link
-									to={"/dashboard"}
-									className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-								>
-									Dashboard
-								</Link>
-							</li>
-						
+							{" "}
+							{dataBaseUser?.rol === "admin" && (
+								<li>
+									<Link
+										to={"/dashboard"}
+										className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+									>
+										Dashboard
+									</Link>
+								</li>
+							)}
 							<li>
 								<Link
 									to="/farmastack/profile"
@@ -93,10 +98,7 @@ function ProfileButton() {
 				</ul>
 				{isAuthenticated && (
 					<div className="py-1">
-						<a
-
-							className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-						>
+						<a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
 							<LogoutButton />
 						</a>
 					</div>
@@ -105,6 +107,5 @@ function ProfileButton() {
 		</>
 	);
 }
-
 
 export default ProfileButton;
