@@ -91,7 +91,7 @@ function Payment() {
 						<p className="text-2xl font-bold">${cart.totalPrice}</p>
 					</div>
 				</div>
-
+                 
 				<div className="border-l shadow-lg col-span-3 md:col-span-1 px-4 md:px-8">
 					<h1 className="text-xl font-semibold my-4">Metodos de pago:</h1>
 					<PayPalButtons
