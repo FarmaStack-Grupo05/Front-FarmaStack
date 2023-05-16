@@ -3,7 +3,7 @@ import Logo from "../../assets/logo1.png";
 const Footer = () => {
 	const location = useLocation();
 
-	if (location.pathname === "/dashboard") {
+	if (location.pathname.startsWith("/dashboard")) {
 		return null;
 	}
 	return (

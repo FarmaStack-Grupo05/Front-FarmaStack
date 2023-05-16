@@ -23,13 +23,15 @@ const CardsHome = () => {
 			</div>
 			<div className="w-4/5 mx-auto grid grid-cols-2 rounded-3xl md:grid-cols-4 gap-6 shadow-xl p-10 text-gray-700 hover:text-white">
 				{limitResults?.map((product) => {
-					console.log(product.Reviews)
 					return (
 						<div
 							key={product.name}
 							className="text-gray-700 hover:text-white relative bg-white p-3 rounded-3xl shadow-md transition duration-300 hover:bg-green-500 group-hover:text-white hover:transform hover:scale-105"
 						>
-							<li key={product.name} className="no-underline list-none rounded-3xl">
+							<li
+								key={product.name}
+								className="no-underline list-none rounded-3xl"
+							>
 								<Link
 									to={`/farmastack/details/${product.id}`}
 									className="bg-white no-underline text-decoration-none group block overflow-hidden border border-slate-200 rounded-3xl"

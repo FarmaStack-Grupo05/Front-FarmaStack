@@ -26,7 +26,9 @@ const TableProducts = () => {
 			showCancelButton: true,
 			confirmButtonColor: "#3085d6",
 			cancelButtonColor: "#d33",
-			confirmButtonText: `Yes, ${allProducts.find((p) => p.id === id).active ? "deactivate" : "activate"} it!`,
+			confirmButtonText: `Yes, ${
+				allProducts.find((p) => p.id === id).active ? "deactivate" : "activate"
+			} it!`,
 		}).then((result) => {
 			if (result.isConfirmed) {
 				handlerActive(id);
@@ -34,10 +36,6 @@ const TableProducts = () => {
 			}
 		});
 	};
-
-	useEffect(() => {
-		dispatch(getAllProducts(true));
-	}, [dispatch]);
 
 	return (
 		<>

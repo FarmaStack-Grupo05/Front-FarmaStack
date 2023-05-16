@@ -27,6 +27,8 @@ import PaymentSuccess from "./views/PaymentSuccess/PaymentSuccess";
 import NotFound from "./Components/NotFound/NotFound";
 import { setDbUser } from "./redux/slices/users";
 import Admin from "./Components/Admin/Admin";
+import getOrders from "./redux/slices/orders/sliceOrder";
+import TableOrders from "./Components/TableOrders/TableOrders";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	const dispatch = useDispatch();
@@ -44,6 +46,7 @@ function App() {
 			dispatch(getUser(user));
 			dispatch(getCart(user.sub));
 			dispatch(getDataBaseUser(user.email));
+			dispatch(getOrders());
 		} else {
 			localStorage.removeItem("token");
 			dispatch(getUser({}));
@@ -93,6 +96,7 @@ function App() {
 					<Route path="/dashboard/" element={<Dashboard />}>
 						<Route exact path="products" element={<TableProducts />} />
 						<Route exact path="users" element={<TableProducts />} />
+						<Route exact path="orders" element={<TableOrders />} />
 						<Route exact path="editProduct/:id" element={<EditProduct />} />
 						<Route exact path="addProduct" element={<FormProduct />} />
 						<Route exact path="*" element={<NotFound />} />
