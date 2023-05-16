@@ -99,12 +99,14 @@ function PaymentSuccess() {
           {user?.address}
         </p>
       </div>
+      <Link to="/farmastack/purchases" className="font-medium text-green-600 hover:text-green-500 mt-6">Rate Purchases</Link>
       <Link
         to="/farmastack/products"
         className="font-medium text-green-600 hover:text-green-500 mt-6"
       >
         Continue Shopping
       </Link>
+    
     </div>
   )
 }
