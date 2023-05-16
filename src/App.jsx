@@ -1,17 +1,17 @@
 import { Route, Routes } from "react-router-dom";
 import {
-  AboutUs,
-  Dashboard,
-  Details,
-  Home,
-  Payment,
-  Products,
-  Profile,
+	AboutUs,
+	Dashboard,
+	Details,
+	Home,
+	Payment,
+	Products,
+	Profile,
 } from "./views/index";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ContactMe from "./Components/Contact/ContactMe";
 import Footer from "./Components/Footer/Footer";
 import NavBar from "./Components/NavBar/NavBar";
@@ -27,30 +27,33 @@ import PaymentSuccess from "./views/PaymentSuccess/PaymentSuccess";
 import NotFound from "./Components/NotFound/NotFound";
 import { setDbUser } from "./redux/slices/users";
 import Admin from "./Components/Admin/Admin";
+import UserPurchases from "./views/userPurcharses/userPurchases";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
   const dispatch = useDispatch();
   const { loginWithPopup, getAccessTokenSilently, isAuthenticated, user } =
     useAuth0();
 
-  useEffect(() => {
-    const getAccessToken = async () => {
-      const accessToken = await getAccessTokenSilently();
-      localStorage.setItem("token", accessToken);
-    };
+	useEffect(() => {
+		const getAccessToken = async () => {
+			const accessToken = await getAccessTokenSilently();
+			localStorage.setItem("token", accessToken);
+		};
 
-    if (isAuthenticated) {
-      getAccessToken();
-      dispatch(getUser(user));
-      dispatch(getCart(user.sub));
-      dispatch(getDataBaseUser(user.email));
-    } else {
-      localStorage.removeItem("token");
-      dispatch(getUser({}));
-      dispatch(clearCart());
-      dispatch(setDbUser(null));
-    }
-  }, [dispatch, getAccessTokenSilently, isAuthenticated, user]);
+		if (isAuthenticated) {
+			getAccessToken();
+			dispatch(getUser(user));
+			dispatch(getCart(user.sub));
+			dispatch(getDataBaseUser(user.email));
+		} else {
+			localStorage.removeItem("token");
+			dispatch(getUser({}));
+			dispatch(clearCart());
+			dispatch(setDbUser(null));
+		}
+	}, [dispatch, getAccessTokenSilently, isAuthenticated, user]);
+
+	const { dataBaseUser } = useSelector((state) => state.userState);
 
   return (
     <>
@@ -79,25 +82,34 @@ function App() {
           path="/farmastack/contact"
           element={isAuthenticated ? <ContactMe /> : <NotFound />}
         />
-
-        <Route
+		<Route
           exact
-          path="farmastack/formRegister"
-          element={<FormRegister />}
+          path="/farmastack/purchases"
+          element={isAuthenticated ? <UserPurchases/> : <NotFound />}
         />
-      </Routes>
-      <Routes>
-        <Route path="/dashboard/" element={<Dashboard />}>
-          <Route exact path="products" element={<TableProducts />} />
-          <Route exact path="users" element={<TableProducts />} />
-          <Route exact path="editProduct/:id" element={<EditProduct />} />
-          <Route exact path="addProduct" element={<FormProduct />} />
-          <Route exact path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-      <Footer />
-    </>
-  );
+		
+		
+
+				<Route
+					exact
+					path="farmastack/formRegister"
+					element={<FormRegister />}
+				/>
+			</Routes>
+			<Routes>
+				{dataBaseUser?.rol === "admin" && (
+					<Route path="/dashboard/" element={<Dashboard />}>
+						<Route exact path="products" element={<TableProducts />} />
+						<Route exact path="users" element={<TableProducts />} />
+						<Route exact path="editProduct/:id" element={<EditProduct />} />
+						<Route exact path="addProduct" element={<FormProduct />} />
+						<Route exact path="*" element={<NotFound />} />
+					</Route>
+				)}
+			</Routes>
+			<Footer />
+		</>
+	);
 }
 
 export default App;
