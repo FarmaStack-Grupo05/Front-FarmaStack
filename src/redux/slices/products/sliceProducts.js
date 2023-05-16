@@ -9,10 +9,15 @@ import {
 } from ".";
 import { API_URL } from "../../../utils/api";
 
-export const getAllProducts = () => {
+export const getAllProducts = (withNoStock = false) => {
 	return async (dispatch) => {
 		try {
-			let res = await axios.get(`${API_URL}/products?page=all`);
+			let res = await axios.get(`${API_URL}/products`, {
+				params: {
+					withNoStock,
+					page: "all",
+				},
+			});
 			dispatch(setAllProducts(res.data));
 		} catch (err) {
 			console.log("error", err.message);
@@ -41,6 +46,7 @@ export const searchProducts = (name) => {
 		}
 	};
 };
+
 export const filterProduct = ({ sortName, sortPrice, category, page }) => {
 	return async (dispatch) => {
 		try {
@@ -58,6 +64,7 @@ export const filterProduct = ({ sortName, sortPrice, category, page }) => {
 		}
 	};
 };
+
 export const setProduct = (product) => {
 	// console.log(product)
 	return (dispatch) => {

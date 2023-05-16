@@ -32,7 +32,7 @@ const FormRegister = () => {
 			Swal.fire({
 				icon: "warning",
 				title: "Oops...",
-				text: "Completa los datos",
+				text: "Complete the data",
 			});
 		} else {
 			try {
@@ -46,7 +46,7 @@ const FormRegister = () => {
 				Swal.fire({
 					icon: "success",
 					title: "Great !",
-					text: "Registro exitoso",
+					text: "Successful Registration",
 				});
 				navigate("/farmastack/payment");
 			} catch (error) {
@@ -63,8 +63,8 @@ const FormRegister = () => {
 				</h1>
 				<p className="text-sm text-gray-500">
 					We need to know your name, address and phone number to continue with
-					the payment. Email field is disabled because we use the email you
-					used to login.
+					the payment. Email field is disabled because we use the email you used
+					to login.
 				</p>
 				<form action="submit">
 					<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mt-5">

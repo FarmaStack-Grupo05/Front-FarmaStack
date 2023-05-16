@@ -13,7 +13,9 @@ const Profile = () => {
 	const navigate = useNavigate();
 	const [inputs, setInputs] = useState({
 		name: "",
+		phone: "",
 		email: "",
+		address: "",
 		image: "",
 	});
 
@@ -33,16 +35,30 @@ const Profile = () => {
 		const formData = new FormData();
 		formData.append("image", event.target.files[0]);
 		try {
-			const response = await axios.post(
-				`${API_URL}/products/upload`,
-				formData
-			);
+			const response = await axios.post(`${API_URL}/products/upload`, formData);
 			setInputs({
 				...inputs,
 				image: response.data.secure_url,
 			});
 		} catch (error) {
 			console.log(error);
+		}
+	};
+
+	const handlerDelete = () => {
+		setInputs({
+			...inputs,
+			image: "",
+		});
+	};
+
+	const handleDefaultPic = (e) => {
+		e.preventDefault();
+		if (user.picture) {
+			setInputs({
+				...inputs,
+				image: user.picture,
+			});
 		}
 	};
 
@@ -53,7 +69,7 @@ const Profile = () => {
 			Swal.fire({
 				icon: "warning",
 				title: "Oops...",
-				text: "Datos incompletos",
+				text: "Incomplete Data",
 			});
 		} else {
 			try {
@@ -61,7 +77,7 @@ const Profile = () => {
 				Swal.fire({
 					icon: "success",
 					title: "Great !",
-					text: `Se edito el usuario ${id}`,
+					text: `The user was edited ${id}`,
 				});
 				navigate("/dashboard/products");
 			} catch (error) {
@@ -80,120 +96,135 @@ const Profile = () => {
 		return <div>Loading ...</div>;
 	}
 
+	useEffect(() => {
+		if (user) {
+			setInputs({
+				name: user.nickname,
+				email: user.email,
+				image: user.picture,
+			});
+		}
+	}, [user]);
+
 	return (
 		isAuthenticated && (
-			<div className="flex place-content-center mt-10">
+			<div className="flex flex-col items-center justify-center mt-10">
 				<section className="bg-gray-100">
 					<div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-						<form action="" className="space-y-4">
-							<div className="grid grid-cols-1 gap-4 sm:grid-cols-1">
+						<h1 className="text-4xl font-semibold mb-2 text-center text-green-800">
+							Complete or edit your data
+						</h1>
+						<form action="" className="space-y-4 mt-6">
+							<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 								<div>
-									<label className="sr-only" htmlFor="name">
-										Name
-									</label>
+									<label htmlFor="name">Name</label>
 									<input
-										className="w-full rounded-lg border-gray-200 p-3 text-sm"
+										className="w-full rounded-lg border-gray-200 p-3 text-sm mt-3"
 										placeholder="Name"
 										type="text"
 										id="name"
 										name="name"
+										value={inputs.name}
 										onChange={handlerChange}
 									/>
-								</div>
-								<div>
-									<label className="sr-only" htmlFor="email">
-										Email
-									</label>
+									<label htmlFor="phone">Phone</label>
 									<input
-										className="w-full rounded-lg border-gray-200 p-3 text-sm"
-										placeholder="Email"
+										className="w-full rounded-lg border-gray-200 p-3 text-sm mt-3"
+										placeholder="Phone"
 										type="text"
-										id="email"
-										name="email"
+										id="phone"
+										name="phone"
+										value={inputs.phone}
 										onChange={handlerChange}
 									/>
 								</div>
 								<div>
+									<label htmlFor="email">Email</label>
+									<input
+										className="w-full rounded-lg border-gray-200 p-3 text-sm mt-3"
+										placeholder="Email"
+										type="email"
+										id="email"
+										defaultValue={user.email}
+										disabled
+									/>
+									<small
+										id="email-helper"
+										className="block text-gray-400 text-xs mt-1"
+									>
+										This email should not be edited
+									</small>
+									<label htmlFor="address">Address</label>
+									<input
+										className="w-full rounded-lg border-gray-200 p-3 text-sm mt-3"
+										placeholder="Address"
+										type="text"
+										id="address"
+										name="address"
+										value={user.address}
+										onChange={handlerChange}
+									/>
+								</div>
+							</div>
+							<div className="flex flex-col sm:flex-row sm:justify-between">
+								<div className="sm:mr-8">
 									<label
-										className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+										className="block mb-2 text-ml font-medium text-green-900 dark:text-white"
 										htmlFor="file_input"
 									>
 										Upload file
 									</label>
-									<input
-										className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-										id="file_input"
-										type="file"
-										onChange={handlerUpload}
-									/>
+									{inputs.image ? (
+										<div className="flex flex-wrap gap-4">
+											<img
+												className="w-20 h-20 object-cover rounded-full border"
+												src={inputs.image}
+												alt="avatar"
+											/>
+											<button
+												onClick={handlerDelete}
+												className="text-sm text-green-500 hover:text-green-700 focus:text-green-700"
+											>
+												Change picture
+											</button>
+										</div>
+									) : (
+										<div className="flex flex-wrap gap-4">
+											<input
+												className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+												id="file_input"
+												type="file"
+												onChange={handlerUpload}
+											/>
+											{user.picture && (
+												<button
+													type="button"
+													onClick={handleDefaultPic}
+													className="text-sm text-green-500 hover:text-green-700 focus:text-green-700"
+												>
+													Use default picture
+												</button>
+											)}
+										</div>
+									)}
+								</div>
+
+								<div className="mt-4 ml-60 w-2/3">
+									<button
+										onClick={onSubmit}
+										type="submit"
+										className="px-5 py-3 text-white bg-green-500 hover:bg-green-700 focus:bg-green-700 rounded-md mb-3"
+									>
+										Edit
+									</button>
 								</div>
 							</div>
-
-							<div className="grid grid-cols-1 gap-4 sm:grid-cols-2"></div>
-
-							<div className="mt-4">
-								<button
-									onClick={onSubmit}
-									type="submit"
-									className="inline-flex px-5 py-3 text-white bg-green-500 hover:bg-green-700 focus:bg-green-700 rounded-md ml-6 mb-3"
-								>
-									Update
-								</button>
-							</div>
 						</form>
-					</div>
-				</section>
-				<section
-					className="flex-grow-0 flex-shrink-0 bg-gray-100 ml-6"
-					style={{ width: "40%" }}
-				>
-					<div className="rounded-sm bg-white p-8 shadow-lg sm:col-span-3 sm:p-2">
-						<h1>Name : {user.name}</h1>
-						<h1>Email : {user.email}</h1>
-						<div className="whitespace-nowrap px-4 py-4 w-9/12 flex">
-							<div className="w-9/12">
-								<img src={user.picture} alt={user.name} />
-							</div>
-							<div className="w-1/2 mt-10 ml-6 mr-6">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									fill="none"
-									viewBox="0 0 24 24"
-									strokeWidth="1.5"
-									stroke="currentColor"
-									className="w-6 h-6"
-								>
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										d="M3.75 9h16.5m-16.5 6.75h16.5"
-									/>
-								</svg>
-							</div>
-							<div className="w-9/12">
-								<img src={inputs.image} alt={inputs.name} />
-							</div>
-						</div>
 					</div>
 				</section>
 			</div>
 		)
 	);
-
-	// useEffect(()=>{
-	//   dispatch(getUser(user))
-	//   console.log("Profile")
-	// }, [dispatch])
-
-	// return (
-	//   isAuthenticated && (
-	//     <div>
-	//       <img src={user.picture} alt={user.name} />
-	//       <h2>{user.name}</h2>
-	//       <p>{user.email}</p>
-	//     </div>
-	//   )
-	// );
 };
 
 export default Profile;
