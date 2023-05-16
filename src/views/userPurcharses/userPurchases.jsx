@@ -2,33 +2,24 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { API_URL } from "../../utils/api";
-
-//esto debería traer las comprar hechas por el usuario: precio, producto; Y ahí mismo poder setear la calificación con un desplegable de 1 a 5. Las compras se mostrarían como en una lista descendente
-//hacer un axios a la ruta /order?userId={}  y desestructurar los datos que voy a requerir idproducto nameproduct, precio y otro componente donde le den click y me traiga ese producto por id y me lleve al detalle y poder volver a comprarlo
+import Swal from "sweetalert2";
 
 function UserPurchases() {
   const [info, setInfo] = useState(null);
   const [ratings, setRatings] = useState(1);
   const { dataBaseUser: user } = useSelector((state) => state.userState);
-  console.log(user);
 
   const getUserPurchases = async () => {
     try {
       const { data } = await axios.get(`${API_URL}/order?userId=${user.id}`);
       setInfo(data);
     } catch (error) {
-      // Manejo del error de la llamada a la API
       console.error(error);
-      // Puedes agregar una lógica adicional para mostrar un mensaje de error al usuario, por ejemplo.
     }
   };
+
   const postReviews = async () => {
     try {
-      const body = {
-        userID: user.id,
-        productId: Object.keys(ratings)[0],
-        rating: Object.values(ratings)[0],
-      };
       const rantingsArray = Object.values(ratings);
       const productArray = Object.keys(ratings);
 
@@ -40,9 +31,14 @@ function UserPurchases() {
         };
         return axios.post(`${API_URL}/review`, body);
       });
-      const promisesArray=  await axios.all(promises)
-      console.log(promisesArray)
 
+      await axios.all(promises);
+
+      Swal.fire({
+        icon: "success",
+        title: "Review Sent",
+        text: "Your review has been successfully sent.",
+      });
     } catch (error) {
       console.log(error);
     }
@@ -53,8 +49,6 @@ function UserPurchases() {
       getUserPurchases();
     }
   }, [user]);
-
-  console.log(info);
 
   return (
     <div>
@@ -107,3 +101,4 @@ function UserPurchases() {
 }
 
 export default UserPurchases;
+
