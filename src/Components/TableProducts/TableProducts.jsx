@@ -8,7 +8,6 @@ import { API_URL } from "../../utils/api";
 
 const TableProducts = () => {
 	const dispatch = useDispatch();
-	const { allProducts } = useSelector((state) => state.productsState);
 
 	const handlerActive = async (id) => {
 		try {
@@ -36,6 +35,14 @@ const TableProducts = () => {
 			}
 		});
 	};
+
+	const handlerDescription = (description) => {
+		Swal.fire(description);
+	};
+	useEffect(() => {
+		getAllProducts(true);
+	}, [dispatch]);
+	const { allProducts } = useSelector((state) => state.productsState);
 
 	return (
 		<>
@@ -91,17 +98,26 @@ const TableProducts = () => {
 									<td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
 										{product.name}
 									</td>
-									<td className="whitespace-nowrap text-xs py-2 text-gray-700">
-										{product.description}
+									<td className="whitespace-nowrap px-4 py-2">
+										<button
+											onClick={() => handlerDescription(product.description)}
+											style={{ textDecoration: "underline" }}
+										>
+											Description...
+										</button>
 									</td>
 									<td className="whitespace-nowrap px-4 py-2 text-gray-700">
-										<img src={product.image} alt={product.name} />
+										<img
+											src={product.image}
+											alt={product.name}
+											style={{ width: "100px", height: "100px" }}
+										/>
 									</td>
 									<td className="whitespace-nowrap px-4 py-2 text-gray-700">
 										{product.category}
 									</td>
 									<td className="whitespace-nowrap px-4 py-2 text-gray-700">
-										{product.price}
+										{`$ ${product.price}`}
 									</td>
 									<td className="whitespace-nowrap px-4 py-2 text-gray-700">
 										{product.stock}

@@ -1,8 +1,22 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import getOrders from "../../redux/slices/orders/sliceOrder";
+import Swal from "sweetalert2";
 
 const TableOrders = () => {
-	const { ordersList } = useSelector((state) => state.orderState);
+	const ordersList = useSelector((state) => state.orderState.orderList);
+
+	const handlerDetail = (items) => {
+		console.log(items[0].Product.name);
+		Swal.fire({
+			title: `Quantity ${items[0].quantity}`,
+			text: `$ ${items[0].price} Und.`,
+			imageUrl: items[0].Product.image,
+			imageWidth: 400,
+			imageHeight: 200,
+			imageAlt: "Custom image",
+		});
+	};
 	return (
 		<>
 			<div className="overflow-x-auto">
@@ -10,13 +24,10 @@ const TableOrders = () => {
 					<thead className="ltr:text-left rtl:text-right">
 						<tr>
 							<th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-								Active
-							</th>
-							<th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-								Price
-							</th>
-							<th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
 								Date
+							</th>
+							<th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+								Total Price
 							</th>
 							<th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
 								User Name
@@ -24,9 +35,7 @@ const TableOrders = () => {
 							<th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
 								User Email
 							</th>
-							<th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-								User Address
-							</th>
+
 							<th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
 								User Phone
 							</th>
@@ -39,33 +48,30 @@ const TableOrders = () => {
 						{ordersList?.map((order, index) => {
 							return (
 								<tr key={index}>
-									<td className="px-4 py-2">
-										<label className="sr-only" htmlFor="Row1">
-											Row 1
-										</label>
-
-										<input
-											className="h-5 w-5 rounded border-gray-300"
-											type="checkbox"
-											id="Row1"
-										/>
-									</td>
 									<td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+										{order.updatedAt.slice(0, 10)}
+									</td>
+									<td className="whitespace-nowrap px-4 py-2 text-gray-700">
 										{order.total_price}
 									</td>
 									<td className="whitespace-nowrap px-4 py-2 text-gray-700">
-										Date
+										{order.User.name}
 									</td>
 									<td className="whitespace-nowrap px-4 py-2 text-gray-700">
-										farmastack
+										{order.User.email}
 									</td>
+
 									<td className="whitespace-nowrap px-4 py-2 text-gray-700">
-										faramastack@
+										{order.User.phone}
 									</td>
-									<td className="whitespace-nowrap px-4 py-2 text-gray-700">
-										Address
+									<td className="whitespace-nowrap px-4 py-2">
+										<button
+											onClick={() => handlerDetail(order.OrderItems)}
+											style={{ textDecoration: "underline" }}
+										>
+											Details...
+										</button>{" "}
 									</td>
-									<td className="whitespace-nowrap px-4 py-2">phone</td>
 								</tr>
 							);
 						})}
