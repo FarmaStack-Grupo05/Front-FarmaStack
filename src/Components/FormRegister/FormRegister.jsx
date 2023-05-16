@@ -9,13 +9,14 @@ import { API_URL } from "../../utils/api";
 const FormRegister = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const { user } = useSelector((state) => state.userState);
 	const [inputs, setInputs] = useState({
 		name: "",
+		image: user.picture,
 		address: "",
 		phone: "",
 	});
 
-	const { user } = useSelector((state) => state.userState);
 	const handlerChange = (event) => {
 		event.preventDefault();
 		const { name, value } = event.target;
