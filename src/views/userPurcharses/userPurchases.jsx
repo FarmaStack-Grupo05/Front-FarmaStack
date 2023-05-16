@@ -31,7 +31,7 @@ function UserPurchases() {
                 rating: ratings
             }
             const { cosa } = await axios.post(`${API_URL}/review`, body)
-            console.log(cosa)
+            
         } catch (error) {
             console.log(error)
         }
