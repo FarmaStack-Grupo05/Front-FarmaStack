@@ -4,18 +4,16 @@ import { Link, useLocation } from "react-router-dom";
 import { filterProduct } from "../../redux/slices/products/sliceProducts";
 import Search from "../../Components/Search/Search";
 
+const Products = () => {
+  const { state } = useLocation();
 
-
-const Products = ( ) => {
-  const {state} = useLocation();
-  
   const dispatch = useDispatch();
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
 
   const [filters, setFilters] = useState({
     sortName: "default",
     sortPrice: "default",
-    category: state?.category||"default",
+    category: state?.category || "default",
     page: 1,
   });
 
@@ -37,9 +35,9 @@ const Products = ( ) => {
   };
 
   const handleToggleFilters = () => {
-	setIsFiltersVisible((prevIsFiltersVisible) => !prevIsFiltersVisible);
+    setIsFiltersVisible((prevIsFiltersVisible) => !prevIsFiltersVisible);
   };
-  
+
 
   const { results } = useSelector((state) => state.productsState.list);
   const { next } = useSelector((state) => state.productsState.list);
@@ -231,56 +229,56 @@ const Products = ( ) => {
             <div className="no-underline text-decoration-none lg:col-span-3 shadow-xl h-full p-5 rounded-3xl">
               {results?.length > 0 ? (
 
-              <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 text-decoration-none">
-                {results?.map((product) => {
-                  return (
-                    <li
-                      key={product.id}
-                      className="card no-underline text-decoration-none bg-white shadow-xl h-full p-5 rounded-3xl transition duration-500 hover:bg-green-500 hover:text-white group-hover:text-white hover:transform hover:scale-105"
-                    >
-                      <Link
-                        to={`/farmastack/details/${product.id}`}
-                        className="group block overflow-hidden"
+                <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 text-decoration-none">
+                  {results?.map((product) => {
+                    return (
+                      <li
+                        key={product.id}
+                        className="card no-underline text-decoration-none bg-white shadow-xl h-full p-5 rounded-3xl transition duration-500 hover:bg-green-500 hover:text-white group-hover:text-white hover:transform hover:scale-105"
                       >
-                        <div className="card rounded-xl relative bg-white mb-3">
-                          <img
-                            src={product.image}
-                            alt=""
-                            className="h-auto w-auto mx-auto p-3 object-cover transition duration-500 group-hover:scale-105 sm:h-[120px]"
-                          />
-                        </div>
-
-                        <div className="flex flex-row cursor-pointer items-center justify-between">
-                          <div className="duration-500 hover:text-white group-hover:text-white">
-                            <h1 className="text-xl text-gray-700 group-hover:text-white">
-                              {product.name}
-                            </h1>
-
-                            <h3 className="text-xs text-gray-700 group-hover:text-white">
-                              {product.category}
-                            </h3>
-
-                            <p className="mt-2">
-                              <span className="sr-only"> Regular Price </span>
-                              <span className="tracking-wider text-gray-900 group-hover:text-white">
-                                ${product.price}
-                              </span>
-                            </p>
+                        <Link
+                          to={`/farmastack/details/${product.id}`}
+                          className="group block overflow-hidden"
+                        >
+                          <div className="card rounded-xl relative bg-white mb-3">
+                            <img
+                              src={product.image}
+                              alt=""
+                              className="h-auto w-auto mx-auto p-3 object-cover transition duration-500 group-hover:scale-105 sm:h-[120px]"
+                            />
                           </div>
-                          <div>
-                            <button
-                              // onClick={handlerProduct}
-                              className="block w-auto rounded bg-yellow-400 p-2 text-sm font-medium transition hover:scale-105"
-                            >
-                              Add to cart
-                            </button>
+
+                          <div className="flex flex-row cursor-pointer items-center justify-between">
+                            <div className="duration-500 hover:text-white group-hover:text-white">
+                              <h1 className="text-xl text-gray-700 group-hover:text-white">
+                                {product.name}
+                              </h1>
+
+                              <h3 className="text-xs text-gray-700 group-hover:text-white">
+                                {product.category}
+                              </h3>
+
+                              <p className="mt-2">
+                                <span className="sr-only"> Regular Price </span>
+                                <span className="tracking-wider text-gray-900 group-hover:text-white">
+                                  ${product.price}
+                                </span>
+                              </p>
+                            </div>
+                            <div>
+                              <button
+                                // onClick={handlerProduct}
+                                className="block w-auto rounded bg-yellow-400 p-2 text-sm font-medium transition hover:scale-105"
+                              >
+                                Add to cart
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
               ) : (
                 <p className="text-center text-gray-500">
                   No results found
