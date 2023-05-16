@@ -13,12 +13,12 @@ const Slides = ( ) => {
     },
     {
       id: 2,
-      url: "https://i.ibb.co/zbHH9Hw/Purple-and-White-Elegant-Lavender-Flowers-Cosmetics-Product-Medium-Banner-691-345-px.png",
+      url: "https://i.ibb.co/MnBgkKM/Crema-Cuerpo.webp",
       category: "Personal care",
     },
     {
       id: 3,
-      url: "https://i.ibb.co/BNwCd8x/Green-Yellow-Product-Big-Sale-Banner-Landscape.png",
+      url: "https://i.ibb.co/cCSMg2f/Maxresdefault.jpg",
       category: "Sexual health",
     },
     {

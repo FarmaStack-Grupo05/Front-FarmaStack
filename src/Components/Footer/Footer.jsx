@@ -1,13 +1,19 @@
+import { useLocation } from "react-router-dom";
 import Logo from "../../assets/logo1.png";
 const Footer = () => {
+	const location = useLocation();
+
+	if (location.pathname === "/dashboard") {
+		return null;
+	}
 	return (
 		<div>
 			<footer
 				aria-label="Site Footer"
-				className= "bg-green-500 max-w-full px-4 pb-6 pt-8 sm:px-6 lg:px-8  mt-10 text-white "
+				className="bg-green-500 max-w-full px-4 pb-6 pt-8 sm:px-6 lg:px-8  mt-10 text-white "
 			>
 				<div className="max-w-screen-xl mx-auto px-4 pb-6  sm:px-6 lg:px-8 ">
-					<img  src={Logo}  alt="Logo" className="w-24 h-24" />
+					<img src={Logo} alt="Logo" className="w-24 h-24" />
 					<div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
 						<div>
 							<div className="flex justify-center text-white sm:justify-start">
@@ -49,12 +55,7 @@ const Footer = () => {
 								</li>
 
 								<li>
-									<a
-										href="/"
-										rel="noreferrer"
-										target="_blank"
-									
-									>
+									<a href="/" rel="noreferrer" target="_blank">
 										<span className="sr-only">Instagram</span>
 										<svg
 											className="h-6 w-6"
@@ -72,12 +73,7 @@ const Footer = () => {
 								</li>
 
 								<li>
-									<a
-										href="/"
-										rel="noreferrer"
-										target="_blank"
-										
-									>
+									<a href="/" rel="noreferrer" target="_blank">
 										<span className="sr-only">Twitter</span>
 										<svg
 											className="h-6 w-6"
@@ -95,7 +91,6 @@ const Footer = () => {
 										href="https://github.com/FarmaStack-Grupo05"
 										rel="noreferrer"
 										target="_blank"
-									
 									>
 										<span className="sr-only">GitHub</span>
 										<svg
@@ -114,12 +109,7 @@ const Footer = () => {
 								</li>
 
 								<li>
-									<a
-										href="/"
-										rel="noreferrer"
-										target="_blank"
-										
-									>
+									<a href="/" rel="noreferrer" target="_blank">
 										<span className="sr-only">Dribbble</span>
 										<svg
 											className="h-6 w-6"
@@ -147,28 +137,17 @@ const Footer = () => {
 								<nav aria-label="Footer About Nav" className="mt-8">
 									<ul className=" space-y-4 text-sm">
 										<li>
-											<a
-												
-												href="/farmastack/aboutus"
-											>
-												Quienes somos
-											</a>
+											<a href="/farmastack/aboutus">Quienes somos</a>
 										</li>
 
 										<li>
-											<a
-												className="text-whit"
-												href="/farmastack/contact"
-											>
+											<a className="text-whit" href="/farmastack/contact">
 												Trabaja Con Nosotros
 											</a>
 										</li>
 
 										<li>
-											<a
-												className= "text-white"
-												href="/farmastack/contact"
-											>
+											<a className="text-white" href="/farmastack/contact">
 												Consultas
 											</a>
 										</li>
@@ -177,44 +156,30 @@ const Footer = () => {
 							</div>
 
 							<div className="text-center sm:text-left">
-								<p className=" underline text-lg font-medium">
-									Legales
-								</p>
+								<p className=" underline text-lg font-medium">Legales</p>
 
 								<nav aria-label="Footer Services Nav" className="mt-8">
 									<ul className="space-y-4 text-sm">
 										<li>
-											<a
-												className=" text-white"
-												href="/"
-											>
+											<a className=" text-white" href="/">
 												Aviso De Privacidad
 											</a>
 										</li>
 
 										<li>
-											<a
-												className=" text-white"
-												href="/"
-											>
+											<a className=" text-white" href="/">
 												Politica
 											</a>
 										</li>
 
 										<li>
-											<a
-												className=" text-white"
-												href="/"
-											>
+											<a className=" text-white" href="/">
 												Terminos Y Condiciones
 											</a>
 										</li>
 
 										<li>
-											<a
-												className= "text-white"
-												href="/"
-											>
+											<a className="text-white" href="/">
 												Google Ads
 											</a>
 										</li>
@@ -230,19 +195,13 @@ const Footer = () => {
 								<nav aria-label="Footer Helpful Nav" className="mt-8">
 									<ul className="space-y-4 text-sm">
 										<li>
-											<a
-												className="text-white"
-												href="/"
-											>
+											<a className="text-white" href="/">
 												Domicilios
 											</a>
 										</li>
 
 										<li>
-											<a
-												className="text-white"
-												href="/farmastack/products"
-											>
+											<a className="text-white" href="/farmastack/products">
 												Retiros En Tienda
 											</a>
 										</li>
@@ -252,9 +211,7 @@ const Footer = () => {
 												className="group flex justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
 												href="/farmastack/products"
 											>
-												<span className="text-white">
-													Catalogo FarmaStack
-												</span>
+												<span className="text-white">Catalogo FarmaStack</span>
 
 												<span className="relative flex h-2 w-2">
 													<span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75"></span>
@@ -267,9 +224,7 @@ const Footer = () => {
 							</div>
 
 							<div className="text-center sm:text-left">
-								<p className=" underline  font-medium">
-									Club FarmaStack
-								</p>
+								<p className=" underline  font-medium">Club FarmaStack</p>
 
 								<ul className="mt-8 space-y-4 text-sm">
 									<li>
@@ -355,26 +310,18 @@ const Footer = () => {
 							<p className="text-sm">
 								<span className="block sm:inline">All rights reserved.</span>
 
-								<a
-									className="inline-block text-white"
-									href="/"
-								>
+								<a className="inline-block text-white" href="/">
 									Terms & Conditions
 								</a>
 
 								<span>&middot;</span>
 
-								<a
-									className="inline-block text-white"
-									href="/"
-								>
+								<a className="inline-block text-white" href="/">
 									Privacy Policy
 								</a>
 							</p>
 
-							<p className="mt-4 text-sm">
-								&copy; 2023 Company Farmastack
-							</p>
+							<p className="mt-4 text-sm">&copy; 2023 Company Farmastack</p>
 						</div>
 					</div>
 				</div>
