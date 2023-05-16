@@ -27,10 +27,11 @@ import PaymentSuccess from "./views/PaymentSuccess/PaymentSuccess";
 import NotFound from "./Components/NotFound/NotFound";
 import { setDbUser } from "./redux/slices/users";
 import Admin from "./Components/Admin/Admin";
+import UserPurchases from "./views/userPurcharses/userPurchases";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
   const dispatch = useDispatch();
-  const { loginWithPopup, getAccessTokenSilently, isAuthenticated, user } =
+  const {  getAccessTokenSilently, isAuthenticated, user } =
     useAuth0();
 
   useEffect(() => {
@@ -79,6 +80,12 @@ function App() {
           path="/farmastack/contact"
           element={isAuthenticated ? <ContactMe /> : <NotFound />}
         />
+		<Route
+          exact
+          path="/farmastack/purchases"
+          element={isAuthenticated ? <UserPurchases/> : <NotFound />}
+        />
+		
 
         <Route
           exact

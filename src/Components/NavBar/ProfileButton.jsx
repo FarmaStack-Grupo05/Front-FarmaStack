@@ -88,6 +88,13 @@ function ProfileButton() {
 									Sign in
 								</a>
 							</li>
+							<li>
+								<Link
+								to="/farmastack/purchases"
+								>
+									Purchases
+								</Link>
+							</li>
 						</>
 					)}
 				</ul>
@@ -99,6 +106,7 @@ function ProfileButton() {
 						>
 							<LogoutButton />
 						</a>
+						
 					</div>
 				)}
 			</div>
