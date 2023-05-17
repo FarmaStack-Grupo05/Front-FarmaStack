@@ -8,11 +8,12 @@ import { API_URL } from "../../utils/api";
 
 const TableUsers = () => {
 	const dispatch = useDispatch();
-	const [shouldReload, setShouldReload] = useState(false);
+	const { list } = useSelector((state) => state.userState);
 
 	const handlerActive = async (id) => {
 		try {
 			await axios.put(`${API_URL}/user/${id}`);
+			dispatch(getAllUsers());
 		} catch (error) {
 			console.log(error);
 		}
@@ -34,10 +35,6 @@ const TableUsers = () => {
 		});
 	};
 
-	useEffect(() => {
-		dispatch(getAllUsers());
-	}, [dispatch, shouldReload]);
-	const { list } = useSelector((state) => state.userState);
 	return (
 		<>
 			<div className="overflow-x-auto">

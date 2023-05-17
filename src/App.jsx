@@ -27,6 +27,9 @@ import PaymentSuccess from "./views/PaymentSuccess/PaymentSuccess";
 import NotFound from "./Components/NotFound/NotFound";
 import { setDbUser } from "./redux/slices/users";
 import Admin from "./Components/Admin/Admin";
+import getOrders from "./redux/slices/orders/sliceOrder";
+import TableOrders from "./Components/TableOrders/TableOrders";
+import UserPurchases from "./views/userPurcharses/userPurchases";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	const dispatch = useDispatch();
@@ -44,6 +47,7 @@ function App() {
 			dispatch(getUser(user));
 			dispatch(getCart(user.sub));
 			dispatch(getDataBaseUser(user.email));
+			dispatch(getOrders());
 		} else {
 			localStorage.removeItem("token");
 			dispatch(getUser({}));
@@ -81,6 +85,11 @@ function App() {
 					path="/farmastack/contact"
 					element={isAuthenticated ? <ContactMe /> : <NotFound />}
 				/>
+				<Route
+					exact
+					path="/farmastack/purchases"
+					element={isAuthenticated ? <UserPurchases /> : <NotFound />}
+				/>
 
 				<Route
 					exact
@@ -89,15 +98,16 @@ function App() {
 				/>
 			</Routes>
 			<Routes>
-				{dataBaseUser?.rol === "admin" && (
-					<Route path="/dashboard/" element={<Dashboard />}>
-						<Route exact path="products" element={<TableProducts />} />
-						<Route exact path="users" element={<TableProducts />} />
-						<Route exact path="editProduct/:id" element={<EditProduct />} />
-						<Route exact path="addProduct" element={<FormProduct />} />
-						<Route exact path="*" element={<NotFound />} />
-					</Route>
-				)}
+				{/* {dataBaseUser?.rol === "admin" && ( */}
+				<Route path="/dashboard/" element={<Dashboard />}>
+					<Route exact path="products" element={<TableProducts />} />
+					<Route exact path="users" element={<TableProducts />} />
+					<Route exact path="orders" element={<TableOrders />} />
+					<Route exact path="editProduct/:id" element={<EditProduct />} />
+					<Route exact path="addProduct" element={<FormProduct />} />
+					<Route exact path="*" element={<NotFound />} />
+				</Route>
+				{/* )} */}
 			</Routes>
 			<Footer />
 		</>

@@ -41,6 +41,7 @@ const Products = () => {
 	const { results } = useSelector((state) => state.productsState.list);
 	const { next } = useSelector((state) => state.productsState.list);
 	const { previous } = useSelector((state) => state.productsState.list);
+	const { totalPages } = useSelector((state) => state.productsState.list);
 
 	const handleChangePrev = (e) => {
 		e.preventDefault();
@@ -120,7 +121,9 @@ const Products = () => {
 								</svg>
 							</a>
 
-							<p className="text-sm font-medium">Page {filters.page} of 6</p>
+							<p className="text-sm font-medium">
+								Page {filters.page} of {totalPages}
+							</p>
 
 							<a
 								className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 hover:bg-green-500 hover:text-white"

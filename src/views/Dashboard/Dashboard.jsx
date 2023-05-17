@@ -1,18 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import Logo from "../../assets/logo1.png";
 import { useLocation, Route, Routes } from "react-router-dom";
 import FormProduct from "../../Components/FormProduct/FormProduct";
 import fotoProfile from "../../assets/emma.jpg";
 import TableUsers from "../../Components/TableUsers/TableUsers";
 import TableProducts from "../../Components/TableProducts/TableProducts";
-import TableShopping from "../../Components/TableShopping/TableShopping";
+import TableOrders from "../../Components/TableOrders/TableOrders";
 import Stadictis from "../../Components/Stadictis/Stadictis";
 import EditProduct from "../../Components/EditProduct/EditProduct";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../../redux/slices/products/sliceProducts";
+import { getAllUsers } from "../../redux/slices/users/sliceUsers";
+import getOrders from "../../redux/slices/orders/sliceOrder";
 
 const Dashboard = () => {
 	const location = useLocation();
 	const { id } = useParams();
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(getAllProducts(true));
+		dispatch(getAllUsers());
+		dispatch(getOrders());
+	}, [dispatch]);
+
+	const { user } = useSelector((state) => state.userState);
+	const { dataBaseUser } = useSelector((state) => state.userState);
+
+	if (dataBaseUser?.rol !== "admin") {
+		return <Navigate to={"/"} />;
+	}
+
 	return (
 		<div className="flex bg-gray-100 min-h-screen">
 			<aside className="hidden sm:flex sm:flex-col">
@@ -67,11 +85,11 @@ const Dashboard = () => {
 								/>
 							</svg>
 						</Link>
-						<button
-							// onClick={() => setRoutes("sales")}
+						<Link
+							to={"/dashboard/orders"}
 							className="inline-flex items-center justify-center py-3 hover:text-green-400 hover:bg-green-700 focus:text-green-400 focus:bg-green-200 rounded-lg"
 						>
-							<span className="sr-only">Sales</span>
+							<span className="sr-only">Orders</span>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								fill="none"
@@ -86,32 +104,7 @@ const Dashboard = () => {
 									d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
 								/>
 							</svg>
-						</button>
-					</div>
-					<div className="inline-flex items-center justify-center h-20 w-20 border-t border-gray-700">
-						<button className="p-3 hover:text-green-400 hover:bg-green-700 focus:text-green-400 focus:bg-green-700 rounded-lg">
-							<span className="sr-only">Settings</span>
-							<svg
-								aria-hidden="true"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-								className="h-6 w-6"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth="2"
-									d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-								/>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth="2"
-									d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-								/>
-							</svg>
-						</button>
+						</Link>
 					</div>
 				</div>
 			</aside>
@@ -134,73 +127,23 @@ const Dashboard = () => {
 							/>
 						</svg>
 					</button>
-					<div className="relative w-full max-w-md sm:-ml-2">
-						<svg
-							aria-hidden="true"
-							viewBox="0 0 20 20"
-							fill="currentColor"
-							className="absolute h-6 w-6 mt-2.5 ml-2 text-green-400"
-						>
-							<path
-								fillRule="evenodd"
-								d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-								clipRule="evenodd"
-							/>
-						</svg>
-						<input
-							type="text"
-							role="search"
-							placeholder="Search..."
-							className="py-2 pl-10 pr-4 w-full border-4 border-transparent placeholder-green-400 focus:bg-green-50 rounded-lg"
-						/>
-					</div>
+
 					<div className="flex flex-shrink-0 items-center ml-auto">
 						<button className="inline-flex items-center p-2 hover:bg-green-100 focus:bg-green-100 rounded-lg">
 							<span className="sr-only">User Menu</span>
 							<div className="hidden md:flex md:flex-col md:items-end md:leading-tight">
-								<span className="font-semibold">Emmanuel Nuñez</span>
-								<span className="text-sm text-gray-600">Lecturer</span>
+								<span className="font-semibold">Admin : {user.nickname}</span>
+								<span className="text-sm text-gray-600">{user.name}</span>
 							</div>
 							<span className="h-12 w-12 ml-2 sm:ml-3 mr-2 bg-green-100 rounded-full overflow-hidden">
 								<img
-									src={fotoProfile}
+									src={user.picture}
 									alt="user profile photo"
 									className="h-full w-full object-cover"
 								/>
 							</span>
-							<svg
-								aria-hidden="true"
-								viewBox="0 0 20 20"
-								fill="currentColor"
-								className="hidden sm:block h-6 w-6 text-green-300"
-							>
-								<path
-									fillRule="evenodd"
-									d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-									clipRule="evenodd"
-								/>
-							</svg>
 						</button>
 						<div className="border-l pl-3 ml-3 space-x-1">
-							<button className="relative p-2 text-green-400 hover:bg-green-100 hover:text-green-600 focus:bg-green-100 focus:text-green-600 rounded-full">
-								<span className="sr-only">Notifications</span>
-								<span className="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full"></span>
-								<span className="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full animate-ping"></span>
-								<svg
-									aria-hidden="true"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke="currentColor"
-									className="h-6 w-6"
-								>
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth="2"
-										d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-									/>
-								</svg>
-							</button>
 							<Link to={"/"}>
 								<button className="relative p-2 text-green-400 hover:bg-green-100 hover:text-green-600 focus:bg-green-100 focus:text-green-600 rounded-full">
 									<span className="sr-only">Log out</span>
@@ -230,7 +173,18 @@ const Dashboard = () => {
 					</section>
 					<div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
 						<div className="mr-6">
-							<h1 className="text-4xl font-semibold mb-2">Administration</h1>
+							<h1 className="text-4xl font-semibold mb-2">
+								Administration
+								{location.pathname === "/dashboard/products"
+									? " Products"
+									: location.pathname === `/dashboard/users`
+									? " Users"
+									: location.pathname === `/dashboard/orders`
+									? " Orders"
+									: location.pathname === `/dashboard/addProduct`
+									? " Create"
+									: null}
+							</h1>
 						</div>
 						<div className="flex flex-wrap items-start justify-end -mb-3">
 							<Link
@@ -265,6 +219,8 @@ const Dashboard = () => {
 							<FormProduct />
 						) : location.pathname === `/dashboard/users` ? (
 							<TableUsers />
+						) : location.pathname === `/dashboard/orders` ? (
+							<TableOrders />
 						) : null}
 					</section>
 				</main>

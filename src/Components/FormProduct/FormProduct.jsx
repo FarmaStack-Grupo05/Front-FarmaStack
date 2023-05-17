@@ -47,7 +47,7 @@ const FormProduct = () => {
 			Swal.fire({
 				icon: "warning",
 				title: "Oops...",
-				text: "Datos incompletos",
+				text: "Incomplete Data",
 			});
 		} else {
 			try {
@@ -55,7 +55,7 @@ const FormProduct = () => {
 				Swal.fire({
 					icon: "success",
 					title: "Great !",
-					text: "Nuevo producto creado",
+					text: "New Product Created",
 				});
 			} catch (error) {
 				console.log(inputs);

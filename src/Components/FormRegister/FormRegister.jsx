@@ -9,13 +9,14 @@ import { API_URL } from "../../utils/api";
 const FormRegister = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const { user } = useSelector((state) => state.userState);
 	const [inputs, setInputs] = useState({
 		name: "",
+		image: user.picture,
 		address: "",
 		phone: "",
 	});
 
-	const { user } = useSelector((state) => state.userState);
 	const handlerChange = (event) => {
 		event.preventDefault();
 		const { name, value } = event.target;
@@ -32,7 +33,7 @@ const FormRegister = () => {
 			Swal.fire({
 				icon: "warning",
 				title: "Oops...",
-				text: "Completa los datos",
+				text: "Complete the data",
 			});
 		} else {
 			try {
@@ -46,7 +47,7 @@ const FormRegister = () => {
 				Swal.fire({
 					icon: "success",
 					title: "Great !",
-					text: "Registro exitoso",
+					text: "Successful Registration",
 				});
 				navigate("/farmastack/payment");
 			} catch (error) {

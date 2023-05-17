@@ -12,7 +12,7 @@ const NavBar = () => {
 	const location = useLocation();
 	const { products } = useSelector((state) => state.cartState);
 
-	if (location.pathname === "/dashboard") {
+	if (location.pathname.startsWith("/dashboard")) {
 		return null;
 	}
 
