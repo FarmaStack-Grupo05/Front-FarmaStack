@@ -6,6 +6,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { API_URL } from "../../utils/api";
 import Swal from "sweetalert2";
+import emailjs from "emailjs-com";
 
 /** @type {import("@paypal/react-paypal-js").ReactPayPalScriptOptions} */
 const paypalOptions = {
@@ -33,6 +34,23 @@ function Payment() {
 		});
 	};
 
+	const sendEmail = async (paymentId) => {
+		const templateParams = {
+			username: dataBaseUser.name,
+			to_email: dataBaseUser.email,
+			payment_id: paymentId,
+			payment_date: new Date().toLocaleDateString(),
+			product_list: cart.products.map((product) => `${product.name} x ${product.quantity}`).join(", "),
+			total_paid: cart.totalPrice,
+		};
+		await emailjs.send(
+			'personal_hotmail',
+			'template_o6nagkr',
+			templateParams,
+			'user_DaGHV8B3d5eFBnE26Pa5m'
+		)
+	}
+
 	const handlePaymentSuccess = async (data) => {
 		const paymentId = data.orderID;
 		const order = {
@@ -41,6 +59,7 @@ function Payment() {
 			userId: dataBaseUser.id,
 		}
 		const { data: paymentData } = await axios.post(`${API_URL}/order`, order)
+		sendEmail(paymentId)
 		dispatch(clearCart())
 		navigate(`/farmastack/payment/${paymentData.payment_id}`)
 	}
