@@ -99,7 +99,7 @@ function App() {
 				<Route
 					exact
 					path="/farmastack/contact"
-					element={isAuthenticated ? <ContactMe /> : <NotFound />}
+					element={<ContactMe />}
 				/>
 				<Route
 					exact
