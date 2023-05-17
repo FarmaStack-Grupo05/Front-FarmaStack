@@ -30,10 +30,11 @@ import Admin from "./Components/Admin/Admin";
 import getOrders from "./redux/slices/orders/sliceOrder";
 import TableOrders from "./Components/TableOrders/TableOrders";
 import UserPurchases from "./views/userPurcharses/userPurchases";
+import Swal from "sweetalert2";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	const dispatch = useDispatch();
-	const { loginWithPopup, getAccessTokenSilently, isAuthenticated, user } =
+	const { getAccessTokenSilently, isAuthenticated, user, logout } =
 		useAuth0();
 
 	useEffect(() => {
@@ -57,6 +58,21 @@ function App() {
 	}, [dispatch, getAccessTokenSilently, isAuthenticated, user]);
 
 	const { dataBaseUser } = useSelector((state) => state.userState);
+
+	useEffect(() => {
+		if (dataBaseUser && !dataBaseUser.active) {
+			Swal.fire({
+				title: "Usuario Bloqueado",
+				text: "Comuniquese con el administrador",
+				icon: "error",
+				confirmButtonText: "Ok",
+			}).then((result) => {
+				if (result.isConfirmed) {
+					logout();
+				}
+			});
+		}
+	}, [dataBaseUser, logout])
 
 	return (
 		<>
@@ -83,7 +99,7 @@ function App() {
 				<Route
 					exact
 					path="/farmastack/contact"
-					element={isAuthenticated ? <ContactMe /> : <NotFound />}
+					element={<ContactMe />}
 				/>
 				<Route
 					exact
