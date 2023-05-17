@@ -110,6 +110,7 @@ function Payment() {
 						onApprove={handlePaymentSuccess}
 						onError={handlePaymentError}
 						style={{ layout: "vertical" }}
+						forceReRender={[cart.totalPrice]}
 					/>
 				</div>
 			</div>
