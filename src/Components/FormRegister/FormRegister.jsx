@@ -33,7 +33,7 @@ const FormRegister = () => {
 			Swal.fire({
 				icon: "warning",
 				title: "Oops...",
-				text: "Completa los datos",
+				text: "Complete the data",
 			});
 		} else {
 			try {
@@ -47,7 +47,7 @@ const FormRegister = () => {
 				Swal.fire({
 					icon: "success",
 					title: "Great !",
-					text: "Registro exitoso",
+					text: "Successful Registration",
 				});
 				navigate("/farmastack/payment");
 			} catch (error) {

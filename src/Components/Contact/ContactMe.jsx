@@ -27,8 +27,8 @@ const ContactMe = () => {
 		event.preventDefault();
 		if (!verifyInputs()) return Swal.fire({
 			icon: "warning",
-			title: "Datos incompletos",
-			text: "Mensaje +10 carácteres",
+			title: "Incomplete Data",
+			text: "Message +10 characters",
 		});
 
 		setSending(true);
@@ -52,8 +52,8 @@ const ContactMe = () => {
 				
 				Swal.fire({
 					icon: "success",
-					title: "Datos Completados",
-					text: "Mensaje ¡Exitoso!",
+					title: "Completed Data",
+					text: "Message Success!",
 				});
 			})
 			.catch((e) => console.error("mistakes have ben made", e));
