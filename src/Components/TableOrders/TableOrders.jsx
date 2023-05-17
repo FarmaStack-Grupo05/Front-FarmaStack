@@ -7,14 +7,41 @@ const TableOrders = () => {
 	const ordersList = useSelector((state) => state.orderState.orderList);
 
 	const handlerDetail = (items) => {
-		console.log(items[0].Product.name);
+		// Crear un elemento div para contener el contenido personalizado
+		const content = document.createElement("div");
+
+		// Recorrer los items y agregar los elementos correspondientes al contenido personalizado
+		items.forEach((item) => {
+			const itemContainer = document.createElement("div");
+
+			// Agregar imagen
+			const imageElement = document.createElement("img");
+			imageElement.src = item.Product.image;
+			imageElement.alt = "Custom image";
+			imageElement.style.width = "100px"; // Establecer el ancho deseado
+			imageElement.style.height = "auto"; // Permitir que la altura se ajuste automáticamente
+			imageElement.style.marginBottom = "4px"; // Agregar margen inferior de 4px
+			itemContainer.appendChild(imageElement);
+
+			// Agregar texto
+			const titleElement = document.createElement("h4");
+			titleElement.textContent = `Quantity: ${item.quantity}`;
+			itemContainer.appendChild(titleElement);
+
+			const textElement = document.createElement("p");
+			textElement.textContent = `$ ${item.price} Und.`;
+			itemContainer.appendChild(textElement);
+
+			content.appendChild(itemContainer);
+		});
+
+		// Mostrar la alerta de Swal con el contenido personalizado
 		Swal.fire({
-			title: `Quantity ${items[0].quantity}`,
-			text: `$ ${items[0].price} Und.`,
-			imageUrl: items[0].Product.image,
-			imageWidth: 400,
-			imageHeight: 200,
-			imageAlt: "Custom image",
+			title: "Orders Details",
+			html: content,
+			customClass: {
+				content: "py-4", // Agrega padding vertical al contenido para espaciarlo
+			},
 		});
 	};
 	return (
