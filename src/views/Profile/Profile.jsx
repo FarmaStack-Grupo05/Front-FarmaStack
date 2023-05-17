@@ -77,7 +77,7 @@ const Profile = () => {
 				Swal.fire({
 					icon: "success",
 					title: "Great !",
-					text: `The user was edited ${id}`,
+					text: `The user was edited ${dataBaseUser.id}`,
 				});
 			} catch (error) {
 				console.log(error);

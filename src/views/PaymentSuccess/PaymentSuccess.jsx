@@ -4,12 +4,15 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../utils/api";
 
+
 function PaymentSuccess() {
   const { paymentId } = useParams();
   const [payment, setPayment] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const cart = useSelector((state) => state.cartState);
   const { dataBaseUser: user } = useSelector((state) => state.userState);
+
+
 
   useEffect(() => {
     const getPayment = async () => {
@@ -21,12 +24,14 @@ function PaymentSuccess() {
       setPayment(data);
       setIsLoading(false);
     }
+    
 
     if (user) {
       getPayment();
     }
   }, [cart.products, paymentId, user])
 
+  console.log(payment)
   if (isLoading) {
     return (
       <div className="py-6 px-4 flex flex-col items-center">

@@ -28,7 +28,7 @@ function ProfileButton() {
 			>
 				{isAuthenticated ? (
 					<img
-						src={user?.picture || emma}
+						src={dataBaseUser?.image || user?.picture}
 						alt="User dropdown"
 						className="w-10 h-10 rounded-full"
 					/>
