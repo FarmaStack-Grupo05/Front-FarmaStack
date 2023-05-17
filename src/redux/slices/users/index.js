@@ -6,6 +6,7 @@ export const userSlice = createSlice({
 		list: [],
 		user: {},
 		dataBaseUser: null,
+		isLoadingDbUser: true,
 	},
 	reducers: {
 		setUserList: (state, action) => {
@@ -16,6 +17,7 @@ export const userSlice = createSlice({
 		},
 		setDbUser: (state, action) => {
 			state.dataBaseUser = action.payload;
+			state.isLoadingDbUser = false;
 		},
 	},
 });
