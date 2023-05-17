@@ -27,7 +27,6 @@ function PaymentSuccess() {
 		}
 	}, [cart.products, paymentId, user]);
 
-	console.log(payment);
 	if (isLoading) {
 		return (
 			<div className="py-6 px-4 flex flex-col items-center">

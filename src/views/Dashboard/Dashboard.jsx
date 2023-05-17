@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import Logo from "../../assets/logo1.png";
 import { useLocation, Route, Routes } from "react-router-dom";
 import FormProduct from "../../Components/FormProduct/FormProduct";
@@ -18,7 +18,6 @@ const Dashboard = () => {
 	const location = useLocation();
 	const { id } = useParams();
 	const dispatch = useDispatch();
-
 	useEffect(() => {
 		dispatch(getAllProducts(true));
 		dispatch(getAllUsers());
@@ -26,6 +25,11 @@ const Dashboard = () => {
 	}, [dispatch]);
 
 	const { user } = useSelector((state) => state.userState);
+	const { dataBaseUser } = useSelector((state) => state.userState);
+
+	if (dataBaseUser?.rol !== "admin") {
+		return <Navigate to={"/"} />;
+	}
 
 	return (
 		<div className="flex bg-gray-100 min-h-screen">

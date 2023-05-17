@@ -98,16 +98,16 @@ function App() {
 				/>
 			</Routes>
 			<Routes>
-				{dataBaseUser?.rol === "admin" && (
-					<Route path="/dashboard/" element={<Dashboard />}>
-						<Route exact path="products" element={<TableProducts />} />
-						<Route exact path="users" element={<TableProducts />} />
-						<Route exact path="orders" element={<TableOrders />} />
-						<Route exact path="editProduct/:id" element={<EditProduct />} />
-						<Route exact path="addProduct" element={<FormProduct />} />
-						<Route exact path="*" element={<NotFound />} />
-					</Route>
-				)}
+				{/* {dataBaseUser?.rol === "admin" && ( */}
+				<Route path="/dashboard/" element={<Dashboard />}>
+					<Route exact path="products" element={<TableProducts />} />
+					<Route exact path="users" element={<TableProducts />} />
+					<Route exact path="orders" element={<TableOrders />} />
+					<Route exact path="editProduct/:id" element={<EditProduct />} />
+					<Route exact path="addProduct" element={<FormProduct />} />
+					<Route exact path="*" element={<NotFound />} />
+				</Route>
+				{/* )} */}
 			</Routes>
 			<Footer />
 		</>
