@@ -40,7 +40,7 @@ const TableProducts = () => {
 		Swal.fire(description);
 	};
 	useEffect(() => {
-		getAllProducts(true);
+		dispatch(getAllProducts(true));
 	}, [dispatch]);
 	const { allProducts } = useSelector((state) => state.productsState);
 

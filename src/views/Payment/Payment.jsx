@@ -5,7 +5,10 @@ import { clearCart } from "../../redux/slices/cart/sliceCart";
 import axios from "axios";
 import { useEffect } from "react";
 import { API_URL } from "../../utils/api";
+import Swal from "sweetalert2";
+import emailjs from "emailjs-com";
 
+/** @type {import("@paypal/react-paypal-js").ReactPayPalScriptOptions} */
 const paypalOptions = {
 	"client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID, // Viene de Paypal
 	currency: "USD", // En que moneda se va a cobrar
@@ -16,7 +19,7 @@ function Payment() {
 	const cart = useSelector((state) => state.cartState);
 	const navigate = useNavigate();
 	const { user: auth0User } = useSelector((state) => state.userState);
-	const { dataBaseUser } = useSelector((state) => state.userState);
+	const { dataBaseUser, isLoadingDbUser } = useSelector((state) => state.userState);
 	const dispatch = useDispatch();
 
 	const handleCreateOrder = (data, actions) => {
@@ -31,6 +34,23 @@ function Payment() {
 		});
 	};
 
+	const sendEmail = async (paymentId) => {
+		const templateParams = {
+			username: dataBaseUser.name,
+			to_email: dataBaseUser.email,
+			payment_id: paymentId,
+			payment_date: new Date().toLocaleDateString(),
+			product_list: cart.products.map((product) => `${product.name} x ${product.quantity}`).join(", "),
+			total_paid: cart.totalPrice,
+		};
+		await emailjs.send(
+			'personal_hotmail',
+			'template_o6nagkr',
+			templateParams,
+			'user_DaGHV8B3d5eFBnE26Pa5m'
+		)
+	}
+
 	const handlePaymentSuccess = async (data) => {
 		const paymentId = data.orderID;
 		const order = {
@@ -39,12 +59,22 @@ function Payment() {
 			userId: dataBaseUser.id,
 		}
 		const { data: paymentData } = await axios.post(`${API_URL}/order`, order)
+		sendEmail(paymentId)
 		dispatch(clearCart())
 		navigate(`/farmastack/payment/${paymentData.payment_id}`)
 	}
 
+	const handlePaymentError = (error) => {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'There was an error processing your payment. Please try again later.',
+		});
+		console.error(error);
+	}
+
 	useEffect(() => {
-		if (!dataBaseUser) {
+		if (!dataBaseUser && !isLoadingDbUser) {
 			navigate("/farmastack/formRegister");
 		}
 	}, [dataBaseUser, navigate])
@@ -55,7 +85,7 @@ function Payment() {
 				<div className=" shadow col-span-3 md:col-span-2 px-2 md:px-4 py-4">
 					<h1 className="text-2xl font-bold">Summary:</h1>
 					<p className="text-md text-gray-700 my-2">
-					Different Products in the Cart: {cart.products.length}
+						Different Products in the Cart: {cart.products.length}
 					</p>
 					<ul className="divide-y divide-gray-300 divide-solid">
 						{cart.products.map((product) => (
@@ -91,13 +121,15 @@ function Payment() {
 						<p className="text-2xl font-bold">${cart.totalPrice}</p>
 					</div>
 				</div>
-                 
+
 				<div className="border-l shadow-lg col-span-3 md:col-span-1 px-4 md:px-8">
 					<h1 className="text-xl font-semibold my-4">Payment methods:</h1>
 					<PayPalButtons
 						createOrder={handleCreateOrder}
 						onApprove={handlePaymentSuccess}
+						onError={handlePaymentError}
 						style={{ layout: "vertical" }}
+						forceReRender={[cart.totalPrice]}
 					/>
 				</div>
 			</div>

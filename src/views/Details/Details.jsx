@@ -57,7 +57,6 @@ const Details = () => {
 		// Renderiza las estrellas
 		return <div className="flex justify-center mt-6 p-3">{stars}</div>;
 	};
-	console.log(getRating());
 
 	const handleAddQuantity = () => {
 		if (productQuantity < detail.stock) {

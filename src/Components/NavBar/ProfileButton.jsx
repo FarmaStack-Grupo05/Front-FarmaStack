@@ -28,7 +28,7 @@ function ProfileButton() {
 			>
 				{isAuthenticated ? (
 					<img
-						src={user?.picture || emma}
+						src={dataBaseUser?.image || user?.picture}
 						alt="User dropdown"
 						className="w-10 h-10 rounded-full"
 					/>
@@ -68,7 +68,7 @@ function ProfileButton() {
 							)}
 							<li>
 								<Link
-									to="/farmastack/profile"
+									to={`/farmastack/profile`}
 									className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
 								>
 									Profile
