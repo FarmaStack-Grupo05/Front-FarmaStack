@@ -73,7 +73,7 @@ const Profile = () => {
 			});
 		} else {
 			try {
-				await axios.put(`${API_URL}/user/edit/${dataBaseUser.id}`, inputs);
+				await axios.put(`${API_URL}/user/edit/${dataBaseUser?.id}`, inputs);
 				Swal.fire({
 					icon: "success",
 					title: "Great !",
