@@ -109,20 +109,17 @@ function UserPurchases() {
 
   return (
     <div>
-      <h2 className="text-4xl font-bold text-center mb-4">Shopping</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
-        {info?.flatMap((cualquierCosa) =>
-          cualquierCosa.OrderItems?.map((e, index) => {
-            const productId = e.Product.id;
-            const isSingleProduct = cualquierCosa.OrderItems.length === 1;
+    <h2 className="text-4xl font-bold text-center mb-4">Shopping</h2>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+      {info?.flatMap((cualquierCosa) =>
+        cualquierCosa.OrderItems?.map((e, index) => {
+          const productId = e.Product.id;
 
-            return (
-              <div
-                key={index}
-                className={`border border-gray-200 rounded-md p-4 flex flex-col ${
-                  isSingleProduct ? "mx-auto" : ""
-                }`}
-              >
+          return (
+            <div
+              key={index}
+              className="border border-gray-200 rounded-md p-4 flex flex-col mx-auto"
+            >
                 <Link to={`/farmastack/details/${e.ProductId}`}>
                   <img
                     className="no-underline border-none mx-auto h-auto w-auto object-cover transition duration-500 group-hover:scale-105 sm:h-[250px] rounded-md"
