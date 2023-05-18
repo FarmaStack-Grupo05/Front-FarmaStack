@@ -19,9 +19,9 @@ const TableOrders = () => {
 			imageElement.src = item.Product.image;
 			imageElement.alt = "Custom image";
 			imageElement.style.width = "100px"; // Establecer el ancho deseado
-			imageElement.style.height = "auto"; // Permitir que la altura se ajuste automáticamente
-			imageElement.style.marginBottom = "4px"; // Agregar margen inferior de 4px
+			imageElement.style.height = "100px"; // Permitir que la altura se ajuste automáticamente
 			imageElement.style.margin = "auto"; // Agregar margen inferior de 4px
+			imageElement.style.marginTop = "10px"; // Agregar margen inferior de 4px
 			itemContainer.appendChild(imageElement);
 
 			// Agregar texto
