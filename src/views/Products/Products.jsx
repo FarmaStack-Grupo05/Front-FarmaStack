@@ -6,7 +6,6 @@ import Search from "../../Components/Search/Search";
 
 const Products = () => {
 	const { state } = useLocation();
-
 	const dispatch = useDispatch();
 	const [isFiltersVisible, setIsFiltersVisible] = useState(false);
 
@@ -219,7 +218,9 @@ const Products = () => {
 									onChange={handlerChange}
 									name="category"
 								>
-									<option value={"default"}>-- all -</option>
+									<option value={"default"}>
+										{state?.category || "-- all --"}
+									</option>
 									<option value="medicines">Medicines</option>
 									<option value="Sexual health">Sexual health</option>
 									<option value="Personal care">Personal care</option>

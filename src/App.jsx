@@ -33,8 +33,13 @@ import UserPurchases from "./views/userPurcharses/userPurchases";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	const dispatch = useDispatch();
-	const { loginWithPopup, getAccessTokenSilently, isAuthenticated, user } =
-		useAuth0();
+	const {
+		loginWithPopup,
+		getAccessTokenSilently,
+		isAuthenticated,
+		user,
+		logout,
+	} = useAuth0();
 
 	useEffect(() => {
 		const getAccessToken = async () => {
@@ -57,6 +62,21 @@ function App() {
 	}, [dispatch, getAccessTokenSilently, isAuthenticated, user]);
 
 	const { dataBaseUser } = useSelector((state) => state.userState);
+
+	useEffect(() => {
+		if (dataBaseUser && !dataBaseUser.active) {
+			Swal.fire({
+				title: "Usuario Bloqueado",
+				text: "Comuniquese con el administrador",
+				icon: "error",
+				confirmButtonText: "Ok",
+			}).then((result) => {
+				if (result.isConfirmed) {
+					logout();
+				}
+			});
+		}
+	}, [dataBaseUser, logout]);
 
 	return (
 		<>
