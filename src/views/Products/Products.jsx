@@ -143,7 +143,9 @@ const Products = () => {
 								</svg>
 							</a>
 						</div>
-						<Search />
+						<div>
+							<Search />
+						</div>
 					</div>
 
 					<div className="mt-8 block lg:hidden">
@@ -217,11 +219,10 @@ const Products = () => {
 									className="w-full mt-1 rounded border-green-300 text-green-700 text-sm font-medium"
 									onChange={handlerChange}
 									name="category"
+									value={filters.category}
 								>
-									<option value={"default"}>
-										{state?.category || "-- all --"}
-									</option>
-									<option value="medicines">Medicines</option>
+									<option value={"default"}>-- all --</option>
+									<option value="Medicines">Medicines</option>
 									<option value="Sexual health">Sexual health</option>
 									<option value="Personal care">Personal care</option>
 									<option value="Maternity">Maternity</option>
