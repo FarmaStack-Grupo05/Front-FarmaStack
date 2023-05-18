@@ -26,11 +26,13 @@ const TableUsers = () => {
 			showCancelButton: true,
 			confirmButtonColor: "#3085d6",
 			cancelButtonColor: "#d33",
-			confirmButtonText: "Yes, active it!",
+			confirmButtonText: `Yes, ${
+				list.find((p) => p.id === id).active ? "deactivate" : "activate"
+			} user !`,
 		}).then((result) => {
 			if (result.isConfirmed) {
 				handlerActive(id);
-				Swal.fire("Activate!", "The product has change state.", "success");
+				Swal.fire("Activate!", "The user has change state.", "success");
 			}
 		});
 	};
