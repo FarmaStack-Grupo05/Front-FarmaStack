@@ -30,16 +30,11 @@ import Admin from "./Components/Admin/Admin";
 import getOrders from "./redux/slices/orders/sliceOrder";
 import TableOrders from "./Components/TableOrders/TableOrders";
 import UserPurchases from "./views/userPurcharses/userPurchases";
+import Swal from "sweetalert2";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	const dispatch = useDispatch();
-	const {
-		loginWithPopup,
-		getAccessTokenSilently,
-		isAuthenticated,
-		user,
-		logout,
-	} = useAuth0();
+	const { getAccessTokenSilently, isAuthenticated, user, logout } = useAuth0();
 
 	useEffect(() => {
 		const getAccessToken = async () => {
@@ -100,11 +95,7 @@ function App() {
 					element={isAuthenticated ? <Dashboard /> : <Admin />}
 				/>
 				<Route exact path="/farmastack/products" element={<Products />} />
-				<Route
-					exact
-					path="/farmastack/contact"
-					element={isAuthenticated ? <ContactMe /> : <NotFound />}
-				/>
+				<Route exact path="/farmastack/contact" element={<ContactMe />} />
 				<Route
 					exact
 					path="/farmastack/purchases"

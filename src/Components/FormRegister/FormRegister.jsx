@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,7 @@ import { API_URL } from "../../utils/api";
 const FormRegister = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const { user } = useSelector((state) => state.userState);
+	const { user, dataBaseUser } = useSelector((state) => state.userState);
 	const [inputs, setInputs] = useState({
 		name: "",
 		image: user.picture,
@@ -55,6 +55,12 @@ const FormRegister = () => {
 			}
 		}
 	};
+
+	useEffect(() => {
+		if (dataBaseUser) {
+			navigate("/farmastack/payment");
+		}
+	}, [dataBaseUser]);
 
 	return (
 		<div className="flex justify-center py-4">
