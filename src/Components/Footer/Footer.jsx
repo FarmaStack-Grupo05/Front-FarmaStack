@@ -28,7 +28,7 @@ const Footer = () => {
 
               <ul className="mt-8 flex justify-center gap-6 sm:justify-start md:gap-8">
                 <li>
-                  <Link to={"https://www.instagram.com/farmastack.drogue123/?igshid=ZGUzMzM3NWJiOQ%3D%3D"}
+                  <a href="https://www.instagram.com/farmastack.drogue123/?igshid=ZGUzMzM3NWJiOQ%3D%3D"
                     rel="noreferrer"
                     target="_blank"
                   >
@@ -45,10 +45,10 @@ const Footer = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link to={"https://github.com/FarmaStack-Grupo05"}
+                  <a href="https://github.com/FarmaStack-Grupo05"
                     
                     rel="noreferrer"
                     target="_blank"
@@ -66,7 +66,7 @@ const Footer = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                  </Link>
+                  </a>
                 </li>
                 <li>
                   <Link to={"/farmastack/aboutus"}
@@ -90,7 +90,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to={"https://www.linkedin.com/tu_perfil"}
+                <Link to={"/farmastack/aboutus"}
                     rel="noreferrer"
                     target="_blank"
                   >
@@ -136,12 +136,12 @@ const Footer = () => {
                 <nav aria-label="Footer Helpful Nav" className="mt-8">
                   <ul className="space-y-4 text-sm">
                     <li>
-                      <Link to={"https://www.instagram.com/farmastack.drogue123/?igshid=ZGUzMzM3NWJiOQ%3D%3D"}
+                      <a href="https://www.instagram.com/farmastack.drogue123/?igshid=ZGUzMzM3NWJiOQ%3D%3D"
                         className="text-white"
                         rel="noreferrer"
                         target="_blank">
                         Our Networks
-                      </Link>
+                      </a>
                     </li>
 
                     <li>
