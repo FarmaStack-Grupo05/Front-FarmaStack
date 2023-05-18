@@ -23,7 +23,9 @@ function UserPurchases() {
 
   const postReviews = async () => {
     try {
-      const selectedProducts = Object.keys(ratings).filter((productId) => ratings[productId] > 0);
+      const selectedProducts = Object.keys(ratings).filter(
+        (productId) => ratings[productId] > 0
+      );
 
       if (selectedProducts.length === 0) {
         Swal.fire({
@@ -55,7 +57,6 @@ function UserPurchases() {
     }
   };
 
-
   useEffect(() => {
     if (user) {
       getUserPurchases();
@@ -63,15 +64,21 @@ function UserPurchases() {
   }, [user]);
 
   const handleRatingChange = (productId, value) => {
-    // Verificar si el producto ya ha sido calificado
     if (isProductRated(productId)) {
-      return;
+      setRatings((prevRatings) => ({
+        ...prevRatings,
+        [productId]: value,
+      }));
+    } else {
+      setRatedProducts((prevRatedProducts) => [
+        ...prevRatedProducts,
+        productId,
+      ]);
+      setRatings((prevRatings) => ({
+        ...prevRatings,
+        [productId]: value,
+      }));
     }
-
-    setRatings((prevRatings) => ({
-      ...prevRatings,
-      [productId]: value,
-    }));
 
     const hasRating = Object.values({
       ...ratings,
@@ -83,12 +90,21 @@ function UserPurchases() {
   const isProductRated = (productId) => ratedProducts.includes(productId);
 
   const handleProductRating = (productId) => {
-    if (!isProductRated(productId)) {
+    if (isProductRated(productId)) {
+      setRatings((prevRatings) => {
+        const updatedRatings = { ...prevRatings };
+        delete updatedRatings[productId];
+        return updatedRatings;
+      });
+    } else {
       setRatedProducts((prevRatedProducts) => [
         ...prevRatedProducts,
         productId,
       ]);
     }
+
+    const hasRating = Object.values(ratings).some((rating) => rating > 0);
+    setIsReviewEnabled(hasRating);
   };
 
   return (
@@ -98,10 +114,14 @@ function UserPurchases() {
         {info?.flatMap((cualquierCosa) =>
           cualquierCosa.OrderItems?.map((e, index) => {
             const productId = e.Product.id;
+            const isSingleProduct = cualquierCosa.OrderItems.length === 1;
+
             return (
               <div
                 key={index}
-                className="border border-gray-200 rounded-md p-4 flex flex-col"
+                className={`border border-gray-200 rounded-md p-4 flex flex-col ${
+                  isSingleProduct ? "mx-auto" : ""
+                }`}
               >
                 <Link to={`/farmastack/details/${e.ProductId}`}>
                   <img
@@ -123,18 +143,18 @@ function UserPurchases() {
                         key={value}
                         onClick={() => {
                           handleRatingChange(productId, value);
-                          handleProductRating(productId);
                         }}
                         className={`text-xl focus:outline-none ${
+                          isProductRated(productId) &&
                           ratings[productId] >= value
                             ? "text-yellow-500"
                             : "text-gray-400"
                         }`}
-                        disabled={isProductRated(productId)}
                       >
                         ★
                       </button>
                     ))}
+
                     <button
                       onClick={postReviews}
                       className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 ml-2 rounded"
