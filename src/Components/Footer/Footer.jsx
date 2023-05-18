@@ -116,12 +116,13 @@ const Footer = () => {
                 <nav aria-label="Footer About Nav" className="mt-8">
                   <ul className=" space-y-4 text-sm">
                     <li>
-                      <a href="/farmastack/aboutus">About Us
+                      <a href="/farmastack/aboutus"target="_blank">About Us
 </a>
                     </li>
 
                     <li>
-                      <a className="text-whit" href="/farmastack/contact">
+                      <a className="text-whit" href="/farmastack/contact"
+                      target="_blank">
                       Work With Us
 
                       </a>
@@ -139,13 +140,15 @@ const Footer = () => {
                       <a
                         className="text-white"
                         href="https://www.instagram.com/farmastack.drogue123/?igshid=ZGUzMzM3NWJiOQ%3D%3D"
-                      >
+                        rel="noreferrer"
+                        target="_blank">
                         Our Networks
                       </a>
                     </li>
 
                     <li>
-                      <a className="text-white" href="/farmastack/products">
+                      <a className="text-white" href="/farmastack/products" rel="noreferrer"
+                    target="_blank">
                       Withdrawals In Store
                       </a>
                     </li>
@@ -160,7 +163,7 @@ const Footer = () => {
                   <li>
                     <a
                       className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
-                      href="/farmastack/contact"
+                      href="/farmastack/contact" target="_blank"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +185,7 @@ const Footer = () => {
                   <li>
                     <a
                       className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
-                      href="/farmastack/products"
+                      href="/farmastack/products"target="_blank"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

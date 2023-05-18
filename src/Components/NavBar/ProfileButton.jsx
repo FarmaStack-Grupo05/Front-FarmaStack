@@ -10,11 +10,11 @@ import { useSelector } from "react-redux";
 function ProfileButton() {
 	const [isOpen, setIsOpen] = useState(false);
 	const { user, isAuthenticated } = useAuth0();
+	const { dataBaseUser } = useSelector((state) => state.userState);
 
 	const toggleDropdown = () => {
 		setIsOpen(!isOpen);
 	};
-	const { dataBaseUser } = useSelector((state) => state.userState);
 
 	return (
 		<>
@@ -46,7 +46,7 @@ function ProfileButton() {
 				onMouseLeave={() => setIsOpen(false)}
 			>
 				<div className="px-4 py-3 text-sm text-green-900 dark:text-white">
-					<div>{user?.name || "Guest"}</div>
+					<div>{dataBaseUser?.name || user?.name || "Guest"}</div>
 					<div className="font-medium truncate">{user?.email}</div>
 				</div>
 				<ul

@@ -1,12 +1,16 @@
 import emailjs from "emailjs-com";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const ContactMe = () => {
 	const [name, setName] = useState("");
 	const [msg, setMsg] = useState("");
 	const [email, setEmail] = useState("");
 	const [sending, setSending] = useState(false);
+	const { dataBaseUser } = useSelector((state) => state.userState);
+	const { user } = useAuth0();
 
 	const resetInputs = () => {
 		setName("");
@@ -58,6 +62,13 @@ const ContactMe = () => {
 			})
 			.catch((e) => console.error("mistakes have ben made", e));
 	};
+
+	useEffect(() => {
+		if (dataBaseUser || user) {
+			setName(dataBaseUser?.name || user?.name);
+			setEmail(dataBaseUser?.email || user?.email);
+		}
+	}, [dataBaseUser])
 
 	return (
 		<div className="flex justify-center">
