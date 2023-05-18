@@ -34,8 +34,7 @@ import Swal from "sweetalert2";
 // npx tailwindcss -i ./src/style.css -o ./dist/output.css--watch  ***PARA ACTUALIZAR ESTILOS*********
 function App() {
 	const dispatch = useDispatch();
-	const { getAccessTokenSilently, isAuthenticated, user, logout } =
-		useAuth0();
+	const { getAccessTokenSilently, isAuthenticated, user, logout } = useAuth0();
 
 	useEffect(() => {
 		const getAccessToken = async () => {
@@ -72,7 +71,7 @@ function App() {
 				}
 			});
 		}
-	}, [dataBaseUser, logout])
+	}, [dataBaseUser, logout]);
 
 	return (
 		<>
@@ -96,11 +95,7 @@ function App() {
 					element={isAuthenticated ? <Dashboard /> : <Admin />}
 				/>
 				<Route exact path="/farmastack/products" element={<Products />} />
-				<Route
-					exact
-					path="/farmastack/contact"
-					element={<ContactMe />}
-				/>
+				<Route exact path="/farmastack/contact" element={<ContactMe />} />
 				<Route
 					exact
 					path="/farmastack/purchases"

@@ -21,6 +21,7 @@ const TableOrders = () => {
 			imageElement.style.width = "100px"; // Establecer el ancho deseado
 			imageElement.style.height = "auto"; // Permitir que la altura se ajuste automáticamente
 			imageElement.style.marginBottom = "4px"; // Agregar margen inferior de 4px
+			imageElement.style.margin = "auto"; // Agregar margen inferior de 4px
 			itemContainer.appendChild(imageElement);
 
 			// Agregar texto
