@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import Logo from "../../assets/logo1.png";
+import { Link } from "react-router-dom";
 const Footer = () => {
   const location = useLocation();
 
@@ -27,8 +28,7 @@ const Footer = () => {
 
               <ul className="mt-8 flex justify-center gap-6 sm:justify-start md:gap-8">
                 <li>
-                  <a
-                    href="https://www.instagram.com/farmastack.drogue123/?igshid=ZGUzMzM3NWJiOQ%3D%3D"
+                  <a href="https://www.instagram.com/farmastack.drogue123/?igshid=ZGUzMzM3NWJiOQ%3D%3D"
                     rel="noreferrer"
                     target="_blank"
                   >
@@ -48,8 +48,8 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="https://github.com/FarmaStack-Grupo05"
+                  <a href="https://github.com/FarmaStack-Grupo05"
+                    
                     rel="noreferrer"
                     target="_blank"
                   >
@@ -69,8 +69,8 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="/farmastack/aboutus"
+                  <Link to={"/farmastack/aboutus"}
+                   
                     rel="noreferrer"
                     target="_blank"
                   >
@@ -87,11 +87,10 @@ const Footer = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="https://www.linkedin.com/tu_perfil"
+                <Link to={"/farmastack/aboutus"}
                     rel="noreferrer"
                     target="_blank"
                   >
@@ -104,7 +103,7 @@ const Footer = () => {
                     >
                       {/* <!-- Icono de LinkedIn --> */}
                     </svg>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -116,16 +115,16 @@ const Footer = () => {
                 <nav aria-label="Footer About Nav" className="mt-8">
                   <ul className=" space-y-4 text-sm">
                     <li>
-                      <a href="/farmastack/aboutus"target="_blank">About Us
-</a>
+                      <Link to={"/farmastack/aboutus"}target="_blank">About Us
+</Link>
                     </li>
 
                     <li>
-                      <a className="text-whit" href="/farmastack/contact"
+                      <Link to={"/farmastack/contact"} className="text-whit"
                       target="_blank">
                       Work With Us
 
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </nav>
@@ -137,9 +136,8 @@ const Footer = () => {
                 <nav aria-label="Footer Helpful Nav" className="mt-8">
                   <ul className="space-y-4 text-sm">
                     <li>
-                      <a
+                      <a href="https://www.instagram.com/farmastack.drogue123/?igshid=ZGUzMzM3NWJiOQ%3D%3D"
                         className="text-white"
-                        href="https://www.instagram.com/farmastack.drogue123/?igshid=ZGUzMzM3NWJiOQ%3D%3D"
                         rel="noreferrer"
                         target="_blank">
                         Our Networks
@@ -147,10 +145,10 @@ const Footer = () => {
                     </li>
 
                     <li>
-                      <a className="text-white" href="/farmastack/products" rel="noreferrer"
+                      <Link to={"/farmastack/products"} className="text-white"rel="noreferrer"
                     target="_blank">
                       Withdrawals In Store
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </nav>
@@ -161,9 +159,9 @@ const Footer = () => {
 
                 <ul className="mt-8 space-y-4 text-sm">
                   <li>
-                    <a
+                    <Link to={"/farmastack/contact"}
                       className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
-                      href="/farmastack/contact" target="_blank"
+                    target="_blank"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -180,12 +178,12 @@ const Footer = () => {
                         />
                       </svg>
                       <span className="flex-1">Sign Up</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link to={"/farmastack/products"}
                       className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
-                      href="/farmastack/products"target="_blank"
+                    target="_blank"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -202,7 +200,7 @@ const Footer = () => {
                         />
                       </svg>
                       <span className="flex-1">Benefits</span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -212,13 +210,13 @@ const Footer = () => {
             <div className="text-center sm:flex sm:justify-between sm:text-left">
               <p className="text-sm">
                 <span className="block sm:inline">All rights reserved.</span>
-                <a className="inline-block text-white" href="/">
+                <Link to={"/"} className="inline-block text-white">
                   Terms & Conditions
-                </a>
+                </Link>
                 <span>&middot;</span>
-                <a className="inline-block text-white" href="/">
+                <Link to={"/"} className="inline-block text-white">
                   Privacy Policy
-                </a>
+                </Link>
               </p>
               <p className="mt-4 text-sm">&copy; 2023 Company Farmastack</p>
             </div>
