@@ -14,7 +14,7 @@ const Footer = () => {
 				className="bg-green-500 max-w-full px-4 pb-6 pt-8 sm:px-6 lg:px-8  mt-10 text-white "
 			>
 				<div className="max-w-screen-xl mx-auto px-4 pb-6  sm:px-6 lg:px-8 ">
-					<img src={Logo} alt="Logo" className="w-24 h-24 mt-8" />
+					<img src={Logo} alt="Logo" className="w-20 h-20 mt-2" />
 					<div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
 						<div>
 							<div className="flex justify-center text-white sm:justify-start">
@@ -109,9 +109,7 @@ const Footer = () => {
 								<nav aria-label="Footer About Nav" className="mt-8">
 									<ul className=" space-y-4 text-sm">
 										<li>
-											<Link to={"/farmastack/aboutus"} target="_blank">
-												About Us
-											</Link>
+											<Link to={"/farmastack/aboutus"}>About Us</Link>
 										</li>
 
 										<li>
@@ -214,7 +212,7 @@ const Footer = () => {
 									Privacy Policy
 								</Link>
 							</p>
-							<p className="mt-4 text-sm">&copy; 2023 Company Farmastack</p>
+							<p className="text-sm">&copy; 2023 Company Farmastack</p>
 						</div>
 					</div>
 				</div>
