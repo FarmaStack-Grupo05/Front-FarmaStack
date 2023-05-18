@@ -65,8 +65,8 @@ const ContactMe = () => {
 
 	useEffect(() => {
 		if (dataBaseUser || user) {
-			setName(dataBaseUser.name || user.name);
-			setEmail(dataBaseUser.email || user.email);
+			setName(dataBaseUser?.name || user?.name);
+			setEmail(dataBaseUser?.email || user?.email);
 		}
 	}, [dataBaseUser])
 
